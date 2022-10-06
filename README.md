@@ -1,7 +1,8 @@
 SwiftUI Day 1 
-I have review the basic of Swif content from day 1 to day 14
+I have reviewed the basic of Swif content from day 1 to day 14
 
-so key note to review:
+some key note to review:
+
 access control code:
 private before entity make entity available to what it belong, like data member to its own class/struct
 
