@@ -1,4 +1,19 @@
-SwiftUI Day 1 
+
+SwiftUI Day 16 (skip from Day 1)
+
+Every layout we will see on screen by using swiftUI are views. And view are protocl that has only require the struct have a compute property body which return opague value some view.
+
+Group{ } SwiftUI's view hierarchy doesn't allow parent to have 10 or more child view
+
+NavigationBar prevent overlap with system info when creating a form and scrolling up, however, this is prevented in iOS 14 automatically.
+
+Using @State property wrapper to get around immutability of struct property. we can use it to store value and change it latter
+
+binding a state var will allow the view which bind it to use the variable's value, and also update the view when state var change on run time.
+
+ForEach are using to create views in loop and can ignore the limitation of 10 child view. ForEach(collection){ x  in some view} where x is the alias of element in the collection, some view is the return view for each element. However, each element has to be unique identify. This could be complished by conforming to identifible protocol for each x.
+///////////////////////
+swiftUI Day 1 
 I have reviewed the basic of Swif content from day 1 to day 14
 
 some key note to review:
