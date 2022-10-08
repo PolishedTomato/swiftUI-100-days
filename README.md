@@ -1,3 +1,25 @@
+SwiftUI Day 17
+
+Continue in Day 16 we try to build a app that split the bill for user
+
+In formating a textfield, swift have Locale struct builed in which contain user info. To access current user's region currency code which use to format the textfield, we can do Locale.current.currency.identifier(iOS 16)
+
+SwiftUI allow textfiled to prompt different keyboard, using modifier .keyboardType() of TextField
+
+Picker and ForEach work well, but if you pass a int binding as value of picker, and write ForEach to return a views with RangInt. the value of binding int doesn't determine what value we pick but the ith element from RangInt. To fix this, use .tag modifier for ForEach return views. If each view is tag with unique value, then picker will show the view which has its tag matching with the binding value
+
+When using ForEach, if element didn't conform to identifiable, use id: \.self argument. This mean to identify element uniquely using its own value. Make sure their value are unique.
+
+New property wrapper: @FocusState which can be use to bind a view and see if the view focus or not, receving user attention or not. And we can turn that off in some action such as button to turn that to false
+
+in the content of toolbar, we can use ToolBarItemGroup or ToolBarItem to specify whether we want to place many toolbaritem or just one. The location can be specify through placement: augment
+
+New learned modifier: 
+Picker.pickerStyle(.segmented)
+TextField.keyboardType()
+TextField.isFocus()
+.toolbar
+**//////////////////////**
 
 SwiftUI Day 16 (skip from Day 1)
 
