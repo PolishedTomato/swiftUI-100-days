@@ -1,3 +1,15 @@
+SwiftUI Day 19
+
+Volume Convertion project completed
+
+we can use String(format: "%.3f", value_double) to format a double to 3 decimal place
+////////////
+
+SwiftUI Day 18
+
+WeSplit project completed
+
+///////////////////
 SwiftUI Day 17
 
 Continue in Day 16 we try to build a app that split the bill for user
