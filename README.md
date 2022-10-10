@@ -1,3 +1,35 @@
+SwiftUI Day 20
+
+Color are views too. For example, Color.red, Color.blue, etc. When used as a view color automatically take the whole area except safe zone. Safe zone is where apple display system info, and can be turn off by .ignoreSafeArea().
+
+Color can use to specify Text background color by using .background(.color) but only text can have background color.
+
+Since Color view can take up the whole space, .frame() can specify desired size
+
+.background() not only can accpet color, but also materials, such as ultthinmaterial which add glasses effect on text above it.
+
+.foregroundColor()  Change the color of the text
+
+.foregroundStyle() seems to do similar thing, but has something called effect vibrancy. Too subtle to me.
+
+Gradients is the visual representation of color transition to other color.
+Today I learned three new ways to initalize it for layout use(with ZStack).
+LinearGradient(), Radialgradient(), Angulargradient().
+
+Each can be initalize through proving gradient(or color or gradient.stop), and other direction parameter. 
+
+Notice, we using stop for gradient, only the interval between stops show the tranition of the color.
+  
+Button can be modifiy through .buttonStyle() for border style, and .tint() for color of the border.
+
+Button's initalizer have role, and label augment, and latter and use to customize the appearance of button completely. role is to tell user what purpose that button can be through styling.
+
+use .renderingMode(.original) for Image view when SwiftUI colored version of image.
+
+.alert() modifier trigger whenever, the binding variable become false, and it present flexible way to present alert message through message: agrument. Notice, any button, in the content of alert will dismiss the alert and set the binding variable to false.
+
+
+//////////////////
 SwiftUI Day 19
 
 Volume Convertion project completed
