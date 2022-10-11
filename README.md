@@ -1,3 +1,11 @@
+SwiftUI Day 21
+
+.font() modifier to change the size of font. However, in the selected font size append modfifier .weight() can also specify the thinness of selected font size.
+
+.clipShape() modifier change the shape of Image. However, unlike most modifier which accpet a var or enum, clipshape() take a struct. Ex .clipShape(Rectangle())
+
+
+////////////
 SwiftUI Day 20
 
 Color are views too. For example, Color.red, Color.blue, etc. When used as a view color automatically take the whole area except safe zone. Safe zone is where apple display system info, and can be turn off by .ignoreSafeArea().
