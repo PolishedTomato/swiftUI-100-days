@@ -15,6 +15,10 @@ struct ContentView: View {
     @State private var showingScore = false
     @State private var scoreTitle = ""
     @State private var cur_score = 0
+    @State private var cur_chose = 0
+    
+    @State private var atQuestion = 0;
+    @State private var maxQuestion = false;
     
     func checkAnswer(_ number: Int){
         if(number == correctAnswer)
@@ -26,12 +30,26 @@ struct ContentView: View {
             scoreTitle = "wrong :("
             cur_score -= 1
         }
-        showingScore = true
+        atQuestion += 1
+        if(atQuestion != 8){
+            showingScore = true
+        }
+        else{
+            maxQuestion = true
+        }
+        cur_chose = number
     }
     
     func resetGame(){
         countries.shuffle()
         correctAnswer = Int.random(in: 0..<3)
+        
+    }
+    
+    func resetWholeGame(){
+        resetGame()
+        cur_score = 0;
+        atQuestion = 0;
     }
     
     var body: some View {
@@ -74,8 +92,20 @@ struct ContentView: View {
                 resetGame()
             }
         } message: {
+            VStack{
+                Text("The flag is of \(countries[cur_chose])")
+                Text("Your score is \(cur_score)")
+            }
+            
+        }
+        .alert("You Finish the game!", isPresented: $maxQuestion) {
+            Button("Tap to play again :)"){
+                resetWholeGame()
+            }
+        } message: {
             Text("Your score is \(cur_score)")
         }
+
         
 
     }

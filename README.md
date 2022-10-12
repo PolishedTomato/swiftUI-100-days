@@ -1,3 +1,8 @@
+SwiftUI Day 22
+GuessTheFlag completed
+game cycle, and score feature added.
+
+/////////////////////
 SwiftUI Day 21
 
 .font() modifier to change the size of font. However, in the selected font size append modfifier .weight() can also specify the thinness of selected font size.
