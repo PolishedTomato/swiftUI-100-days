@@ -1,4 +1,23 @@
-SwiftUI Day 22
+SwiftUI Day 23
+
+There are two types of modifiers, environment modifier, regular one. When placing environment modifier on a container, it automatically apply to all of its child. apply same modifier to its child again will override it. However, this behavior is not for regular one(can't override).
+
+avoid using if on conditionally show view, because it its less efficient, if that can be done with ternary operator
+
+use ternary operator for conditional modifier, condition ? true : false
+
+under the hood, swiftui use tupleStack when we using VStack. tuple stack accpet 2-10 view, and thats why we need to limit ourself with view size or use group{} instead.
+
+view protocol also have associated type, and that is why returning view won't make sense, its has to be concrete view type. 
+
+The body property is using opague return type for performance because compiler need to figure out the type instead searthing, and we really don't care what kind of view is returning. Writing ModifiedContent<ModifiedContent<>> will be painful.
+
+modifier in SwiftUI create a new copy of applying struct with new changes. Each modifier create a copy with its new change; therefore, think of modifier as a changes stack on previous one. That impile order of modifier matter. In fact, if look at type of body property of content view with multiple modifiers, it will show the content of body property wrap around by ModifiedContent<our_view, modifier>. If there is more than one modifier, above will also be wrap around by ModifiedContent<> again.
+
+One reason SwiftUI used struct as view rather than class like UIkit was the performence reason. struct allow us to think about our UI component in isolation. Creating a view cost exactly what is inside the struct, but class view cost alot more because inheirtance(view inheirt from UIView which contain many property, methods). 
+//////////////////
+
+swiftUI Day 22
 GuessTheFlag completed
 game cycle, and score feature added.
 
