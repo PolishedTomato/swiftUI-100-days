@@ -1,3 +1,11 @@
+SwifUI Day 24
+
+RockPaperScissor project completed
+
+Custom binding allow us to bind multiple value, and set them or get them.
+Not to familiar, For example, let agreedToAll = Binding( get: {get the binding value}, set: {set the value we binded})
+////////////
+
 SwiftUI Day 23
 
 There are two types of modifiers, environment modifier, regular one. When placing environment modifier on a container, it automatically apply to all of its child. apply same modifier to its child again will override it. However, this behavior is not for regular one(can't override).
