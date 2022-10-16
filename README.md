@@ -1,3 +1,17 @@
+SwifiUI Day 25
+
+Since Date is hard to manipulate, we should reply on iOS for date calculation. we can create a DateComponents() to specify the hour, minute,etc and use Calendar.current.date(from: components), Ex components = DateComponets(), components.hour = 8, components.minute = 0, then that func will return a date object of today with specified date component. That is 8 am of today.
+
+can also get date component from a date object with Calendar.current.dateComponents(_,from:)
+
+we can access time info using Date object, Date.now return a instance representing current time. DatePicker() display the day of binding date instance. It display month, day, hour, minute, this can then be modifier by displayedComponents: argument. Like Stepper, limit can be set by in: using date range or one side date range like Date.now ... (from now on). label can be turn off with .labelsHidden() modifier.  
+
+double.formatted() return a string in floatingpointformatstyle, such as 2.000000 to 2. 
+
+Stepper provided two buttons for increment and decrement a binding value, limits and step can be specify through in:, step: arguments.
+
+
+////////////////
 SwifUI Day 24
 
 RockPaperScissor project completed
