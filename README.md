@@ -1,3 +1,12 @@
+
+SwiftUI Day 27
+
+import CoreML to use macineleaning library. By draging the MLmodel created by creat ML into Xcode naviagtor, Xcode will create a Swift class that represent this model in build, and we can use .prediction() on this class to predict base on existing model. the name of the class follow the name of the model. It can also be check in the preview content.
+
+Date object - seoncd return a new date object, very powerful API 
+///////
+
+
 SwifiUI Day 26
 
 Since Date is hard to manipulate, we should reply on iOS for date calculation. we can create a DateComponents() to specify the hour, minute,etc and use Calendar.current.date(from: components), Ex components = DateComponets(), components.hour = 8, components.minute = 0, then that func will return a date object of today with specified date component. That is 8 am of today.
