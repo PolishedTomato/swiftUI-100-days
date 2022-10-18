@@ -25,6 +25,20 @@ struct ContentView: View {
         return Calendar.current.date(from: component) ?? Date.now
     }
     
+    var dateStart: Date{
+        var component = DateComponents()
+        component.hour = 4
+        component.minute = 0
+        return Calendar.current.date(from: component) ?? Date.now
+    }
+    
+    var dateEnd: Date{
+        var component = DateComponents()
+        component.hour = 12
+        component.minute = 0
+        return Calendar.current.date(from: component) ?? Date.now
+    }
+    
     func calculateBedtime(){
         do{
             let config = MLModelConfiguration()
@@ -49,8 +63,35 @@ struct ContentView: View {
             toSleep = true
         }
     }
+    
+    var Bedtime : String{
+        do{
+            let config = MLModelConfiguration()
+            let model = try BetterRest_1(configuration: config)
+            
+            let component = Calendar.current.dateComponents([.hour,. minute], from: wakeUp)
+            //get data as in second
+            let hour = (component.hour ?? 0) * 60 * 60
+            let minute = (component.minute ?? 0) * 60
+            
+            let prediction = try model.prediction(wake: Double(hour + minute), estimatedSleep: sleepHours, coffee: Double(coffeeAmount))
+            
+            let sleepTime = wakeUp - prediction.actualSleep
+            
+            alertTitle = "Your ideal bedtime is ..."
+            alertMessage = sleepTime.formatted(date: .omitted, time: .shortened)
+            return sleepTime.formatted(date: .omitted, time: .shortened)
+        }
+        catch{
+            alertTitle = "Error"
+            alertMessage = "There was a error sorry."
+            toSleep = true
+        }
+        return "Some error occur"
+    }
     var body: some View {
         NavigationView{
+            
             Form {
                 Section{
                     DatePicker("Wake up time", selection: $wakeUp, displayedComponents: .hourAndMinute)
@@ -61,16 +102,38 @@ struct ContentView: View {
                 }
                 Section{
                     Stepper("sleep for \(sleepHours.formatted()) hours", value: $sleepHours, in: 4...12, step: 0.25)
+                    
                 } header: {
                     Text("Please select your sleep hour")
                         .font(.headline)
                 }
                 
                 Section{
+                    /*
                     Stepper(coffeeAmount == 1 ? " 1 cup of coffee" : "\(coffeeAmount) cups of coffee", value: $coffeeAmount, in: 0...10, step: 1)
+                     */
+                    
+                    Picker("Coffee intake daily for ", selection: $coffeeAmount) {
+                        ForEach(0..<11){
+                            if($0 == 1){
+                                Text("1 cup")
+                            }
+                            else{
+                                Text("\($0) cups")
+                            }
+                        }
+                    }
                 } header: {
                     Text("Coffee intake")
                         .font(.headline)
+                }
+                ZStack{
+                    RadialGradient(colors: [.yellow,.green], center: .center, startRadius: 20.0, endRadius: 200)
+                        .padding(-50)
+                    VStack{
+                        Text("your desire bed time is \(Bedtime)")
+                            .font(.largeTitle.weight(.bold))
+                    }
                 }
             }
             .navigationTitle("RestBetter")

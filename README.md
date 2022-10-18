@@ -1,4 +1,9 @@
+SwiftUI Day 28
 
+Date.formatted() function should be call for displaying purpose
+
+
+/////////////
 SwiftUI Day 27
 
 you can't assign computed property to store property's default value because self is not available to property initalizer. One way to work around this is use class property to declare that computed property as class computed property with static keyword. class property is available before indidivual struct property initalization.
@@ -10,6 +15,10 @@ Date object - seoncd return a new date object, very powerful API
 
 
 SwifiUI Day 26
+
+BetterRest project completed
+
+When try to add a ZStack in side form to use RadialGradient for background purpose, setting RadialGradient.frame() with .infinity can't fill out the whole ZStack container. However, I managed to work around it by using padding(-50) modifier on it.
 
 Since Date is hard to manipulate, we should reply on iOS for date calculation. we can create a DateComponents() to specify the hour, minute,etc and use Calendar.current.date(from: components), Ex components = DateComponets(), components.hour = 8, components.minute = 0, then that func will return a date object of today with specified date component. That is 8 am of today.
 
