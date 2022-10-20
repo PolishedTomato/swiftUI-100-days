@@ -1,3 +1,26 @@
+SwiftUI Day 29
+
+List and Form are identical except list are use for data representation while form use for data input.
+
+one difference is that List can dynamatic create row like List(0..<3){someview}
+Like ForEach, SwiftUI need a unique way to identify each element been generated. For a collection of unique value use id: \.self argument. Otherwise, confrom to identifiable protocol
+
+introduced a new data type URL, which store address of web, but can also store the location of file.
+
+when xcode build our porject, it create something call bundle where all our code and asset store in this one place.(Like object file to me)
+
+we can use Bundle.main.url() to read the URL for a file in main bundle, it return a optional value.
+
+with the URL, then we can use String(contentsOf: fileURL) to read the content (this can throw)
+
+string.component(seperatedBY:) return an array of string from caller by dividing the caller with seperatedBY.
+
+let trimmed = letter?.trimmingCharacters(in: .whitespacesAndNewlines) remove whitespace, tab, new line in the begin and end of string
+
+Use UITextChecker() to check spelling. Here is a little bit complex. Since UITextChecker() was written in objective-c, it accpet a range of objective-c range, we can generated that range with NSRange(location: 0, length: word.utf16.count) for word's whole range. let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en". This use UITextChecker to find word's misspelling from the begin to the range in English, and it return the range of misspell.
+Since objective-c don't have optional, misspelledrange.location will return NSNotFound when not spell error. 
+////////////
+
 SwiftUI Day 28
 
 Date.formatted() function should be call for displaying purpose
