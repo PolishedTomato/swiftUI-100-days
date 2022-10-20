@@ -8,6 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    func some_func() -> Bool{
+        let word = "swift"
+        let checker = UITextChecker()
+        let range = NSRange(location: 0, length: word.utf16.count)
+        let misspell = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        
+        let x = misspell.location == NSNotFound
+        
+        
+        
+        return x
+    }
+    
     var body: some View {
         VStack {
             List {
@@ -32,6 +45,12 @@ struct ContentView: View {
                 Text("\($0) row")
             }
             
+            if(some_func()){
+                Text("no spell error")
+            }
+            else{
+                Text("There is a spell error")
+            }
             
         }
         //.padding()
