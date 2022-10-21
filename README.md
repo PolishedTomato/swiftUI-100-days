@@ -1,3 +1,8 @@
+SwiftUI Day 30
+
+onSubmit({}) execute a void closure that take no parameter when value is submit for this view. In the case of textfield, that's when user hit the return. 
+
+///////////////
 SwiftUI Day 29
 
 List and Form are identical except list are use for data representation while form use for data input.
