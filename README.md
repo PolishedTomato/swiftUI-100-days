@@ -1,3 +1,11 @@
+SwiftUI Day 31
+
+project5 and its challenge complete.
+
+Notice, when adding toolbar modifier for navigationView, it have to be with the first child in the hierachy.
+
+Multiline string's last """ indentation determine where our string should begin, any further indentation after that will be convert to autual indentation in string.
+/////////////
 SwiftUI Day 30
 
 onSubmit({}) execute a void closure that take no parameter when value is submit for this view. In the case of textfield, that's when user hit the return. 

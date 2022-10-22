@@ -15,6 +15,24 @@ struct ContentView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = ""
     @State private var showAlert = false
+    @State private var score = 0
+    
+    private let rules = """
+                        Guess a word from provided word.
+                        1, the word enter must be at least have three letters.
+                        2, it can't be the same word.
+                        3, word you input must be valid.
+                        4, you can only use each letter for maximum once
+                        5, if you make a valid word, the length of your word will added to your score.
+                        """
+    
+    //disallow word shorter than three letter or same as the rootword
+    func challengeOne()->Bool{
+        if(newWord.count < 3 || newWord == RootWord){
+            return false
+        }
+        return true
+    }
     
     func wordError(title: String, message: String){
         alertTitle = title
@@ -81,10 +99,15 @@ struct ContentView: View {
             wordError(title: "Error", message: "it isn't possible to construct this word out of selected word")
             return
         }
+        
+        guard challengeOne() else{
+            wordError(title: "Challenge one error", message: "word must have length of three or greater, and can't be the same word")
+            return
+        }
         withAnimation {
             usedWords.insert(lowcase, at: 0)
         }
-        
+        score += lowcase.count
         newWord = ""
     }
     var body: some View {
@@ -94,6 +117,29 @@ struct ContentView: View {
                     TextField("What word have you in mind?", text: $newWord)
                         .textInputAutocapitalization(.never)
                 }
+                Section{
+                    ZStack{
+                        RadialGradient(stops: [.init(color: .yellow, location: 0.15), .init(color: .green, location: 0.5)], center: .center, startRadius: 20, endRadius: 200)
+                            .padding(-50)
+                        
+                        Text("\(score)")
+                            .foregroundColor(.white)
+                            .font(.headline.bold())
+                    }
+                } header: {
+                    HStack{
+                        Text("Your scores ⛳️")
+                            .foregroundColor(.green)
+                            .font(.headline.bold())
+                        Spacer()
+                        NavigationLink {
+                            Text(rules)
+                        } label: {
+                            Image(systemName: "questionmark.diamond.fill")
+                        }
+
+                    }
+                }
                 Section("Previous words"){
                     ForEach(usedWords, id: \.self) {
                         Label("\($0)", systemImage: "\($0.count).circle")
@@ -101,6 +147,14 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("\(RootWord)")
+            .toolbar {
+                ToolbarItem {
+                    Button("Start Game"){
+                        loadwords()
+                        usedWords = []
+                    }
+                }
+            }
         }
         .onSubmit(addNewWord)
         .onAppear(perform: {loadwords()})
