@@ -1,3 +1,11 @@
+SwiftUI Day 33
+
+we can apply multiple animation modifier and .animation modifier order matter, every animation modifier control animating modifier before it. Therefore, we can have different animation at one property.
+
+.gesture() modifier take gesture agrument. Today we used DragGesture(). DragGesture() then can take two important modifier .onchanged() .onEnded correspond to dragging action, and leasing action. Both take a one parameter void closure. We can make the effect of dragging a view around by using offset() which specify how far it want to move from original position, and onChange{dragAmount = $0.translatiion} and .offset(dragAmount). onChange pass self into closure and self has translation property that take us how far did it move from result location to original location. offset then use this data to update location of view in UI. Even though I don't know what self is in this context, this is how it make it happen. 
+
+.transition() modifier need to use with animation. transition modifier specify how a view insertion and removal in the view hierachy will behave. One of such case is to use if conditionally show a view. With only animation, swiftUI use default tranition. .tranition(.scale) will scale from nothing to this view  when inserting, and scale to nothing when removing.   
+////////////////
 SwiftUI Day 32
 
 implicit animation is fairly simple. By placing .animation(animation: value:) modifier, view will transform original view to animting view smoothly without we to care when value argument change. Any animating modifier before it which use value will take effect. Some animating modifier include .scaleEffect(), .blur() 
