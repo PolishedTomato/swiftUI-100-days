@@ -1,3 +1,15 @@
+SwiftUI Day 32
+
+implicit animation is fairly simple. By placing .animation(animation: value:) modifier, view will transform original view to animting view smoothly without we to care when value argument change. Any animating modifier before it which use value will take effect. Some animating modifier include .scaleEffect(), .blur() 
+
+since animation modifier take animation struct, we can add modifier to animation argument too. repeatCount() .repreatFover() repeat the animation for numbers of time. Notice, the autoreverse argument of them will show animation from alter state to original state. animation.delay(sec) delay sec before animation.
+
+we can also use animation modifier on binding value, SwiftUI will animate view on change of binding value. Behave like animation modifier on view, any view that has animating modifier using that binding value will be animated.
+
+The first case state change have no idea if it will animate some view, the second case view don't know if it will be animated(since the modifier is on binding value now).
+
+while explicit animation say exactly that the change this block of code bring will be animated. Ex withAnimation{ animationSize += 1}. This also accpet animation agrument like withAnimation(.easeInout.repeatForever()){do something}.
+
 SwiftUI Day 31
 
 project5 and its challenge complete.
