@@ -1,3 +1,12 @@
+SwiftUI Day 34
+
+GuessTheFlag updated with animation.
+
+Some note: when using if to insert view into view hierarchy animation won't show, but the modified view. Ternary expression can be nested like, bool expression ? bool expression ? some_val : some_val : some_val
+
+we can use this nest ternary expression to control animation in different stages. The nest one can be seem as the second stage.  
+
+////////
 SwiftUI Day 33
 
 we can apply multiple animation modifier and .animation modifier order matter, every animation modifier control animating modifier before it. Therefore, we can have different animation at one property.

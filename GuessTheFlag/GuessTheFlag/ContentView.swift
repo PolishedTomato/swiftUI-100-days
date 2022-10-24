@@ -20,6 +20,14 @@ struct ContentView: View {
     @State private var atQuestion = 0;
     @State private var maxQuestion = false;
     
+    
+    //swiftUI Day 34 challenger
+    //animation will show only that that view, change view won't show
+    @State private var spin = true
+    @State private var userTap = false
+    func userChoseUpdate(number: Int){
+        cur_chose = number
+    }
     func checkAnswer(_ number: Int){
         if(number == correctAnswer)
         {
@@ -37,7 +45,6 @@ struct ContentView: View {
         else{
             maxQuestion = true
         }
-        cur_chose = number
     }
     
     func resetGame(){
@@ -73,12 +80,18 @@ struct ContentView: View {
                 ForEach(0..<3){
                     number in
                     Button{
+                        userChoseUpdate(number: number)
+                        userTap.toggle()
                         checkAnswer(number)
+                    
                     } label: {
-                        Image(countries[number])
-                            .renderingMode(.original)
-                            .clipShape(Rectangle())
-                            .shadow(radius: 5)
+                            Image(countries[number])
+                                .renderingMode(.original)
+                                .clipShape(Rectangle())
+                                .shadow(radius: 5)
+                                .rotation3DEffect(userTap ? Angle(degrees: cur_chose == number ? 360 : 0) : Angle(degrees: cur_chose == number ? 0 : 360), axis: (x: 0, y: 1, z: 0))
+                                .opacity(userTap ? cur_chose == number ? 1 : 0.25 : 1)
+                                .animation(.default, value: userTap)
                     }
                 }
                 Text("Score is \(cur_score)")
@@ -90,6 +103,7 @@ struct ContentView: View {
         .alert(scoreTitle, isPresented: $showingScore) {
             Button("ok"){
                 resetGame()
+                userTap.toggle()
             }
         } message: {
             VStack{
@@ -101,6 +115,7 @@ struct ContentView: View {
         .alert("You Finish the game!", isPresented: $maxQuestion) {
             Button("Tap to play again :)"){
                 resetWholeGame()
+                userTap.toggle()
             }
         } message: {
             Text("Your score is \(cur_score)")
