@@ -91,6 +91,7 @@ struct ContentView: View {
                                 .shadow(radius: 5)
                                 .rotation3DEffect(userTap ? Angle(degrees: cur_chose == number ? 360 : 0) : Angle(degrees: cur_chose == number ? 0 : 360), axis: (x: 0, y: 1, z: 0))
                                 .opacity(userTap ? cur_chose == number ? 1 : 0.25 : 1)
+                                .scaleEffect(userTap ? cur_chose == number ? 1 : 0.5 : 1)
                                 .animation(.default, value: userTap)
                     }
                 }
