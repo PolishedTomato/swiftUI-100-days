@@ -1,3 +1,28 @@
+SwiftUI Day 36
+
+since struct is value type, changes in one of its won't reflect other because they all copys. Therefore, to share data among view, we need class. SwiftUI rerender our view for changing on @state variable. If that is a struct, changing property of that will recreate a new struct and @State is able to spot the change, then rerender our view. However, class don't need the mutating keyword for changing its property(so @state didn't know if that class changed or not), thus, @State won't work for class. Today introduced @StateObject @ObservedObject @Publisehd ObservableObject for class instance to share data among views. In the root view, we should create class object which conform to ObservableObject protocol with property wrapper @StateObject to tell SwitiUI to monitor this class, and class object will have the property which it want to be monitor wrapped with @Published. Any changes on these property will notify the view that using the published property, and got reload bt SwiftUI. This is essentially move state property in a class. If we want to share that class to child view, child view's corresponding class instance should wrapped with @observedObject, passed by parent view.
+
+To programmtically dismiss our view, use @Environment(\.dismiss) var some_name, calling some_name() will dismiss the view.
+
+To remove a dynamically created row, we use .onDelete(perform: (indexSet)->void) modifier of ForEach, List dont have it. indexSet is the position of element for each row, if we were using array for this row contruction, we can use array.remove(atOffsets: indexSet) 
+
+EditButton() toggle the environment value of edit mode, we can use it for easy delete on ForEach() views
+
+use UserDafaults to store passive data. UserDefaults.standard.set(some_val, forKey: "Tap"). Key is how we retrive our data. @State var data = UserDefaults.standard.integer(forKey: "Tap"). Another way to do it: @AppStorage ("Key") var some_val = default_val.; 
+One line code, easier. 
+
+UserDefault is good for storing small data, and will automatically load we app start.
+
+However, for more complex data structrue like custom class or struct, we can't used the second method. We need to used JSONEncoder.encode and JSONDecoder.decode() to convert our data into JSON object which is a representation of data then save it in UserDefault.
+Ex: data = JSONEncoder.encode(some_struct) UserDefault.standard.set(data, forKey: some_keay)
+/////
+SwiftUI Day 35
+
+loose file in xcode project like text, movie, JSON, XML are builded into a directory called resources in the main bundle no matter where we group it. Therefore, having same file name will casue problem.
+
+edutainment challenger complete
+///////// 
+
 SwiftUI Day 34
 
 GuessTheFlag updated with animation.
