@@ -83,7 +83,7 @@ struct ContentView: View {
         .sheet(isPresented: $showSheet) {
             secondView()
         }
-        JSONEncoder()
+        //JSONEncoder()
         
     }
 }

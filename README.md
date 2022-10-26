@@ -1,3 +1,9 @@
+SwiftUI Day 37
+
+One intesting point how hacking with swift to show type of array is by [elementType].self
+
+Project 7 completed
+
 SwiftUI Day 36
 
 since struct is value type, changes in one of its won't reflect other because they all copys. Therefore, to share data among view, we need class. SwiftUI rerender our view for changing on @state variable. If that is a struct, changing property of that will recreate a new struct and @State is able to spot the change, then rerender our view. However, class don't need the mutating keyword for changing its property(so @state didn't know if that class changed or not), thus, @State won't work for class. Today introduced @StateObject @ObservedObject @Publisehd ObservableObject for class instance to share data among views. In the root view, we should create class object which conform to ObservableObject protocol with property wrapper @StateObject to tell SwitiUI to monitor this class, and class object will have the property which it want to be monitor wrapped with @Published. Any changes on these property will notify the view that using the published property, and got reload bt SwiftUI. This is essentially move state property in a class. If we want to share that class to child view, child view's corresponding class instance should wrapped with @observedObject, passed by parent view.
