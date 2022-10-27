@@ -1,3 +1,9 @@
+SwiftUI Day 38
+
+project 7 challenge complete.
+
+/////////
+
 SwiftUI Day 37
 
 One intesting point how hacking with swift to show type of array is by [elementType].self

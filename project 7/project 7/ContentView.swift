@@ -15,29 +15,61 @@ struct ContentView: View {
     var body: some View {
         VStack {
             NavigationView{
-                List{
-                    ForEach(MyExpense.items){
-                        item in
-                        HStack{
-                            VStack{
-                                Text(item.name)
+                VStack{
+                    List{
+                        ForEach(MyExpense.personalItems){
+                            item in
+                            HStack{
+                                VStack{
+                                    Text(item.name)
+                                        .font(.headline)
+                                    Text(item.type)
+                                        .font(.subheadline)
+                                }
+                                Spacer()
+                                Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                                     .font(.headline)
-                                Text(item.type)
-                                    .font(.subheadline)
+                                    .foregroundColor(item.amount <= 10.0 ? .green : (item.amount > 100 ? .red : .blue))
+                                    .scaleEffect(item.amount > 100.0 ? 1.25 : 1)
+                                    .foregroundStyle((10.0 < item.amount && item.amount < 100.0) ? .ultraThinMaterial : .regularMaterial)
                             }
-                            Spacer()
-                            Text("\(item.amount)")
-                                .font(.headline)
                         }
-                        //Text("\(item.name)")
+                        .onDelete { IndexSet in
+                            withAnimation{
+                                MyExpense.personalItems.remove(atOffsets: IndexSet)
+                            }
+                        }
                     }
-                    .onDelete { IndexSet in
-                        MyExpense.items.remove(atOffsets: IndexSet)
+                    
+                    List {
+                        ForEach(MyExpense.businessItems){
+                            item in
+                            HStack{
+                                VStack{
+                                    Text(item.name)
+                                        .font(.headline)
+                                    Text(item.type)
+                                        .font(.subheadline)
+                                }
+                                Spacer()
+                                Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                                    .font(.headline)
+                                    .foregroundColor(item.amount <= 10.0 ? .yellow : (item.amount > 100 ? .pink : .orange))
+                                    .scaleEffect(item.amount > 100.0 ? 1.25 : 1)
+                                    .foregroundStyle((10.0 < item.amount && item.amount < 100.0) ? .ultraThinMaterial : .regularMaterial)
+                            }
+                        }
+                        .onDelete { IndexSet in
+                            withAnimation{
+                                MyExpense.businessItems.remove(atOffsets: IndexSet)
+                            }
+                        }
                     }
                 }
                 .toolbar{
                     Button{
                         showAddSheet = true
+                        print("pressed")
                     } label: {
                         Label("Add", systemImage: "plus")
                     }
@@ -45,6 +77,7 @@ struct ContentView: View {
                 .sheet(isPresented: $showAddSheet) {
                     AddView(expense: MyExpense)
                 }
+                
             }
         }
     }
@@ -52,6 +85,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(MyExpense: Expense.sampleData())
     }
 }

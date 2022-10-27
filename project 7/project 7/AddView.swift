@@ -40,7 +40,14 @@ struct AddView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save to your expense", role: .destructive){
                         let item = ExpenseItem(name: name, type: type, amount: amount)
-                        expense.items.append(item)
+                        withAnimation{
+                            if item.type == "Personal"{
+                                expense.personalItems.append(item)
+                            }
+                            else{
+                                expense.businessItems.append(item)
+                            }
+                        }
                         dismiss()
                     }
                 }
