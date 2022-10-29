@@ -1,3 +1,24 @@
+SwiftUI Day 40
+
+JSONDecoder().dateDecodingStrategy = .formatted(DateFormatter) allow it to decode date in a specify way. Very convience.
+
+NavigationViewTitle can be change its color through .preferredColorScheme()
+//////////
+SwiftUI Day 39
+
+Until what I have learned, Image have two mode changable by .scaledToFit() or scaledToFill(), the first will scale the img into view's content space, while the latter allow it to go out of the view's space. 
+
+We can hardcode the width of Image, however, a better approache is by using geometryReader() which take a void closure and feed it with a geo instance. We can use the property of geo to sepecify a dynamic size of our img using frame such as .frame(width:geo.size.width * 0.8) which is a width take up of 80 percent of screen. Same goes to height. However, geometryReader likes to place item in the top left corn, if want to center in the middle, add another .frame() with width, height equal to geo.size.width/height. 
+
+ScrollView different to List and Form in that it allow custom view to be inside. 
+ScrollView usually will be use with Stacks.
+
+Here introduced LazyVStack/LazyHStack which only load view when needed, such as it won't create all the view in the container but only when needed. Otherwise, it behave the same as it's not lazy counter part.
+
+How to decode hierarchical data such as a data type in side another data type: for each level  create a matching struct in your code and conform to codable. Then use that type for Json decoder.  
+
+How to create grid: Use either LazyHGrid(rows: layout) or LazyVGrid(columns: layout) layout is of type [gridItems], this array specify what layout to use. For example, [GridItem(.fixed(60)), GridItem(.fixed(60)) will define for two cols or rows with 60 space for each item in LazyHGrid/LazyVGrid. HackingWithSwift recommon [GridItem(.adaptive( minimum: 80, maximum: 120))] which creating as many row/col as possible with specify interval of size. 
+
 SwiftUI Day 38
 
 project 7 challenge complete.
