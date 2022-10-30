@@ -38,6 +38,7 @@ struct Mission: Codable, Identifiable{
     }
 }
 
+//define color, color conform to ShapeStyle already
 extension ShapeStyle where Self == Color{
     static var darkBackground: Color {
         

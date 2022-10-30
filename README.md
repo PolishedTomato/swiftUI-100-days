@@ -1,3 +1,11 @@
+SwiftUI Day 41
+
+Image using geometryreader for size suppose to center at top left corner.However, when other children in the same container as this image take the full width of the screen, the Image centered in the center. Interesting behavior.
+
+A custom divider can be create by using rectangle().frame(height:2)
+
+dictionary subsript return optional value, use ! to unwrap it.
+
 SwiftUI Day 40
 
 JSONDecoder().dateDecodingStrategy = .formatted(DateFormatter) allow it to decode date in a specify way. Very convience.
