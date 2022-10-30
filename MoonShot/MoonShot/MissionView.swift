@@ -24,14 +24,15 @@ struct MissionView: View {
     }
     
     let mission: Mission
-    
-    struct CrewMember{
-        let role: String
-        let astronaut: Astronaut
-    }
-    
     let crew: [CrewMember]
     
+    var launchDate: String {
+        if mission.launchDate == nil{
+            return "N/A"
+        }
+        
+        return mission.launchDate!.formatted(date: .abbreviated, time: .omitted)
+    }
     var body: some View {
         NavigationView{
             GeometryReader{
@@ -41,23 +42,19 @@ struct MissionView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(maxWidth: geo.size.width * 0.6)
-                        
+                        Text("Launch Date: \(launchDate)")
+                            .font(.subheadline)
+                            
                         VStack(alignment: .leading){
                             Text("Mission highlights")
                                 .font(.title.bold())
                                 .padding(.bottom, 5)
                             
-                            Rectangle()
-                                .frame(height: 2)
-                                .foregroundColor(.lightBackground)
-                                .padding(.vertical)
+                            MyDivier()
                             
                             Text("\(mission.description)")
                             
-                            Rectangle()
-                                .frame(height: 2)
-                                .foregroundColor(.lightBackground)
-                                .padding(.vertical)
+                            MyDivier()
                             
                             Text("Crew")
                                 .font(.title.bold())
@@ -65,36 +62,7 @@ struct MissionView: View {
                         }
                         .padding(.horizontal)
                         
-                        ScrollView(.horizontal, showsIndicators: false){
-                            HStack(spacing: 20){
-                                ForEach(crew, id: \.role){ member in
-                                    NavigationLink {
-                                        AstronautView(astronaut: member.astronaut)
-                                    } label: {
-                                        HStack{
-                                            Image(member.astronaut.id)
-                                                .resizable()
-                                                .frame(width: 104, height: 72)
-                                                .clipShape(Capsule())
-                                                .overlay{
-                                                    Capsule()
-                                                        .strokeBorder(.white, lineWidth: 1)
-                                                }
-                                            VStack(alignment: .leading){
-                                                Text(member.astronaut.name)
-                                                    .font(.headline)
-                                                    .foregroundColor(.white)
-                                                
-                                                Text(member.role)
-                                                    .font(.subheadline)
-                                                    .foregroundColor(.secondary)
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            .padding(.horizontal)
-                        }
+                        CrewMemberView(crew: crew)
                         
                     }
                     .padding(.bottom)

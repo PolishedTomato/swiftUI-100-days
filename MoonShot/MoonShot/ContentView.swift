@@ -13,46 +13,57 @@ struct ContentView: View {
     
     let layout = [GridItem(.adaptive(minimum: 150))]
     
+    @State private var turn = false
     var body: some View {
         NavigationView{
-            ScrollView{
-                LazyVGrid(columns: layout) {
-                    ForEach(missions) { mission in
+            if(turn == false){
+                ScrollView{
+                    LazyVGrid(columns: layout) {
+                        ForEach(missions) { mission in
+                            NavigationLink {
+                                MissionView(mission: mission, astronauts: astronauts)
+                            } label: {
+                                MissionLabelView(mission: mission, turn: turn)
+                            }
+                            //.padding([.horizontal, .bottom])
+                        }
+                    }
+                    .padding([.horizontal, .bottom])
+                }
+                .navigationTitle("MoonShot")
+                .background(.darkBackground)
+                .preferredColorScheme(.dark)
+                .toolbar{
+                    ToolbarItem {
+                        Button("Tap to switch"){
+                            turn.toggle()
+                        }
+                    }
+                }
+            }
+            else{
+                List {
+                    ForEach(missions){
+                        mission in
                         NavigationLink {
                             MissionView(mission: mission, astronauts: astronauts)
                         } label: {
-                            VStack{
-                                Image(mission.image)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100)
-                                    .padding()
-                                VStack{
-                                    Text(mission.displayName)
-                                        .font(.headline)
-                                        .foregroundColor(.white)
-                                    Text(mission.formattedLaunchDate)
-                                        .font(.caption)
-                                        .foregroundColor(.white.opacity(0.5))
-                                }
-                                .padding(.vertical)
-                                .frame(maxWidth: .infinity)
-                                .background(.lightBackground)
-                            }
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.lightBackground)
-                            )
+                            MissionLabelView(mission: mission, turn: turn)
                         }
-                        //.padding([.horizontal, .bottom])
+                        .listRowBackground(Color.white)
                     }
                 }
-                .padding([.horizontal, .bottom])
+                .listStyle(.sidebar)
+                .navigationTitle("MoonShot")
+                .preferredColorScheme(.light)
+                .toolbar{
+                    ToolbarItem {
+                        Button("Tap to switch"){
+                            turn.toggle()
+                        }
+                    }
+                }
             }
-            .navigationTitle("MoonShot")
-            .background(.darkBackground)
-            .preferredColorScheme(.dark)
         }
     }
 }

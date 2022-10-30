@@ -1,3 +1,15 @@
+SwiftUI Day 42
+
+use buttonStyle() and .tint() modifier for navigationLink to change the way SwiftUI highlight the view. NavigationLink behave like a button here.
+
+GeometryReader read the current view container's size.
+
+Some notible difference on using ScrolView and List to display views. list doesn't have background color. The background color of scrollView will apply to its children if the children didn't specify it. List nagivationLink children will have a arrow on the right, while ScrollView doesn't.
+
+Style List by using .listRowBackground(view:) on children, and listStyle() on List
+
+MoonShot Challenger Completed.
+/////////////
 SwiftUI Day 41
 
 Image using geometryreader for size suppose to center at top left corner.However, when other children in the same container as this image take the full width of the screen, the Image centered in the center. Interesting behavior.
@@ -5,7 +17,7 @@ Image using geometryreader for size suppose to center at top left corner.However
 A custom divider can be create by using rectangle().frame(height:2)
 
 dictionary subsript return optional value, use ! to unwrap it.
-
+////////////////
 SwiftUI Day 40
 
 JSONDecoder().dateDecodingStrategy = .formatted(DateFormatter) allow it to decode date in a specify way. Very convience.
