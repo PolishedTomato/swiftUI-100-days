@@ -1,3 +1,17 @@
+SwiftUI Day 43
+
+Introduced Path view, Path() take a closure which accpet one parameter, Path. Ex: Path{ path in dosomething with path}. We can use this with CGPoint to hardcore a graph in our UI but there is a better way.
+
+More advance trick to draw custom view is by using struct conform to Shape. Shape has one requirement func path(in:) ->Path. We can use struct conform to Shape for reusble code, and also dynamically draw our UI because the neat parameter in: which is a CGRect that have the info of the view container. For example, in.minX or in.midX return the left most coordinate and mid coordinate respectably. 
+
+Things to be careful when drawing arc using path.addArc(): SwiftUI's degree 0 begin at the right side like a unit circle. It measure coordinate differenctly, so we have to input false for clockwise when want a clockwise behavior.
+
+Also, 90 degree is at bottom, 270 is at top.
+
+InSettableShape protocol which have method of StrokeBorder() that draw inside the shape, rather in the border such as .Stroke(). InSettableShape basically allow the shape to reduce its size, by insetAmount. Notice, InsettableShape protocol builded upon Sahpe protocol, perhaps through protocol? It need a func inset(by amount: CGFloat) ->some InsettableShape {} that return a size changed instance back.(See SwiftUI Day 43 project)
+
+////////////
+
 SwiftUI Day 42
 
 use buttonStyle() and .tint() modifier for navigationLink to change the way SwiftUI highlight the view. NavigationLink behave like a button here.
