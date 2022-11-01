@@ -1,3 +1,12 @@
+SwiftUI Day 44
+
+use CGAffineTransform to scale, rotate, sheared Path or view. Notice, it use radian for rotation, degree to radian can be translate by pi/180, e.i. every 180 degree for one pi radian.
+
+we can use ImagePaint() for border, stroke, fill, background. ImagePaint() give us a way to control our image when use it as background or fill a border. It use three parameters, a image, sourceRect, scale. The last two got default of a CGRect(x:0,y:0, width:1, height: 1) (that is the whole image, x y specify where does the rect start), and scale: 1. 
+
+SwiftUI use Core Animation for default rendering. However, when thing got complex using .drawingGroup() modifier will use another rendering framework of apple named Meta.Meta is fast, but only recommend when Core Animation caused performance issue.
+///////////
+
 SwiftUI Day 43
 
 Introduced Path view, Path() take a closure which accpet one parameter, Path. Ex: Path{ path in dosomething with path}. We can use this with CGPoint to hardcore a graph in our UI but there is a better way.
