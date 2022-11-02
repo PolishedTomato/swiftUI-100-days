@@ -1,3 +1,19 @@
+SwiftUI Day 45
+
+.blendMode() modifier control how SwiftUI render pixels when on top of other views. For example, .blendMode(.Multiple) multiple the target view's pixels with source pixels(The pixels under the modifying view).
+
+Color.red, Color.blue, ..., etc are not pure red or blue, but adpative color of SwiftUI to look good on light or dark mode. To use pure color, we need Color(red: greem:blue:) initializer.
+
+An interesting image modifier .saturation() from 0 - 1. 0 mean no color while 1 mean 100% color.
+
+The shape struct won't animation with onTapGesture() like previous project because SwiftUI have to examine the state of value before and after blinding change. The problem is that once the blinding value got updated, it immediately got pass to the struct with no intermeidate value for animation to happen. 
+
+Solution: var animatableData{get {} set{}}, since animation observe the value's state change, it will send to our shape animatableData that interplolate from old value to new value in animation process. This value's meaning is define by the shape. If state is 50 to 59, and our shape use it as width. We can use setter to control the width change by assigning new interpolated animatableData to width.
+
+To animate shape with two variables, use animatableData: AnimatablePair<type, type> which read, write the new value for animation. Notice, animatableData was read by SwiftUI for animation, so it can't be a integer for it can't change from 0 to 0.1 to 0.2 and such.
+
+For more variable, we can use nest AnimatablePair type. For example with 3 variables, animatableData: AnimatablePair<AnimatablePair<Double, Double>, Double>{}. Same idea for 4 or more. 
+///////////
 SwiftUI Day 44
 
 use CGAffineTransform to scale, rotate, sheared Path or view. Notice, it use radian for rotation, degree to radian can be translate by pi/180, e.i. every 180 degree for one pi radian.

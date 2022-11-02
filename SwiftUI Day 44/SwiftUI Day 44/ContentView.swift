@@ -79,6 +79,10 @@ struct ContentView: View {
                 .frame(width: 300, height: 300)
                 .background(ImagePaint(image: Image("dog"), sourceRect: CGRect(x: 0.5, y: 0.5, width: 0.5, height: 0.5)))
                 //.border(ImagePaint(image: Image("dog"), scale: 0.5), width: 100)
+            Circle()
+                .inset(by: 70)
+                .frame(width:200, height:200)
+                
         }
     }
 }
