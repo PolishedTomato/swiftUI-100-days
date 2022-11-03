@@ -1,3 +1,10 @@
+SwifTUI Day 46
+
+Challenge Completed.
+
+Notice, only Shape need AnimatableData for animation. View don't.
+
+////////
 SwiftUI Day 45
 
 .blendMode() modifier control how SwiftUI render pixels when on top of other views. For example, .blendMode(.Multiple) multiple the target view's pixels with source pixels(The pixels under the modifying view).
