@@ -31,14 +31,18 @@ struct Challenge3: View {
     @State private var xy2: UnitPoint = UnitPoint(x: 1.0, y: 1.0)
     //@State private var coordinates = (UnitPoint(x: 0.0, y: 0.0), UnitPoint(x: 1.0, y: 1.0))
     var body: some View {
-        RectangleGradiant(StartPoint: xy, endPoint: xy2)
-            .frame(width:300, height: 200)
-            .onTapGesture {
-                xy = UnitPoint(x: Double.random(in: 0...1), y: Double.random(in: 0...1))
-                //xy2 = UnitPoint(x: Double.random(in: 0...1), y: Double.random(in: 0...1))
-                //xy = UnitPoint(x: 0.5, y: 0.5)
-            }
-            .animation(.interpolatingSpring(stiffness: 200, damping: 1).repeatCount(3,autoreverses: false), value: xy)
+        ZStack{
+            RectangleGradiant(StartPoint: xy, endPoint: xy2)
+                .frame(width:300, height: 200)
+                .animation(.interpolatingSpring(stiffness: 200, damping: 1).repeatCount(3,autoreverses: false), value: xy)
+            
+            Text("Tap me")
+                .onTapGesture {
+                    xy = UnitPoint(x: Double.random(in: 0...1), y: Double.random(in: 0...1))
+                    //xy2 = UnitPoint(x: Double.random(in: 0...1), y: Double.random(in: 0...1))
+                    //xy = UnitPoint(x: 0.5, y: 0.5)
+                }
+        }
     }
 }
 

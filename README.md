@@ -1,3 +1,9 @@
+SwiftUI Day 47
+
+ActivityTrackerApp complete basic feature.
+
+//////////
+
 SwifTUI Day 46
 
 Challenge Completed.
