@@ -11,11 +11,14 @@ import Foundation
 struct ActivityLabelView: View {
     let name: String
     var body: some View {
-        VStack{
+        ZStack{
+            Color.pink
+                .clipShape(Capsule())
             Text(name)
                 .font(.title.weight(.bold))
                 .foregroundColor(.black)
         }
+        .frame(width: 150, height: 100)
     }
 }
 

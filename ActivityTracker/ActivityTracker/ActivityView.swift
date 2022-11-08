@@ -20,9 +20,9 @@ struct ActivityView: View {
                 }
                 Section("From and To"){
                     HStack{
-                        Text(activity.startTime.formatted(date: .abbreviated, time: .shortened))
-                        Text("to")
-                        Text(activity.endTime.formatted(date: .abbreviated, time: .standard))
+                        Text(activity.startTime.formatted(date: .omitted , time: .shortened))
+                        Text(" - ")
+                        Text(activity.endTime.formatted(date: .omitted, time: .standard))
                     }
                 }
                 ZStack{

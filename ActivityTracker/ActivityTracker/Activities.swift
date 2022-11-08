@@ -18,7 +18,11 @@ class Activities: ObservableObject{
     static var sampleData = [
         Activity(name: "go to sleep", startTime: Date(timeIntervalSince1970: 1000), endTime: Date(timeIntervalSince1970: 20000)),
         Activity(name: "Run!", startTime: Date(timeIntervalSince1970: 3000), endTime: Date(timeIntervalSince1970: 20000)),
-        Activity(name: "Relax", startTime: Date(timeIntervalSince1970: 4000), endTime: Date(timeIntervalSince1970: 20000))]
+        Activity(name: "Relax", startTime: Date(timeIntervalSince1970: 4000), endTime: Date(timeIntervalSince1970: 20000)),
+        Activity(name: "Exercise", startTime: Date(timeIntervalSince1970: 4000), endTime: Date(timeIntervalSince1970: 20000)),
+        Activity(name: "Read a book", startTime: Date(timeIntervalSince1970: 4000), endTime: Date(timeIntervalSince1970: 20000)),
+        Activity(name: "Relax", startTime: Date(timeIntervalSince1970: 4000), endTime: Date(timeIntervalSince1970: 20000)),
+        Activity(name: "snake time", startTime: Date(timeIntervalSince1970: 4000), endTime: Date(timeIntervalSince1970: 20000))]
     
     static func sample() -> Activities{
         let activities = Activities()

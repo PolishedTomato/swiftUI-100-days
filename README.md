@@ -1,3 +1,15 @@
+SwiftUI Day 49
+
+How to make class which use @Published wrapper to confrom to codable: By using a enum conform to CodingKey which has its case as property we want to achieve or unachieve. Together, with a init() and func encode(). That decode in init() using container in encoder and decoder.(see code in this project).
+
+Advantage over UserDefault API, more complex key name are available, rather than string only.
+
+URLSession.shared.data(from:) use the shared instance of URLSession to read content of URL, and return (data, metadata), then we decode this data, and that is how we retrive data from other Service.
+
+Use AsyncImage(urL:) to remotely load image. Argument scale: tell SWiftUI in advance what scale of this loading image will be. AsyncImage also come with argument AsyncImage(url:scale:content:placeholder:) that allow us modifiy the img view in this AsyncImage through content closure, like .resizable().
+
+we can prevent button been tapped by using .disabled(boolean expression) modifier. 
+////////////
 SwiftUI Day 47
 
 ActivityTrackerApp complete basic feature.
