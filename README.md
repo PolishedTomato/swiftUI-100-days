@@ -1,3 +1,8 @@
+SwiftUI Day 50
+
+string interpolation have second argument format: like Text() view.
+
+///////
 SwiftUI Day 49
 
 How to make class which use @Published wrapper to confrom to codable: By using a enum conform to CodingKey which has its case as property we want to achieve or unachieve. Together, with a init() and func encode(). That decode in init() using container in encoder and decoder.(see code in this project).
