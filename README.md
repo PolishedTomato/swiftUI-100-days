@@ -1,3 +1,14 @@
+SwiftUI Day 51
+
+Encoder.container().encode(value, forkey:) doesn't care about order
+
+Notice: creating a container from encode is not a throwing call, but creating a container with decoder is a throwing call.
+
+In this tutorial, it use URLRequest to configure the http request we will be making to the serve, three lines of code: URLRequest(url: server_url), requesr.setValue()(barely know, it seem to set the meta data to service for handling the data), request.httpMethod() = "POST" (POST for writing data, GET for reading, the action we want to perform)
+
+New URLSession method: URLSession.shared.upload(for: request, from: Json data) which send Json data with this request, and return the tuple as (json_data, URLResponse). it different from URLSession.shared.data(from:) by it only read URL and return (data, URLResponse)  
+
+//////////
 SwiftUI Day 50
 
 string interpolation have second argument format: like Text() view.

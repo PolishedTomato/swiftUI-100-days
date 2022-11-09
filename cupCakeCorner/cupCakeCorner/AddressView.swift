@@ -16,7 +16,7 @@ struct AddressView: View {
     }
     
     var body: some View {
-        NavigationView{
+        
             Form{
                 Section("Address"){
                     TextField("Enter your name", text: $order.name)
@@ -37,7 +37,7 @@ struct AddressView: View {
             }
             .navigationTitle("Delivery details")
             .navigationBarTitleDisplayMode(.inline)
-        }
+        
     }
 }
 

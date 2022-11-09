@@ -10,6 +10,39 @@ import Foundation
 
 struct CheckOutView: View {
     @ObservedObject var order: Order
+    
+    @State private var confirmationMessage = ""
+    @State private var showingConfirmation = false
+    
+    func placeOrder() async{
+        //encode data
+        guard let encoded = try? JSONEncoder().encode(order)
+        else{
+            print("Encode failed")
+            return
+        }
+        
+        let url = URL(string: "https://reqres.in/api/cupcakes")!
+        var request = URLRequest(url: url)
+        //comment out this will make it fail
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        
+        do {
+            //URLSession.shared.upload will send the Json with specified request and return a tuple from server of (data, URLResponse)
+            let (data, _) = try await URLSession.shared.upload(for: request, from: encoded)
+            
+            
+            let decodedOrder = try JSONDecoder().decode(Order.self, from: data)
+            confirmationMessage = "Your order for \(decodedOrder.quantity)x \(Order.types[decodedOrder.type].lowercased()) cupcakes is on its way!"
+            showingConfirmation = true
+            
+        } catch {
+            print("Checkout failed.")
+        }
+        
+        
+    }
     var body: some View {
         NavigationView{
             ScrollView{
@@ -29,7 +62,9 @@ struct CheckOutView: View {
                         .font(.title)
                     
                     Button("Place Order"){
-                        
+                        Task{
+                            await placeOrder()
+                        }
                     }
                     .padding()
                     
@@ -37,6 +72,11 @@ struct CheckOutView: View {
             }
             .navigationTitle("Check Out")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .alert("Thank you!", isPresented: $showingConfirmation) {
+            Button("OK") { }
+        } message: {
+            Text(confirmationMessage)
         }
     }
 }
