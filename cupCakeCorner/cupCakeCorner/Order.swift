@@ -7,6 +7,69 @@
 
 import Foundation
 
+//challenge 3 create another class to hold Order class(change it to struct)
+//and I use this class for stateObject in the project instead(it works!)
+class OrderWrapper: ObservableObject, Codable{
+    @Published var order = Order_Copy()
+    enum CodingKeys: CodingKey{
+        case order
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(order, forKey: .order)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        order = try container.decode(Order_Copy.self, forKey: .order)
+    }
+    
+    init(){
+        
+    }
+}
+
+
+struct Order_Copy: Codable {
+    static let types = ["Vanilla", "Strawberry", "Chocolate", "Rainbow"]
+
+    var type = 0
+    var quantity = 3
+
+    var specialRequestEnabled = false {
+        didSet{
+            if specialRequestEnabled == false{
+                extraFrosting = false
+                addSprinkles = false
+            }
+        }
+    }
+    var extraFrosting = false
+    var addSprinkles = false
+    
+    var name = ""
+    var streetAddress = ""
+    var city = ""
+    var zipCode = ""
+    
+    var cost: Double{
+        var cupCakeCost = Double(quantity) * 2
+        cupCakeCost +=  Double(type) / 2
+        
+        if extraFrosting == true{
+            cupCakeCost += Double(quantity) * 1
+        }
+        
+        if addSprinkles {
+            cupCakeCost += Double(quantity) / 2
+        }
+        return cupCakeCost
+    }
+}
+
 class Order: ObservableObject, Codable {
     static let types = ["Vanilla", "Strawberry", "Chocolate", "Rainbow"]
 
@@ -61,7 +124,7 @@ class Order: ObservableObject, Codable {
     }
     
     required init(from decoder: Decoder) throws {
-        var container = try decoder.container(keyedBy: codingKeys.self)
+        let container = try decoder.container(keyedBy: codingKeys.self)
         
         type = try container.decode(Int.self, forKey: .type)
         quantity = try container.decode(Int.self, forKey: .quantity)

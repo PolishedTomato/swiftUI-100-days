@@ -1,3 +1,10 @@
+SwiftUI Day 52(decode, and encode whole class with codingKey)
+
+Challenges complete, CupCakeCorner porject finished.
+
+URLRequest desecribe how data should be fetched.
+
+//////
 SwiftUI Day 51
 
 Encoder.container().encode(value, forkey:) doesn't care about order
@@ -198,7 +205,7 @@ SwiftUI Day 30
 onSubmit({}) execute a void closure that take no parameter when value is submit for this view. In the case of textfield, that's when user hit the return. 
 
 ///////////////
-SwiftUI Day 29
+SwiftUI Day 29(spell checker involved)
 
 List and Form are identical except list are use for data representation while form use for data input.
 

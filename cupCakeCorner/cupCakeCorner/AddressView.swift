@@ -9,31 +9,37 @@ import SwiftUI
 import Foundation
 
 struct AddressView: View {
-    @ObservedObject var order: Order
+    @ObservedObject var order: OrderWrapper
     
-    var hasValidAddress: Bool{
-        return order.name.isEmpty && order.streetAddress.isEmpty && order.city.isEmpty && order.zipCode.isEmpty
+    //challenge one, check not pure white space by eliminate all whitespace and new line at font and back.
+    var NotValidAddress: Bool{
+        let ValidatedAddress = order.order.streetAddress.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if order.order.name.isEmpty || order.order.streetAddress.isEmpty || order.order.city.isEmpty || order.order.zipCode.isEmpty || ValidatedAddress.isEmpty{
+            return true
+        }
+        return false
     }
     
     var body: some View {
         
             Form{
                 Section("Address"){
-                    TextField("Enter your name", text: $order.name)
-                    TextField("Enter your address", text: $order.streetAddress)
-                    TextField("Enter your city", text: $order.city)
-                    TextField("Entry your zip code", text:$order.zipCode)
+                    TextField("Enter your name", text: $order.order.name)
+                    TextField("Enter your address", text: $order.order.streetAddress)
+                    TextField("Enter your city", text: $order.order.city)
+                    TextField("Entry your zip code", text:$order.order.zipCode)
                 }
                 
                 Section{
                     NavigationLink {
-                        CheckOutView(order: order)
+                        //CheckOutView(order: order)
                     } label: {
                         Text("check out")
                     }
 
                 }
-                .disabled(hasValidAddress)
+                .disabled(NotValidAddress)
             }
             .navigationTitle("Delivery details")
             .navigationBarTitleDisplayMode(.inline)
@@ -43,6 +49,6 @@ struct AddressView: View {
 
 struct AddressView_Previews: PreviewProvider {
     static var previews: some View {
-        AddressView(order: Order())
+        AddressView(order: OrderWrapper())
     }
 }

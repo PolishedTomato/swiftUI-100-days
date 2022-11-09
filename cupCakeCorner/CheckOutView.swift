@@ -9,11 +9,14 @@ import SwiftUI
 import Foundation
 
 struct CheckOutView: View {
-    @ObservedObject var order: Order
+    @ObservedObject var order: OrderWrapper
     
     @State private var confirmationMessage = ""
     @State private var showingConfirmation = false
     
+    //challenge 2
+    @State private var errorMessage = ""
+    @State private var showError = false
     func placeOrder() async{
         //encode data
         guard let encoded = try? JSONEncoder().encode(order)
@@ -26,6 +29,7 @@ struct CheckOutView: View {
         var request = URLRequest(url: url)
         //comment out this will make it fail
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        //comment out next line to trigger another error
         request.httpMethod = "POST"
         
         do {
@@ -33,12 +37,14 @@ struct CheckOutView: View {
             let (data, _) = try await URLSession.shared.upload(for: request, from: encoded)
             
             
-            let decodedOrder = try JSONDecoder().decode(Order.self, from: data)
-            confirmationMessage = "Your order for \(decodedOrder.quantity)x \(Order.types[decodedOrder.type].lowercased()) cupcakes is on its way!"
+            let decodedOrder = try JSONDecoder().decode(OrderWrapper.self, from: data)
+            confirmationMessage = "Your order for \(decodedOrder.order.quantity)x \(Order.types[decodedOrder.order.type].lowercased()) cupcakes is on its way!"
             showingConfirmation = true
             
         } catch {
             print("Checkout failed.")
+            errorMessage = "No internt connection or bug happened"
+            showError = true
         }
         
         
@@ -58,7 +64,7 @@ struct CheckOutView: View {
                     }
                     .frame(height: 200)
                     
-                    Text("your current cost is \(order.cost, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
+                    Text("your current cost is \(order.order.cost, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))")
                         .font(.title)
                     
                     Button("Place Order"){
@@ -78,11 +84,18 @@ struct CheckOutView: View {
         } message: {
             Text(confirmationMessage)
         }
+        .alert("Error", isPresented: $showError){
+            Button("Got it"){
+                
+            }
+        } message:{
+            Text(errorMessage)
+        }
     }
 }
 
 struct CheckOutView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckOutView(order: Order())
+        CheckOutView(order: OrderWrapper())
     }
 }
