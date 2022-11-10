@@ -1,3 +1,18 @@
+SwiftUI Day 53(Core Data intro)
+
+@Binding wrapper bind(connect) and source of truth to its child view, and any modification on binding will reflect on pass in value. Must like @StateObject to @ObservedObject's relationship. 
+
+use TextEditor() for multi line string input(can't be style like text view)
+
+Using CoreData:
+1, Create data modal(defintion of your data) in Core Data file
+2, create a class that load data with 1, create a container with data model(prepare for load) 2, then load with loadPersistnetStores.
+3, inject it into our environment on root view with modifier .environment(\.managedObjectContext, dataController.container.viewContext) 
+4, use @FetchRequest to fetch data(read)
+5, use environment to get managedObjectContext which contain all data(managedObjects class of our entity), then save it.
+6, Save process: 1, @Enviornment(\.managedObjectContext) var moc, 2, let new_class = Class(Context: moc), and directly modify the new class. moc.save()(a throwing call)
+ 
+//////////
 SwiftUI Day 52(decode, and encode whole class with codingKey)
 
 Challenges complete, CupCakeCorner porject finished.
