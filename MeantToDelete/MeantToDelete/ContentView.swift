@@ -8,28 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var content = ["some string", "some sadasd"]
     var body: some View {
         NavigationView{
-            VStack {
-                NavigationLink {
-                    Text("sample")
-                } label: {
-                    Image(systemName: "plus")
+            List{
+                ForEach(content, id: \.self){
+                    Text($0)
                 }
-                .tint(.green)
-                .buttonStyle(.borderedProminent)
-
-                Button("Tap"){
-                    
+                .onDelete { indexSet in
+                    content.remove(atOffsets: indexSet)
                 }
-                List(0..<3){
-                    Text("\($0)")
-                        .listRowBackground(Color.black)
-                }
-                .background(.green)
-                
+                .listRowBackground(Color.red)
             }
-            .padding()
+            .listStyle(.inset)
+            
         }
     }
 }

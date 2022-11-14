@@ -1,3 +1,19 @@
+SwiftUI Day 55
+
+fetching sorting: sort the data out of coreData using sortDescrptior. 
+@FetchRequest(sortDescriptor: []) by adding sortDescriptor class inside the array of the wrapper. class syntax: SortDescriptor(.\name), that name is a attribute of the entity we fetch in fetchResult<entity> type. sorting in reverse order, can be achieve by SortDescriptor(.\name, order: .reverse). Multiple SortDescriptor can be apply.
+
+To have delete functionality, use List then ForEach with onDelete(perform:) modifier.
+
+Alert action argument can be place with two buttons without HStack.
+
+managedObjectContext is the live version of your data. Thus, calling .delete() without .save() won't write the change on disk.
+
+SwiftUI Day 54
+
+CoreData's managed object class conform to identifiable automatically
+
+////////////
 SwiftUI Day 53(Core Data intro)
 
 @Binding wrapper bind(connect) and source of truth to its child view, and any modification on binding will reflect on pass in value. Must like @StateObject to @ObservedObject's relationship. 
