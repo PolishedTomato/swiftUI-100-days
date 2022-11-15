@@ -17,6 +17,7 @@
 		5B87CABA291EBE75003823F1 /* RatingComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B87CAB9291EBE75003823F1 /* RatingComponentView.swift */; };
 		5B87CABC291EC2FB003823F1 /* EmojiRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B87CABB291EC2FB003823F1 /* EmojiRatingView.swift */; };
 		5B87CABE2922C297003823F1 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B87CABD2922C297003823F1 /* DetailView.swift */; };
+		5B87CAC02923F6C6003823F1 /* ListRowBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B87CABF2923F6C6003823F1 /* ListRowBackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		5B87CAB9291EBE75003823F1 /* RatingComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingComponentView.swift; sourceTree = "<group>"; };
 		5B87CABB291EC2FB003823F1 /* EmojiRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRatingView.swift; sourceTree = "<group>"; };
 		5B87CABD2922C297003823F1 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		5B87CABF2923F6C6003823F1 /* ListRowBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowBackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				5B87CAA4291EAD6C003823F1 /* BookWormApp.swift */,
 				5B87CAB5291EAE1D003823F1 /* DataController.swift */,
 				5B87CAA6291EAD6C003823F1 /* ContentView.swift */,
+				5B87CABF2923F6C6003823F1 /* ListRowBackgroundView.swift */,
 				5B87CABD2922C297003823F1 /* DetailView.swift */,
 				5B87CAB9291EBE75003823F1 /* RatingComponentView.swift */,
 				5B87CAB7291EB422003823F1 /* AddBookView.swift */,
@@ -160,6 +163,7 @@
 				5B87CABA291EBE75003823F1 /* RatingComponentView.swift in Sources */,
 				5B87CABC291EC2FB003823F1 /* EmojiRatingView.swift in Sources */,
 				5B87CAB6291EAE1D003823F1 /* DataController.swift in Sources */,
+				5B87CAC02923F6C6003823F1 /* ListRowBackgroundView.swift in Sources */,
 				5B87CAA7291EAD6C003823F1 /* ContentView.swift in Sources */,
 				5B87CAA5291EAD6C003823F1 /* BookWormApp.swift in Sources */,
 				5B87CAB8291EB422003823F1 /* AddBookView.swift in Sources */,

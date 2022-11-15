@@ -1,3 +1,9 @@
+SWIFTUI DAY 56
+
+view present as sheet doesn't share the same environment with the previous one.
+
+BookWorm Challenge completed
+//////////////
 SwiftUI Day 55
 
 fetching sorting: sort the data out of coreData using sortDescrptior. 

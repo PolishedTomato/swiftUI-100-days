@@ -14,9 +14,11 @@ struct AddBookView: View {
     @State var title = ""
     @State var author = ""
     @State var rating = 3
-    @State var genre = ""
+    @State var genre = "Fantasy"
     @State var review = ""
     
+    //challenger one, prevent invalid input
+    @State private var showAlert = false
     func saveAction(){
         let book = Book(context: moc)
         book.id = UUID()
@@ -25,8 +27,15 @@ struct AddBookView: View {
         book.genre = genre
         book.rating = Int16(rating)
         book.review = review
-        
+        book.date = Date.now
         try? moc.save()
+    }
+    
+    var validInput: Bool{
+        if title.isEmpty || author.isEmpty{
+            return false
+        }
+        return true
     }
     
     let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
@@ -62,12 +71,25 @@ struct AddBookView: View {
                 
                 Section{
                     Button("Add"){
-                        saveAction()
-                        dismiss()
+                        if validInput {
+                            saveAction()
+                            dismiss()
+                        }
+                        else{
+                            showAlert = true
+                        }
                     }
                 }
             }
             .navigationTitle("Add book")
+            .alert("Invalid input", isPresented: $showAlert) {
+                Button("Ok"){
+                    
+                }
+            } message: {
+                Text("Book title and author can't be empty")
+            }
+
         }
     }
 }

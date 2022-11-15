@@ -22,6 +22,14 @@ struct DetailView: View {
         try? moc.save()
     }
     
+    var navigationTitle: String{
+        if let title = book.title{
+            return title
+        }
+        
+        return "UnKnow title"
+    }
+    
     var body: some View {
         ScrollView{
             ZStack(alignment: .bottom){
@@ -46,8 +54,15 @@ struct DetailView: View {
             
             Text(book.review!)
                 .padding()
+            
+            HStack(alignment: .lastTextBaseline){
+                Text("Last edit: \(book.date!.formatted(date: .abbreviated, time: .omitted))")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                    .background(.ultraThinMaterial)
+            }
         }
-        .navigationTitle(book.title ?? "Unkown title")
+        .navigationTitle(navigationTitle)
         .navigationBarTitleDisplayMode(.inline)
         .alert("Are you sure?", isPresented: $showAlert) {
             Button("Confirm", role:.destructive, action: deleteBook)

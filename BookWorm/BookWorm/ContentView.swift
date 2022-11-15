@@ -41,6 +41,7 @@ struct ContentView: View {
                             }
                         }
                     }
+                    .listRowBackground(ListRowBackgroundView(rating: book.rating))
                     
                 }
                 .onDelete(perform: deleteBooks)
