@@ -1,3 +1,17 @@
+SwiftUI Day 57(CoreData continue)
+
+The ForEach(id: \.self) parameter use the struct itself as unique identifier. Under the hood, SwiftUI need the data of collection conform to hashtable, and use the hash value for identification. When CoreData create managedObject subclass, it generate other property other than its attribute, like Object id, and the class is conform to hashtable. Therefore, we can use \.self for CoreData fetchResult<entity> in ForEach.
+
+A solution to nil colescing of managedObject subclass property is to avoid Xcode generated managedObject subclass, and generate it manually, and add compute property on property class which do nil colescing there. 
+1, go to DataModal -> Xcode View-> inspector-> DataModal-> tap entity -> Codegen change to Manul/None
+2, Xocde Editor-> CreateNSManagedObject subclass...->select entity you want to create
+3, there will be two swift file for one entity -> go to property class-> add compute property.
+
+ManagedObjectContex has property .hasChange which true if changes happen, use it for save the moc when change happen. 
+
+We can add constrants on entity, go to entity inspector, putting a attribute there will make all object unique. Consequantly, duplicate object will caused error in save() function (write changes to disk) without mergePolicy in DataController.swift.
+/////////////////
+
 SWIFTUI DAY 56
 
 view present as sheet doesn't share the same environment with the previous one.
