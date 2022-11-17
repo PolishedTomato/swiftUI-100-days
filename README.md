@@ -6,6 +6,8 @@ We can filter fetchedResult in the predicate parameter of @FetchRequst wrapper. 
 
 _variable = some_val where variable have a property wrapper means to change the struct that wrapper around the variable entirely. while variable = some_val change value of the wrapper struct only.
 
+We can enfore one to many relationship through assign class to dependent class's property, and use constrant to remove duplicate class, then the dependent class will all link to one class.
+
 ///////////////
 SwiftUI Day 57(CoreData continue)
 
