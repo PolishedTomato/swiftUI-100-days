@@ -1,3 +1,17 @@
+Continue from last day...
+
+One simple way to dynamically change FetchRequest's predicate dynamically is by isolate the outcome by passing in a filter string into this isolated component. Inside the init() of this component, use datas = _FetchRequest<NSManagedObject>(sortDescritor:[], predicate: NSPredicates(...)). This code assign a new fetchrequest on initialization, rather than changing the outcome of the old fetch.
+
+Further customization in predicate NSPredicate(format: "%K == %@", x,y) where x represent first attribute. Notice, %@ will be wrapped around '' while %K won't. It's captial K btw.
+
+Generic also work fine here.
+
+use @escaping before closure type to allow close to be use later in code
+
+@ViewBuilder often used as parameter attribute before child-views producing closure parameter.This allow the closure to return multiple child view, and cilent can write closure return with multi view statment. Ex: (T in text("child1")
+				text("child2")
+				text("child3") 
+
 SWiftUI Day 58
 
 Continue from Day 57 project...
