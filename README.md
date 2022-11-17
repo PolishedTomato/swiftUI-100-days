@@ -1,3 +1,12 @@
+SWiftUI Day 58
+
+Continue from Day 57 project...
+
+We can filter fetchedResult in the predicate parameter of @FetchRequst wrapper. NSPredicate(format: "attribute_name == %@", "some_val") can filter the outcome array with specified predicate(s), this one return objects which attribute equal to some_val. %@ is the place holder for second parameter. <, > operator can also be use, and these expression can be combine with AND, NOT...
+
+_variable = some_val where variable have a property wrapper means to change the struct that wrapper around the variable entirely. while variable = some_val change value of the wrapper struct only.
+
+///////////////
 SwiftUI Day 57(CoreData continue)
 
 The ForEach(id: \.self) parameter use the struct itself as unique identifier. Under the hood, SwiftUI need the data of collection conform to hashtable, and use the hash value for identification. When CoreData create managedObject subclass, it generate other property other than its attribute, like Object id, and the class is conform to hashtable. Therefore, we can use \.self for CoreData fetchResult<entity> in ForEach.
