@@ -19,7 +19,9 @@ extension County {
     @NSManaged public var name: String?
     @NSManaged public var candy: NSSet?
     
+    //convert NSset to array
     public var candyArray: [CandyBar] {
+        //type cast or empty array
         let set = candy as? Set<CandyBar> ?? []
         return set.sorted {
             $0.wrappedName < $1.wrappedName

@@ -12,7 +12,8 @@ struct nextView1: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: []) var countries: FetchedResults<County>
     
-    @State var myFilters = "me"
+    @State var filter1 = "director"
+    @State var filter2 = "me"
     var body: some View {
         VStack {
             List {
@@ -44,24 +45,13 @@ struct nextView1: View {
                 try? moc.save()
             }
             
-            NavigationLink{
-                DynamicFilter(filter1: "director", filter2: myFilters){
-                    (movie : Movie) in
-                    
-                        Text(movie.wrappedTitle)
-                        Text(movie.director!)
-                    
-                }
-            } label:{
-                Text("Tap to go dynamic fliter")
+            NavigationLink {
+                nextView2()
+            } label: {
+                Text("tap to next")
             }
+
             
-            Button("change filter to me"){
-                myFilters = "me"
-            }
-            Button("change filter to C"){
-                myFilters = "C"
-            }
         }
     }
 }

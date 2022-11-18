@@ -1,3 +1,11 @@
+SwitUI Day 59
+
+Challenge complete!
+
+Things that confused: the sortDescriptor argument of FetchRequest says is of type [NSSortDescriptor], however, using SortDescriptor() struct work fine here. 
+
+/////////////
+
 Continue from last day...
 
 One simple way to dynamically change FetchRequest's predicate dynamically is by isolate the outcome by passing in a filter string into this isolated component. Inside the init() of this component, use datas = _FetchRequest<NSManagedObject>(sortDescritor:[], predicate: NSPredicates(...)). This code assign a new fetchrequest on initialization, rather than changing the outcome of the old fetch.

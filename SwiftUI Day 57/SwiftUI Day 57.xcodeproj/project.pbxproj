@@ -22,6 +22,7 @@
 		5B87CAED2925D3CE003823F1 /* County+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B87CAE92925D3CD003823F1 /* County+CoreDataProperties.swift */; };
 		5B87CAEF2925D771003823F1 /* nextView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B87CAEE2925D771003823F1 /* nextView1.swift */; };
 		5B87CAF32926A641003823F1 /* DynamicFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B87CAF22926A641003823F1 /* DynamicFilter.swift */; };
+		5B87CAF729270E72003823F1 /* nextView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B87CAF629270E72003823F1 /* nextView2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		5B87CAE92925D3CD003823F1 /* County+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "County+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		5B87CAEE2925D771003823F1 /* nextView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nextView1.swift; sourceTree = "<group>"; };
 		5B87CAF22926A641003823F1 /* DynamicFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFilter.swift; sourceTree = "<group>"; };
+		5B87CAF629270E72003823F1 /* nextView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nextView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +59,6 @@
 		5B87CAC129254EBC003823F1 = {
 			isa = PBXGroup;
 			children = (
-				5B87CAE029255744003823F1 /* Movie+CoreDataClass.swift */,
-				5B87CAE129255744003823F1 /* Movie+CoreDataProperties.swift */,
 				5B87CACC29254EBC003823F1 /* SwiftUI Day 57 */,
 				5B87CACB29254EBC003823F1 /* Products */,
 			);
@@ -78,11 +78,14 @@
 				5B87CAE62925D3CD003823F1 /* CandyBar+CoreDataClass.swift */,
 				5B87CAE72925D3CD003823F1 /* CandyBar+CoreDataProperties.swift */,
 				5B87CAE82925D3CD003823F1 /* County+CoreDataClass.swift */,
+				5B87CAE029255744003823F1 /* Movie+CoreDataClass.swift */,
+				5B87CAE129255744003823F1 /* Movie+CoreDataProperties.swift */,
 				5B87CAE92925D3CD003823F1 /* County+CoreDataProperties.swift */,
 				5B87CACD29254EBC003823F1 /* SwiftUI_Day_57App.swift */,
 				5B87CACF29254EBC003823F1 /* ContentView.swift */,
 				5B87CAE42925BD6B003823F1 /* nextView.swift */,
 				5B87CAEE2925D771003823F1 /* nextView1.swift */,
+				5B87CAF629270E72003823F1 /* nextView2.swift */,
 				5B87CAF22926A641003823F1 /* DynamicFilter.swift */,
 				5B87CADB29254F1A003823F1 /* DataController.swift */,
 				5B87CADD29254F72003823F1 /* CoreDataProject.xcdatamodeld */,
@@ -180,6 +183,7 @@
 				5B87CACE29254EBC003823F1 /* SwiftUI_Day_57App.swift in Sources */,
 				5B87CAEB2925D3CE003823F1 /* CandyBar+CoreDataProperties.swift in Sources */,
 				5B87CAEF2925D771003823F1 /* nextView1.swift in Sources */,
+				5B87CAF729270E72003823F1 /* nextView2.swift in Sources */,
 				5B87CAF32926A641003823F1 /* DynamicFilter.swift in Sources */,
 				5B87CAEA2925D3CE003823F1 /* CandyBar+CoreDataClass.swift in Sources */,
 				5B87CAEC2925D3CE003823F1 /* County+CoreDataClass.swift in Sources */,
