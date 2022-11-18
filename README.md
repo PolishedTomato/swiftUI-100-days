@@ -1,3 +1,23 @@
+SwiftUI Day 60(consolidation)
+
+key point: SwiftUI automatically add attribute @ViewBuilder to var body for each view component, so we can return multiple views in body property, and return different view(s) on conditions.
+
+Other ways to return different view on condition without @ViewBuilder. type erasure method use anyview( your view) to act as a shell to hide the actual type of the view.(least recommend for swiftui may try to recreate views for small changes) or other method is Group{} view to wrappe it around. Some time a new view component is better solution>
+
+Codable key points:
+When we encounter JSON using snake case(like first_name) rather than camel case(swift), we dont need to write our own coding conformance like creating enum with case matching the naming of JSON then write it to our own property with those keys. 
+
+solution one: decoder.keyDecodingStrategy = .convertFromSnakeCase, then we can write our struct in camelCase. 
+
+solution two: using enum CodingKeys{} which case name match to our Codable struct new, and its raw value match to JSON's name. Notice, enum conformed to string protocol's default raw value is case name itself. And CodingKeys{} enum is a special one that SwitUI use it by default with that name for coding.
+This solution work greate for random name.
+
+Both save alot of work to write coding conformance.
+
+Notice, you can't run asyn function in init() or child view's argument. we can run async code in onApear life cycle method with Task{} to provide concurrcy context.
+
+challenge complete.
+////////////////
 SwitUI Day 59
 
 Challenge complete!
@@ -89,7 +109,7 @@ Challenges complete, CupCakeCorner porject finished.
 URLRequest desecribe how data should be fetched.
 
 //////
-SwiftUI Day 51
+SwiftUI Day 51(URLSession for retrieving uploading data online)
 
 Encoder.container().encode(value, forkey:) doesn't care about order
 
