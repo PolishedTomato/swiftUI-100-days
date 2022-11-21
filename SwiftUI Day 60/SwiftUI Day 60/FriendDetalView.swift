@@ -9,33 +9,30 @@ import SwiftUI
 import Foundation
 
 struct FriendDetalView: View {
-    let friend: user
+    let friend: CachedUser
     var body: some View {
         List{
             VStack{
                 Text("\(friend.age) years ago")
                 Spacer()
-                Text("email: "+friend.email)
+                Text("email: "+friend.wrappedEmail)
             }
             
             Section("About"){
-                Text(friend.about)
+                Text(friend.wrappedAbout)
             }
             
             ScrollView(.horizontal){
                 HStack{
-                    ForEach(friend.friends){ friend in
-                        Text(friend.name)
-                            .overlay{
-                                Capsule()
-                                    .stroke(.gray, style: StrokeStyle(lineWidth: 1))
-                            }
+                    ForEach(friend.myFriends){ friend in
+                        Text(friend.wrappedName)
+
                             
                     }
                 }
             }
         }
-        .navigationTitle(friend.name)
+        .navigationTitle(friend.wrappedName)
     }
 }
 

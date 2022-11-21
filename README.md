@@ -1,3 +1,16 @@
+SwiftUI Day 61(CoreData upon day 60)
+
+use asynchrous call MainActor.run for updating or saving core Data before rendering to prevent data rush, so our view don't display before data ready. MainActor.run{} run one piece of code at a time.
+
+I don't know how to clean up coreData but, to have a new database to play with, changing the name of datamodal and assinged a new container seems to work.
+
+When creating NSManagedObject subclasses and assigned relationship to one class(many to one), coreData doesn't allow save for error illegal attemp to save for object in different context.
+Which mean you can't save if you still using the same class.
+
+This project's data modal was using CachedUser to CacheFriend(one to many), CahceUser to Tag(one to many).
+
+This project should be better to use many to many relationship between users, friends, tags. However, I haven't learn it yet. Maybe update in the future. 
+////////////////////
 SwiftUI Day 60(consolidation)
 
 key point: SwiftUI automatically add attribute @ViewBuilder to var body for each view component, so we can return multiple views in body property, and return different view(s) on conditions.
@@ -49,7 +62,7 @@ We can filter fetchedResult in the predicate parameter of @FetchRequst wrapper. 
 _variable = some_val where variable have a property wrapper means to change the struct that wrapper around the variable entirely. while variable = some_val change value of the wrapper struct only.
 
 We can enfore one to many relationship through assign class to dependent class's property, and use constrant to remove duplicate class, then the dependent class will all link to one class.
-
+In addition, we need to change one to one relation to m to m in data modal as well.
 ///////////////
 SwiftUI Day 57(CoreData continue)
 

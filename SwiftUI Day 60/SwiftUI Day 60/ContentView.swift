@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var users:[user] = []
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var users : FetchedResults<CachedUser>
+    //@State var users:[user] = []
     
     
     func fetchData()async ->[user]{
@@ -38,18 +40,70 @@ struct ContentView: View {
         }
     }
     
+    //save decoded data from serve to core data
+    func saveData(Us: [user]) async {
+        await MainActor.run{
+            for u in Us{
+                let newUser = CachedUser(context: moc)
+                newUser.id = u.id
+                newUser.name = u.name
+                newUser.age = Int16(u.age)
+                newUser.isActive = u.isActive
+                newUser.company = u.company
+                newUser.email = u.email
+                newUser.address = u.address
+                newUser.about = u.about
+                newUser.registered = u.registered
+                
+                if moc.hasChanges{
+                    try? moc.save()
+                }
+                //many to one, tag to user
+                for t in u.tags{
+                    let tag = Tag(context: moc)
+                    tag.tag = t
+                    tag.tagOf? = newUser
+                }
+                if moc.hasChanges{
+                    try? moc.save()
+                }
+                
+                
+                for f in u.friends{
+                    let friend = CachedFriend(context: moc)
+                    friend.id = f.id
+                    friend.name = f.name
+                    friend.friendOf? = newUser
+                }
+                
+                if moc.hasChanges{
+                    try? moc.save()
+                }
+                /*
+                do{
+                    try moc.save()
+                }
+                catch{
+                    print(error.localizedDescription)
+                    print("moc save failed")
+                    fatalError()
+                }*/
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView{
             List{
-                ForEach(users) { user in
+                ForEach(users, id: \.self) { user in
                     NavigationLink {
                         DetailView(user: user, users: users)
                     } label: {
                         HStack{
-                            Text(user.name)
+                            Text(user.wrappedName)
                                 .padding()
                             Spacer()
-                            Text(user.company)
+                            Text(user.wrappedCompany)
                                 .padding()
                         }
                     }
@@ -58,7 +112,8 @@ struct ContentView: View {
             .onAppear{
                 Task{
                     //get data from server
-                    users = await fetchData()
+                    await saveData(Us: fetchData())
+                    print("onApear once")
                 }
             }
         }

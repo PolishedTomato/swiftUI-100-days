@@ -9,13 +9,13 @@ import SwiftUI
 import Foundation
 
 struct DetailView: View {
-    let user: user
+    let user: CachedUser
     
-    let users: [user]
+    let users: FetchedResults<CachedUser>
     
     //find friend's info in users
-    var friends: [user]{
-        user.friends.map{ friend in
+    var friends: [CachedUser]{
+        user.myFriends.map{ friend in
             for u in users{
                 if friend.id == u.id{
                     return u
@@ -30,11 +30,15 @@ struct DetailView: View {
             VStack{
                 Text("\(user.age) years ago")
                 Spacer()
-                Text("email: "+user.email)
+                Text("email: "+user.wrappedEmail)
             }
             
             Section("About"){
-                Text(user.about)
+                Text(user.wrappedAbout)
+            }
+            
+            if(friends.isEmpty){
+                Text("Friend is empty")
             }
             
             ScrollView(.horizontal){
@@ -43,17 +47,13 @@ struct DetailView: View {
                         NavigationLink{
                             FriendDetalView(friend: friend)
                         } label:{
-                            Text(friend.name)
-                                .overlay{
-                                    Capsule()
-                                        .stroke(.gray, style: StrokeStyle(lineWidth: 1))
-                                }
+                            Text(friend.wrappedName)
                         }
                     }
                 }
             }
         }
-        .navigationTitle(user.name)
+        .navigationTitle(user.wrappedName)
     }
 }
 

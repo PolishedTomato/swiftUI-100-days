@@ -9,10 +9,14 @@ import SwiftUI
 
 @main
 struct SwiftUI_Day_60App: App {
+    @StateObject var dataController = DataController()
     
     var body: some Scene {
         WindowGroup {
-            ContentView(users: [])
+            ContentView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
+                
+            
         }
     }
 }
