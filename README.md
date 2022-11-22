@@ -1,3 +1,12 @@
+SwiftUI Day 62
+
+when using state property wrapper, setting it will trigger setter(property observer), but chaing it through binding won't, because SwiftUI didn't really set the value its wrapped but changing a projectedValue. the setter of wrappedValue is non mutating set. Therefore, simply set the state variable can trigger setter, through blinding its won't for it bypass the setter into the projectedValue directly.
+
+onChange(of:){} modifier will solve this problem where SwiftUI send new value when of: argument changed.
+
+.confirmationDialog() work similar to .alert() except it display as a smaller slider from button of the screen. It can contain multiple button like alert as well. Message, etc.
+
+///////////////
 SwiftUI Day 61(CoreData upon day 60)
 
 use asynchrous call MainActor.run for updating or saving core Data before rendering to prevent data rush, so our view don't display before data ready. MainActor.run{} run one piece of code at a time.
