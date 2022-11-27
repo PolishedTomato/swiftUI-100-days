@@ -1,3 +1,28 @@
+SwiftUI Day 63(Core Image)
+
+Four types of image in iOS: SwiftUI image, UIImage(UIkit), CGImage, CIImage(Core Image)
+
+To use core Image api:
+1, create a UIImage(name:)?
+2, convert it to CIImage(image:UIImage)
+3, Create CIContext(), and CIFilter._
+4, apply changes.
+5, convert CIImage to CGImage by context.createCGImage(CIImage, from: CIImage.extent)
+6, convert UIImage from CIImage, UIImage(cgImage:)
+7, convert SwiftUI image from UIImage, Image(uiImage: )
+
+how to use UIKit functionality in SwiftUI:
+we need a struct conform to UIViewControllerRepresentable, that contain two func: updateUIViewController(), and makeUIViewController(). It act as a view in swiftUI and the second func act as the body property of normal swiftUI view.
+
+New concecpt: UIView, UIViewController.
+UIView is a class with all the layout of UIKit on its subclass. 
+UIViewController is a class with all the code that bring view alive(according to hacking with swift) on its subclass.
+
+To use UIkit's view, we return a subclass of UIViewController in makeUIViewController()
+
+UIKit has special way to initalize new UIcontroller by creating configure then use that configue to create a viewcontroller.
+
+/////
 SwiftUI Day 62
 
 when using state property wrapper, setting it will trigger setter(property observer), but chaing it through binding won't, because SwiftUI didn't really set the value its wrapped but changing a projectedValue. the setter of wrappedValue is non mutating set. Therefore, simply set the state variable can trigger setter, through blinding its won't for it bypass the setter into the projectedValue directly.
