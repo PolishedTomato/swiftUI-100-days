@@ -12,6 +12,8 @@ import CoreImage.CIFilterBuiltins
 struct ContentView: View {
     @State var myImage: Image?
     @State private var showSheet = false
+    
+    @State private var inputImage: UIImage?
     var body: some View {
         VStack {
             myImage?
@@ -21,11 +23,25 @@ struct ContentView: View {
                 showSheet = true
             }
             
+            Button("Save Image") {
+                guard let inputImage = inputImage else { return }
+
+                let imageSaver = ImageSaver()
+                imageSaver.writeToPhotoAlbum(image: inputImage)
+            }
         }
         .onAppear(perform: loadImage)
         .sheet(isPresented: $showSheet){
-            ImagePicker()
+            ImagePicker(image: $inputImage)
         }
+        .onChange(of: inputImage){
+            _ in loadImage1()
+        }
+    }
+    
+    func loadImage1() {
+        guard let inputImage = inputImage else { return }
+        myImage = Image(uiImage: inputImage)
     }
     
     func loadImage(){

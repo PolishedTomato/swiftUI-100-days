@@ -1,3 +1,19 @@
+SwiftUI Day 64(Core Image continue)
+
+PHPickerViewControllerDelegate won't response, because UIKit's design pattern, it use delegator to response events. Therefore, we need a Coordinator class that confrom NSObject, and cooresponding deletegate protocol of specific view controller. Deletegate protocol require picker() method. Notice, swiftUI use Coordinator as name for delegator in UIkit. 
+
+This tutorial used provider(Dont know what it is) to load, and assign result to a binding variable to caller. And that's how SwiftUI retrive photo through UIkit's help.
+
+The simpest form of saving a img:
+UIImageWriteToSavedPhotosAlbum(inputImage, nil, nil, nil)
+
+the first parameter is the image to save.
+
+the second parameter is the class that get notify when save complete(need to be a class and comform to NSObject)
+
+the thrid parameter is the completion handler's name. It require special syntax #selector(name), and this method should be have @objc before it. So swift will generate code objective-c can read. This method should also have specific parameter as well.
+
+///////
 SwiftUI Day 63(Core Image)
 
 Four types of image in iOS: SwiftUI image, UIImage(UIkit), CGImage, CIImage(Core Image)
