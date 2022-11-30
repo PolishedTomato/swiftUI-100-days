@@ -1,4 +1,15 @@
+SwiftUI Day 65(Instafilter)
+
+Instafilter completed.
+
+import CoreImage, and CoreImage.CIFilterBuiltins for Coreimage funtionality
+
+we for write to album call, we need to go to info of this project. In the info section, add row of Privacy - Photo Library Additions Usage Description to ask permission. Otherwise it will fail and crash.
+
+//////////
 SwiftUI Day 64(Core Image continue)
+
+Remember to import PhotosUI
 
 PHPickerViewControllerDelegate won't response, because UIKit's design pattern, it use delegator to response events. Therefore, we need a Coordinator class that confrom NSObject, and cooresponding deletegate protocol of specific view controller. Deletegate protocol require picker() method. Notice, swiftUI use Coordinator as name for delegator in UIkit. 
 
