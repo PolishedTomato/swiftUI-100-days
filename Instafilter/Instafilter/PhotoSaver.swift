@@ -7,6 +7,10 @@
 import SwiftUI
 
 class PhotoSaver: NSObject{
+    
+    var errorHandler: ((Error)->Void)?
+    var successHandler: (() ->Void)?
+    
     func savePhoto(Image: UIImage){
         UIImageWriteToSavedPhotosAlbum(Image, self, #selector(saveCompleted), nil)
     }

@@ -15,8 +15,14 @@ struct ContentView: View {
     @State private var saveImage:UIImage?
     @State private var showPhotoPicker = false
     
-    @State private var filter = CIFilter.sepiaTone()
+    @State private var showFilter = false
+    @State private var filter:CIFilter = CIFilter.sepiaTone()
     let context = CIContext()//context is expensive so we only declare once
+    
+    func setFilter(_ filter: CIFilter){
+        self.filter = filter
+        loadImage()
+    }
     
     func loadImage(){
         guard let UIImage = pickedImage else {return}
@@ -32,8 +38,19 @@ struct ContentView: View {
     }
     
     func applyProcessing() {
-        filter.intensity = Float(filterIntensity)
+        //setting intensitykey value for this filter since it conform to CIFilter now
+        //filter.setValue(Float(filterIntensity), forKey: kCIInputIntensityKey)
+        
+        //this is a better solution since some filter will not have some key to work with
+        //by doing this, you prevent crash, and now filter work on any filterIntensity you inputed.
+        let inputKeys = filter.inputKeys
 
+        if inputKeys.contains(kCIInputIntensityKey) { filter.setValue(filterIntensity, forKey: kCIInputIntensityKey) }
+        if inputKeys.contains(kCIInputRadiusKey) {
+            filter.setValue(filterIntensity * 200, forKey: kCIInputRadiusKey) }
+        if inputKeys.contains(kCIInputScaleKey) {
+            filter.setValue(filterIntensity * 10, forKey: kCIInputScaleKey) }
+        
         guard let outputImage = filter.outputImage else { return }
 
         if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
@@ -71,7 +88,7 @@ struct ContentView: View {
                 .padding([.horizontal, .bottom])
                 
                 Button("Change filter"){
-                    
+                    showFilter = true
                 }
                 .padding()
                 
@@ -80,6 +97,12 @@ struct ContentView: View {
                         print("save failed")
                         return }
                     let saver = PhotoSaver()
+                    saver.errorHandler = {
+                        error in print(error.localizedDescription)
+                    }
+                    saver.successHandler = {
+                        print("save complete!")
+                    }
                     saver.savePhoto(Image: save)
                 }
             }
@@ -87,6 +110,16 @@ struct ContentView: View {
             .sheet(isPresented: $showPhotoPicker){
                 PhotoPicker(image: $pickedImage)
             }
+            .confirmationDialog("Chose a filter", isPresented: $showFilter, actions: {
+                Button("Crystallize") { setFilter(CIFilter.crystallize()) }
+                Button("Edges") { setFilter(CIFilter.edges()) }
+                Button("Gaussian Blur") { setFilter(CIFilter.gaussianBlur()) }
+                Button("Pixellate") { setFilter(CIFilter.pixellate()) }
+                Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
+                Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask()) }
+                Button("Vignette") { setFilter(CIFilter.vignette()) }
+                Button("Cancel", role: .cancel) { }
+            })
             .onChange(of: pickedImage) { _ in
                 loadImage()
             }

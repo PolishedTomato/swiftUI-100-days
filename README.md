@@ -1,3 +1,11 @@
+SwiftUI Day 66(Instafilter)
+
+if working with a CIfiter that will change on runtime, make it be type of  CIFilter, rather then simple assignment, let filter = CIFilter.sepiaTone() which conform to sepiaTone and limit ourselve. 
+
+When filter is of CIFilter type, filter.setValue(value, forKey:) is the way we interact with filter property. However, some filter may not have particular key and it will crash. 
+Use this, let inputKeys = filter.inputKeys, if inputKeys.contains(some_key) {do something}
+
+////////////// 
 SwiftUI Day 65(Instafilter)
 
 Instafilter completed.
