@@ -11,6 +11,8 @@ import SwiftUI
 struct ContentView: View {
     @State private var displayImage: Image?
     @State private var filterIntensity = 0.5
+    @State private var radiusIntensity = 0.0
+    @State private var scaleIntensity = 0.0
     @State private var pickedImage:UIImage?
     @State private var saveImage:UIImage?
     @State private var showPhotoPicker = false
@@ -18,6 +20,33 @@ struct ContentView: View {
     @State private var showFilter = false
     @State private var filter:CIFilter = CIFilter.sepiaTone()
     let context = CIContext()//context is expensive so we only declare once
+    /*
+     
+     Button("Crystallize") { setFilter(CIFilter.crystallize()) }
+     Button("Edges") { setFilter(CIFilter.edges()) }
+     Button("Gaussian Blur") { setFilter(CIFilter.gaussianBlur()) }
+     Button("Pixellate") { setFilter(CIFilter.pixellate()) }
+     Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
+     Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask()) }
+     Button("Vignette") { setFilter(CIFilter.vignette()) }
+     //three new filters
+     Button("Area MinMax") {setFilter(CIFilter.areaMinMax())}
+     Button("Invert Color"){setFilter(CIFilter.colorInvert())}
+     Button("Monochrome"){setFilter(CIFilter.colorMonochrome())}
+     */
+    @State private var cur_filter: Filter = Filter(name: "Sepia Tone", filter: CIFilter.sepiaTone())
+    let filters = [
+        Filter(name: "Crystallize", filter: CIFilter.crystallize()),
+        Filter(name: "Edges", filter: CIFilter.edges()),
+        Filter(name: "Gaussian Blur", filter: CIFilter.gaussianBlur()),
+        Filter(name: "Pixellate", filter: CIFilter.pixellate()),
+        Filter(name: "Sepia Tone", filter: CIFilter.sepiaTone()),
+        Filter(name: "Unsharp Mask", filter: CIFilter.unsharpMask()),
+        Filter(name: "Vignette", filter: CIFilter.vignette()),
+        Filter(name: "Area MinMax", filter: CIFilter.areaMinMax()),
+        Filter(name: "Invert Color", filter: CIFilter.colorInvert()),
+        Filter(name: "Monochrome", filter: CIFilter.colorMonochrome())
+    ]
     
     func setFilter(_ filter: CIFilter){
         self.filter = filter
@@ -47,9 +76,9 @@ struct ContentView: View {
 
         if inputKeys.contains(kCIInputIntensityKey) { filter.setValue(filterIntensity, forKey: kCIInputIntensityKey) }
         if inputKeys.contains(kCIInputRadiusKey) {
-            filter.setValue(filterIntensity * 200, forKey: kCIInputRadiusKey) }
+            filter.setValue(radiusIntensity * 200, forKey: kCIInputRadiusKey) }
         if inputKeys.contains(kCIInputScaleKey) {
-            filter.setValue(filterIntensity * 10, forKey: kCIInputScaleKey) }
+            filter.setValue(scaleIntensity * 10, forKey: kCIInputScaleKey) }
         
         guard let outputImage = filter.outputImage else { return }
 
@@ -87,11 +116,42 @@ struct ContentView: View {
                 }
                 .padding([.horizontal, .bottom])
                 
+                //challenge two, more sliders
+                HStack{
+                    Text("Radius")
+                    Slider(value: $radiusIntensity)
+                        .onChange(of: radiusIntensity){
+                            _ in applyProcessing()
+                        }
+                }
+                .padding([.horizontal, .bottom])
+                
+                HStack{
+                    Text("Scale")
+                    Slider(value: $scaleIntensity)
+                        .onChange(of: scaleIntensity){
+                            _ in applyProcessing()
+                        }
+                }
+                .padding([.horizontal, .bottom])
+                
                 Button("Change filter"){
                     showFilter = true
+                    
                 }
                 .padding()
+                /*
+                Picker("Select your filter", selection: $cur_filter) {
+                    ForEach(filters, id:\.self) { filter in
+                        Button(filter.name){
+                            cur_filter = filter
+                            loadImage()
+                        }
+                        .tag(filter)
+                    }
+                }*/
                 
+                //challenge 1, save button disable when on image picked by user
                 Button("Save"){
                     guard let save = saveImage else{
                         print("save failed")
@@ -105,20 +165,29 @@ struct ContentView: View {
                     }
                     saver.savePhoto(Image: save)
                 }
+                .disabled(pickedImage == nil)
             }
             .navigationTitle("Instafilter")
             .sheet(isPresented: $showPhotoPicker){
                 PhotoPicker(image: $pickedImage)
             }
             .confirmationDialog("Chose a filter", isPresented: $showFilter, actions: {
-                Button("Crystallize") { setFilter(CIFilter.crystallize()) }
-                Button("Edges") { setFilter(CIFilter.edges()) }
-                Button("Gaussian Blur") { setFilter(CIFilter.gaussianBlur()) }
-                Button("Pixellate") { setFilter(CIFilter.pixellate()) }
-                Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
-                Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask()) }
-                Button("Vignette") { setFilter(CIFilter.vignette()) }
+                
+                Group{
+                    Button("Crystallize") { setFilter(CIFilter.crystallize()) }
+                    Button("Edges") { setFilter(CIFilter.edges()) }
+                    Button("Gaussian Blur") { setFilter(CIFilter.gaussianBlur()) }
+                    Button("Pixellate") { setFilter(CIFilter.pixellate()) }
+                    Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
+                    Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask()) }
+                    Button("Vignette") { setFilter(CIFilter.vignette()) }
+                    //three new filters
+                    Button("Area MinMax") {setFilter(CIFilter.areaMinMax())}
+                    Button("Invert Color"){setFilter(CIFilter.colorInvert())}
+                    Button("Monochrome"){setFilter(CIFilter.colorMonochrome())}
+                }
                 Button("Cancel", role: .cancel) { }
+                
             })
             .onChange(of: pickedImage) { _ in
                 loadImage()

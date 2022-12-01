@@ -1,3 +1,6 @@
+SwiftUI Day 67(Instafilter)
+Challenge complete
+//////////////////////////
 SwiftUI Day 66(Instafilter)
 
 if working with a CIfiter that will change on runtime, make it be type of  CIFilter, rather then simple assignment, let filter = CIFilter.sepiaTone() which conform to sepiaTone and limit ourselve. 
