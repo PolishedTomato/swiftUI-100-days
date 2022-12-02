@@ -1,3 +1,15 @@
+SwiftUI Day 68
+
+[int].sorted() is a sort function that either sort using definition of operator or by providing a sort function as argument. HackingWithSwift recommend conform to Comparable protocol rather than proving a closure here. 
+
+Comparable protocol require that it has two function: static func <(lhs:,rhsL:) and func ==(lhs:, rhs:). 
+
+Introduced a new place for storage other than userdefault, and coreData, the FileManager, the file system interface.
+
+To read content from URL, we can use String(contentsOf:Url) or Data(ContentOf:URl)
+To write, use someString.write(To: url, atomically: true(it means automic), encoding: .utf8) 
+
+//////////////
 SwiftUI Day 67(Instafilter)
 challenge complete
 
@@ -6,7 +18,9 @@ Notice, picker will modifier selection's binding value base on tag value for its
 ForEach automatically use id for .tag modifier of its children.
 
 To iterate enum, enum has to conform to caseIterable. access its all case by enum.allCases property.
-//////////////////////////
+
+Notice CIFilter can't be reuse.
+/////////////////////////
 SwiftUI Day 66(Instafilter)
 
 if working with a CIfiter that will change on runtime, make it be type of  CIFilter, rather then simple assignment, let filter = CIFilter.sepiaTone() which conform to sepiaTone and limit ourselve. 
