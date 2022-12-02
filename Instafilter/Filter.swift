@@ -7,7 +7,8 @@
 import CoreImage
 import Foundation
 
-struct Filter: Hashable{
-    let name: String
-    let filter: CIFilter
-}
+
+enum Filters: String, Identifiable, CaseIterable{
+    case Crystallize, Edges, GaussianBlur, Pixellate, SepiaTone, UnsharpMask, Vignette, AreaMinMax, InvertColor, Monochrome
+    var id: Self{self}
+    }

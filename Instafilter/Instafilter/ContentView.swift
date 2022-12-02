@@ -20,33 +20,9 @@ struct ContentView: View {
     @State private var showFilter = false
     @State private var filter:CIFilter = CIFilter.sepiaTone()
     let context = CIContext()//context is expensive so we only declare once
-    /*
-     
-     Button("Crystallize") { setFilter(CIFilter.crystallize()) }
-     Button("Edges") { setFilter(CIFilter.edges()) }
-     Button("Gaussian Blur") { setFilter(CIFilter.gaussianBlur()) }
-     Button("Pixellate") { setFilter(CIFilter.pixellate()) }
-     Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
-     Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask()) }
-     Button("Vignette") { setFilter(CIFilter.vignette()) }
-     //three new filters
-     Button("Area MinMax") {setFilter(CIFilter.areaMinMax())}
-     Button("Invert Color"){setFilter(CIFilter.colorInvert())}
-     Button("Monochrome"){setFilter(CIFilter.colorMonochrome())}
-     */
-    @State private var cur_filter: Filter = Filter(name: "Sepia Tone", filter: CIFilter.sepiaTone())
-    let filters = [
-        Filter(name: "Crystallize", filter: CIFilter.crystallize()),
-        Filter(name: "Edges", filter: CIFilter.edges()),
-        Filter(name: "Gaussian Blur", filter: CIFilter.gaussianBlur()),
-        Filter(name: "Pixellate", filter: CIFilter.pixellate()),
-        Filter(name: "Sepia Tone", filter: CIFilter.sepiaTone()),
-        Filter(name: "Unsharp Mask", filter: CIFilter.unsharpMask()),
-        Filter(name: "Vignette", filter: CIFilter.vignette()),
-        Filter(name: "Area MinMax", filter: CIFilter.areaMinMax()),
-        Filter(name: "Invert Color", filter: CIFilter.colorInvert()),
-        Filter(name: "Monochrome", filter: CIFilter.colorMonochrome())
-    ]
+    
+    @State private var cur_filter: Filters = .SepiaTone
+    
     
     func setFilter(_ filter: CIFilter){
         self.filter = filter
@@ -60,7 +36,21 @@ struct ContentView: View {
         //uiImage to CIiamge
         let CIImage = CIImage(image: UIImage)
         
+        switch cur_filter{
+        case .Crystallize: self.filter = CIFilter.crystallize()
+        case .Edges: self.filter = CIFilter.edges()
+        case .GaussianBlur: self.filter = CIFilter.gaussianBlur()
+        case .Pixellate: self.filter = CIFilter.pixellate()
+        case .SepiaTone: self.filter = CIFilter.sepiaTone()
+        case .UnsharpMask: self.filter = CIFilter.unsharpMask()
+        case .Vignette: self.filter = CIFilter.vibrance()
+        case .AreaMinMax: self.filter = CIFilter.areaMinMax()
+        case .InvertColor: self.filter = CIFilter.colorInvert()
+        case .Monochrome: self.filter = CIFilter.colorMonochrome()
+        }
+        
         //feed the filter with setValue rather than .inputimage property will not crash often
+        
         filter.setValue(CIImage, forKey: kCIInputImageKey)
         
         applyProcessing()
@@ -107,50 +97,51 @@ struct ContentView: View {
                 }
                 .padding(.bottom)
                 
-                HStack{
-                    Text("Intensity")
-                    Slider(value: $filterIntensity)
-                        .onChange(of: filterIntensity){
-                            _ in applyProcessing()
-                        }
+                Group{
+                    HStack{
+                        Text("Intensity")
+                        Slider(value: $filterIntensity)
+                            .onChange(of: filterIntensity){
+                                _ in applyProcessing()
+                            }
+                    }
+                    .padding([.horizontal, .bottom])
+                    
+                    //challenge two, more sliders
+                    HStack{
+                        Text("Radius")
+                        Slider(value: $radiusIntensity)
+                            .onChange(of: radiusIntensity){
+                                _ in applyProcessing()
+                            }
+                    }
+                    .padding([.horizontal, .bottom])
+                    
+                    HStack{
+                        Text("Scale")
+                        Slider(value: $scaleIntensity)
+                            .onChange(of: scaleIntensity){
+                                _ in applyProcessing()
+                            }
+                    }
+                    .padding([.horizontal, .bottom])
                 }
-                .padding([.horizontal, .bottom])
-                
-                //challenge two, more sliders
-                HStack{
-                    Text("Radius")
-                    Slider(value: $radiusIntensity)
-                        .onChange(of: radiusIntensity){
-                            _ in applyProcessing()
-                        }
-                }
-                .padding([.horizontal, .bottom])
-                
-                HStack{
-                    Text("Scale")
-                    Slider(value: $scaleIntensity)
-                        .onChange(of: scaleIntensity){
-                            _ in applyProcessing()
-                        }
-                }
-                .padding([.horizontal, .bottom])
                 
                 Button("Change filter"){
                     showFilter = true
                     
                 }
                 .padding()
-                /*
-                Picker("Select your filter", selection: $cur_filter) {
-                    ForEach(filters, id:\.self) { filter in
-                        Button(filter.name){
-                            cur_filter = filter
-                            loadImage()
-                        }
-                        .tag(filter)
-                    }
-                }*/
                 
+                Picker("select", selection: $cur_filter) {
+                    ForEach(Filters.allCases){
+                        filter in Text(filter.rawValue)
+                    }
+                }
+                
+                Button("apply filter"){
+                    loadImage()
+                }
                 //challenge 1, save button disable when on image picked by user
                 Button("Save"){
                     guard let save = saveImage else{

@@ -8,20 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var content = ["some string", "some sadasd"]
+    static var content = ["some string", "some sadasd"]
+    @State var myselect = content[0]
     var body: some View {
-        NavigationView{
-            List{
-                ForEach(content, id: \.self){
-                    Text($0)
+        VStack{
+            Picker("picker something", selection: $myselect){
+                ForEach(ContentView.content, id: \.self) { s in
+                    Text(s)
                 }
-                .onDelete { indexSet in
-                    content.remove(atOffsets: indexSet)
-                }
-                .listRowBackground(Color.red)
             }
-            .listStyle(.inset)
-            
+            Text(myselect)
         }
     }
 }

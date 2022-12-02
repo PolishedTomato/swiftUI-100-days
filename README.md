@@ -1,5 +1,11 @@
 SwiftUI Day 67(Instafilter)
-Challenge complete
+challenge complete
+
+Add a picker to select filter.
+Notice, picker will modifier selection's binding value base on tag value for its content.
+ForEach automatically use id for .tag modifier of its children.
+
+To iterate enum, enum has to conform to caseIterable. access its all case by enum.allCases property.
 //////////////////////////
 SwiftUI Day 66(Instafilter)
 
