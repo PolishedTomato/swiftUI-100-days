@@ -1,3 +1,15 @@
+SwiftUI Day 69
+
+import MapKit to use map framework of apple.
+
+To mark location on the map, we can use MapMarker() or MapAnnotation() on Map(...annotationContent:) parememter, which take a closure that return either MapMaker(0 or MapAnnotation()(for custome view)
+
+ask FaceID usage in info section and add key "Privacy - FaceID Usage Description"
+
+To use faceID in simulator, go to feature->faceID->enrolled.
+
+///////////////
+
 SwiftUI Day 68
 
 [int].sorted() is a sort function that either sort using definition of operator or by providing a sort function as argument. HackingWithSwift recommend conform to Comparable protocol rather than proving a closure here. 
