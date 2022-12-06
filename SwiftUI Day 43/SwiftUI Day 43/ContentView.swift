@@ -66,7 +66,7 @@ struct ContentView: View {
                 .stroke(.red, style: StrokeStyle(lineWidth: 30,lineCap:.round, lineJoin: .round))
                 .padding(50)
             
-            Arc(startAngle: Angle(degrees: -90), endAngle: Angle(degrees: 90), clockwise: true)
+            Arc(startAngle: Angle(degrees: 0), endAngle: Angle(degrees: 90), clockwise: true)
                 .strokeBorder(style: StrokeStyle(lineWidth: 50))
                 
             

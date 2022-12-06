@@ -1,3 +1,13 @@
+SwiftUI Day 70
+
+a different .sheet(item: <bindingOptional>)  initalizer pop the sheet when the item is other than nil, and the content closure of it automatically unwrap its optional value. Using this with tapGesture() can creating a functionality to show info when tapping something. 
+It also set the binding to nil when user dismiss the sheet.
+
+one technique from here to update collection from child view can be passing a escaping closure to child view, and call it instead of passing a binding or something else.
+
+.fixedSize() modifier of text adjust the text size to its natural size. we use here to fix the mapAnnotation() updating text size problem.  
+
+/////////////
 SwiftUI Day 69
 
 import MapKit to use map framework of apple.
