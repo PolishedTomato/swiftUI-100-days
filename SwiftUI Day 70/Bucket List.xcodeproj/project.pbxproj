@@ -13,16 +13,18 @@
 		5B827EAF293FE0A900CD4902 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B827EAE293FE0A900CD4902 /* Preview Assets.xcassets */; };
 		5B827EB6293FE5AC00CD4902 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B827EB5293FE5AC00CD4902 /* Location.swift */; };
 		5B827EBA293FF68200CD4902 /* DetailLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B827EB9293FF68200CD4902 /* DetailLocationView.swift */; };
+		5B827EBC2943C16100CD4902 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B827EBB2943C16100CD4902 /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5B827EA4293FE0A100CD4902 /* SwiftUI Day 70.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI Day 70.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B827EA4293FE0A100CD4902 /* Bucket List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bucket List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B827EA7293FE0A100CD4902 /* SwiftUI_Day_70App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_Day_70App.swift; sourceTree = "<group>"; };
 		5B827EA9293FE0A100CD4902 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5B827EAB293FE0A900CD4902 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B827EAE293FE0A900CD4902 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B827EB5293FE5AC00CD4902 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		5B827EB9293FF68200CD4902 /* DetailLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocationView.swift; sourceTree = "<group>"; };
+		5B827EBB2943C16100CD4902 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +49,7 @@
 		5B827EA5293FE0A100CD4902 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5B827EA4293FE0A100CD4902 /* SwiftUI Day 70.app */,
+				5B827EA4293FE0A100CD4902 /* Bucket List.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,6 +60,7 @@
 				5B827EA7293FE0A100CD4902 /* SwiftUI_Day_70App.swift */,
 				5B827EA9293FE0A100CD4902 /* ContentView.swift */,
 				5B827EB9293FF68200CD4902 /* DetailLocationView.swift */,
+				5B827EBB2943C16100CD4902 /* Result.swift */,
 				5B827EB5293FE5AC00CD4902 /* Location.swift */,
 				5B827EAB293FE0A900CD4902 /* Assets.xcassets */,
 				5B827EAD293FE0A900CD4902 /* Preview Content */,
@@ -76,9 +79,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5B827EA3293FE0A100CD4902 /* SwiftUI Day 70 */ = {
+		5B827EA3293FE0A100CD4902 /* Bucket List */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5B827EB2293FE0A900CD4902 /* Build configuration list for PBXNativeTarget "SwiftUI Day 70" */;
+			buildConfigurationList = 5B827EB2293FE0A900CD4902 /* Build configuration list for PBXNativeTarget "Bucket List" */;
 			buildPhases = (
 				5B827EA0293FE0A100CD4902 /* Sources */,
 				5B827EA1293FE0A100CD4902 /* Frameworks */,
@@ -88,9 +91,9 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftUI Day 70";
+			name = "Bucket List";
 			productName = "SwiftUI Day 70";
-			productReference = 5B827EA4293FE0A100CD4902 /* SwiftUI Day 70.app */;
+			productReference = 5B827EA4293FE0A100CD4902 /* Bucket List.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -108,7 +111,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5B827E9F293FE0A100CD4902 /* Build configuration list for PBXProject "SwiftUI Day 70" */;
+			buildConfigurationList = 5B827E9F293FE0A100CD4902 /* Build configuration list for PBXProject "Bucket List" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -121,7 +124,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5B827EA3293FE0A100CD4902 /* SwiftUI Day 70 */,
+				5B827EA3293FE0A100CD4902 /* Bucket List */,
 			);
 		};
 /* End PBXProject section */
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B827EAA293FE0A100CD4902 /* ContentView.swift in Sources */,
+				5B827EBC2943C16100CD4902 /* Result.swift in Sources */,
 				5B827EB6293FE5AC00CD4902 /* Location.swift in Sources */,
 				5B827EBA293FF68200CD4902 /* DetailLocationView.swift in Sources */,
 				5B827EA8293FE0A100CD4902 /* SwiftUI_Day_70App.swift in Sources */,
@@ -328,7 +332,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5B827E9F293FE0A100CD4902 /* Build configuration list for PBXProject "SwiftUI Day 70" */ = {
+		5B827E9F293FE0A100CD4902 /* Build configuration list for PBXProject "Bucket List" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5B827EB0293FE0A900CD4902 /* Debug */,
@@ -337,7 +341,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5B827EB2293FE0A900CD4902 /* Build configuration list for PBXNativeTarget "SwiftUI Day 70" */ = {
+		5B827EB2293FE0A900CD4902 /* Build configuration list for PBXNativeTarget "Bucket List" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5B827EB3293FE0A900CD4902 /* Debug */,

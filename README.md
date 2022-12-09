@@ -1,3 +1,11 @@
+SwiftUI Day 71
+
+Text cantatenation
+Text views can work with + to form larget text view with different format.
+
+use .task modifier to provide asynchrous context and run the context before attaching view appear. 
+
+///////////////
 SwiftUI Day 70
 
 a different .sheet(item: <bindingOptional>)  initalizer pop the sheet when the item is other than nil, and the content closure of it automatically unwrap its optional value. Using this with tapGesture() can creating a functionality to show info when tapping something. 

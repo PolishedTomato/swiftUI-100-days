@@ -9,6 +9,11 @@ import Foundation
 import SwiftUI
 
 struct DetailLocationView: View {
+    
+    enum LoadingState {
+        case loading, loaded, failed
+    }
+    
     @Environment(\.dismiss) var dismiss
     var location: Location
     
@@ -16,6 +21,32 @@ struct DetailLocationView: View {
     @State private var descrition = ""
     
     var onSave: (Location)->Void
+    
+    @State private var loadingState = LoadingState.loading
+    @State private var pages = [Page]()
+    
+    func fetchWikiData()async{
+        let urlString = "https://en.wikipedia.org/w/api.php?ggscoord=\(location.coordinator.latitude)%7C\(location.coordinator.longitude)&action=query&prop=coordinates%7Cpageimages%7Cpageterms&colimit=50&piprop=thumbnail&pithumbsize=500&pilimit=50&wbptterms=description&generator=geosearch&ggsradius=10000&ggslimit=50&format=json"
+
+            
+        guard let url = URL(string: urlString) else{
+            print("InValid URL \(urlString)")
+            return
+        }
+        
+        do{
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let result = try JSONDecoder().decode(Result.self, from: data)
+            
+            //dictionary.values return a array of the value without the key
+            pages = result.query.pages.values.sorted()
+            loadingState = .loaded
+        }
+        catch{
+            loadingState = .failed
+        }
+    }
+    
     
     var body: some View {
         NavigationView {
@@ -25,7 +56,22 @@ struct DetailLocationView: View {
                     TextField("Enter the description", text:$descrition)
                 }
                 
-                
+                Section("Nearby…") {
+                    switch loadingState {
+                    case .loaded:
+                        ForEach(pages, id: \.pageid) { page in
+                            Text(page.title)
+                                .font(.headline)
+                            + Text(": ") +
+                            Text(page.description)
+                                .italic()
+                        }
+                    case .loading:
+                        Text("Loading…")
+                    case .failed:
+                        Text("Please try again later.")
+                    }
+                }
             }
             .navigationTitle(location.name)
             .toolbar {
@@ -47,6 +93,10 @@ struct DetailLocationView: View {
                         dismiss()
                     }
                 }
+                
+            }
+            .task{
+                await fetchWikiData()
             }
         }
     }
