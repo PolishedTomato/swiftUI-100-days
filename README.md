@@ -1,3 +1,10 @@
+SwiftUI Day 72
+
+Adding @MainActor attribute to a class is to ask swift to execute the code in this class with main actor, the thing that update our UI.
+
+MVVM stand for Model to view view to Model, which is a design pattern that separate data and user interface. If UI need data, it will retrive it in the data modal we created. This tutorialdemostrated this by adding a class viewModel as a extension to content view with @MainActor. Much like OOP. It separated the data manipulation, and storage into another class completely.
+
+////////
 SwiftUI Day 71
 
 Text cantatenation
