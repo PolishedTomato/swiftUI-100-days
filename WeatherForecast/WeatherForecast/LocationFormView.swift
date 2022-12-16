@@ -15,12 +15,13 @@ struct LocationFormView: View {
     @State var choseCelsius = true;
     @State var choseFahrenheit = false;
     
-    @State var lat = 0.00
-    @State var lon = 0.00
+    @State var lat:Double = 40.7128
+    @State var lon:Double = -74.0060
     
     @Binding var metricUnit: Bool
     @Binding var openWeather: OpenWeather?
     
+    @State var alterForm = true
     var cityNamePercentEncoding: String{
         cityName.trimmingCharacters(in: .whitespacesAndNewlines).capitalized.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ??  "failed"
     }
@@ -120,26 +121,50 @@ struct LocationFormView: View {
         }
     }
     
+    var numberFormatter: NumberFormatter{
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter
+    }
+    
+    var disableCondition:Bool{
+        if alterForm == false{
+            return zipCode.isEmpty && cityName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        }
+        return false
+    }
+    
     var body: some View {
         NavigationView{
             VStack{
                 Form{
-                    Section("City name"){
-                        TextField("Please enter city name, Ex: New York", text: $cityName)
+                    if alterForm == false{
+                        Section("City name"){
+                            TextField("Please enter city name, Ex: New York", text: $cityName)
+                        }
+                        
+                        Section("Zip code"){
+                            TextField("Please enter Zip", text: $zipCode)
+                        }
+                    }
+                    else{
+                        Section("GPS Coordinates Lat/Lon"){
+                            TextField("Latitude", value: $lat, formatter: numberFormatter)
+                                .keyboardType(.decimalPad)
+                            
+                            TextField("Longitude", value: $lon, formatter: numberFormatter)
+                                .keyboardType(.decimalPad)
+                        }
                     }
                     
-                    Section("Zip code"){
-                        TextField("Please enter Zip", text: $zipCode)
-                    }
-                    
-                    Section("Degree"){
+                    Section("Unit"){
                         Toggle("℃", isOn: $choseCelsius)
                             .onChange(of: choseCelsius) { _ in
-                                choseFahrenheit = false
+                                choseFahrenheit = !choseCelsius
                             }
                         Toggle("℉", isOn: $choseFahrenheit)
                             .onChange(of: choseFahrenheit) { _ in
-                                choseCelsius = false
+                                choseCelsius = !choseFahrenheit
                             }
                     }
                     
@@ -149,12 +174,17 @@ struct LocationFormView: View {
                 Button("Search"){
                     Task{
                         metricUnit = choseCelsius ? true : false
-                        await coordinateApiRequest()
-                        await weatherApiRequest()
+                        if alterForm == true{
+                            await weatherApiRequest()
+                        }
+                        else{
+                            await coordinateApiRequest()
+                            await weatherApiRequest()
+                        }
                     }
                 }
                 .font(.largeTitle)
-                .disabled(zipCode.isEmpty && cityName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                .disabled(disableCondition)
                 /*
                 Text(lat.formatted())
                 Text(lon.formatted())
@@ -168,7 +198,13 @@ struct LocationFormView: View {
             } message: {
                 Text(alertMessage)
             }
-
+            .toolbar {
+                ToolbarItem {
+                    Button("Change form"){
+                        alterForm.toggle()
+                    }
+                }
+            }
         }
     }
 }

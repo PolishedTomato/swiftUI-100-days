@@ -9,10 +9,11 @@ import Foundation
 import SwiftUI
 
 struct DailyForecastView: View {
+    
     private let weatherForecasts: [OpenWeather.WeatherForcast]
     @State private var selectedTime: Date = Date.now
     private let city: OpenWeather.City
-    let metricUnit:Bool
+    var metricUnit:Bool
     
     //find index of selected weatherForcast in the container
     var selectedWeatherForcast: Int{
@@ -21,7 +22,9 @@ struct DailyForecastView: View {
         } ?? 0
     }
     
-    init?(weatherForecasts: [OpenWeather.WeatherForcast], city: OpenWeather.City, metricUnit: Bool){
+    let backToSearch: ()->Void
+    
+    init?(weatherForecasts: [OpenWeather.WeatherForcast], city: OpenWeather.City, metricUnit: Bool, backToSearch: @escaping ()->Void){
         self.weatherForecasts = weatherForecasts
         
         if(weatherForecasts.count == 0){
@@ -30,6 +33,7 @@ struct DailyForecastView: View {
         _selectedTime = State(initialValue: weatherForecasts[0].dt_txt)
         self.city = city
         self.metricUnit = metricUnit
+        self.backToSearch = backToSearch
     }
     
     var body: some View {
@@ -72,6 +76,7 @@ struct DailyForecastView: View {
                                 Text("Max: \(weatherForecasts[selectedWeatherForcast].main.temp_max.formatted()) \(metricUnit ? "℃" : "℉")")
                                 Text("Min: \(weatherForecasts[selectedWeatherForcast].main.temp_min.formatted()) \(metricUnit ? "℃" : "℉")")
                             }
+                            .frame(width:150,height:100)
                             .padding(.bottom)
                             
                             VStack(spacing: 5.0){
@@ -80,6 +85,7 @@ struct DailyForecastView: View {
                                 Text("Rise: \(city.sunriseTime)")
                                 Text("Set: \(city.sunsetTime)")
                             }
+                            .frame(width:150,height:100)
                             .padding(.bottom)
                             
                             
@@ -89,6 +95,7 @@ struct DailyForecastView: View {
                                 Text("Sea level: \(weatherForecasts[selectedWeatherForcast].main.sea_level) hPa")
                                 Text("Gound level: \(weatherForecasts[selectedWeatherForcast].main.grnd_level) hPa")
                             }
+                            .frame(width:150,height:100)
                             .padding(.bottom)
                             
                             VStack(spacing: 5){
@@ -97,6 +104,7 @@ struct DailyForecastView: View {
                                 Text("\(weatherForecasts[selectedWeatherForcast].main.humidity) %")
                                     .font(.largeTitle)
                             }
+                            .frame(width:150,height:100)
                             .padding(.bottom)
                             
                             VStack(spacing: 5){
@@ -105,6 +113,7 @@ struct DailyForecastView: View {
                                 Text("\(weatherForecasts[selectedWeatherForcast].clouds.all) %")
                                     .font(.largeTitle)
                             }
+                            .frame(width:150,height:100)
                             
                             VStack(spacing: 5){
                                 Text("Wind")
@@ -116,6 +125,7 @@ struct DailyForecastView: View {
                                     .font(.caption)
                                 
                             }
+                            .frame(width:150,height:100)
                             .padding(.bottom)
                         }
                         
@@ -124,6 +134,7 @@ struct DailyForecastView: View {
                                 .font(.headline)
                             Text("\(weatherForecasts[selectedWeatherForcast].visibility) km")
                         }
+                        .frame(width:150,height:100)
                         .padding(.bottom)
                         
                         VStack(spacing: 5){
@@ -137,6 +148,7 @@ struct DailyForecastView: View {
                                 Text("Last 3 hours")
                             }
                         }
+                        .frame(width:150,height:100)
                         .padding(.bottom)
                         
                         VStack(spacing:5){
@@ -150,14 +162,21 @@ struct DailyForecastView: View {
                                 Text("Last 3 hours")
                             }
                         }
+                        .frame(width:150,height:100)
                         .padding(.bottom)
                     }
                     
                 }
                 .clipShape(RoundedRectangle(cornerRadius: 20))
-                //.shadow(radius: 5)
                 .navigationTitle(selectedTime.dayOfWeek)
                 .navigationBarTitleDisplayMode(.inline)
+                .toolbar{
+                    ToolbarItem {
+                        Button("Search"){
+                            backToSearch()
+                        }
+                    }
+                }
             }
         }
     }
@@ -165,7 +184,7 @@ struct DailyForecastView: View {
 
 struct MyPreviewProvider_Previews: PreviewProvider {
     static var previews: some View {
-        DailyForecastView(weatherForecasts: OpenWeather.WeatherForcast.sampleData, city: OpenWeather.City.sampleDate,metricUnit: true)
+        DailyForecastView(weatherForecasts: OpenWeather.WeatherForcast.sampleData, city: OpenWeather.City.sampleDate,metricUnit: true, backToSearch: {})
     }
 }
 

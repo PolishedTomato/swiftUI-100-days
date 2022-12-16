@@ -11,7 +11,6 @@
 		5B09564929490ADE00D7D0F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09564829490ADE00D7D0F8 /* ContentView.swift */; };
 		5B09564B29490AE600D7D0F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B09564A29490AE600D7D0F8 /* Assets.xcassets */; };
 		5B09564E29490AE600D7D0F8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B09564D29490AE600D7D0F8 /* Preview Assets.xcassets */; };
-		5B09565529490B1000D7D0F8 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09565429490B1000D7D0F8 /* FileManager.swift */; };
 		5B09565929491DB200D7D0F8 /* OpenWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09565829491DB100D7D0F8 /* OpenWeather.swift */; };
 		5B09565E294A6B6700D7D0F8 /* DailyForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09565D294A6B6700D7D0F8 /* DailyForecastView.swift */; };
 		5B095660294A71FA00D7D0F8 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B09565F294A71FA00D7D0F8 /* Date.swift */; };
@@ -27,7 +26,6 @@
 		5B09564829490ADE00D7D0F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5B09564A29490AE600D7D0F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B09564D29490AE600D7D0F8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		5B09565429490B1000D7D0F8 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		5B09565829491DB100D7D0F8 /* OpenWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeather.swift; sourceTree = "<group>"; };
 		5B09565A29495B1700D7D0F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B09565D294A6B6700D7D0F8 /* DailyForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastView.swift; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 				5B095665294B49C700D7D0F8 /* TempInDayView.swift */,
 				5B09565829491DB100D7D0F8 /* OpenWeather.swift */,
 				5B09565F294A71FA00D7D0F8 /* Date.swift */,
-				5B09565429490B1000D7D0F8 /* FileManager.swift */,
 				5B09564A29490AE600D7D0F8 /* Assets.xcassets */,
 				5B09564C29490AE600D7D0F8 /* Preview Content */,
 			);
@@ -164,7 +161,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B095664294B47CF00D7D0F8 /* TempAtTimeView.swift in Sources */,
-				5B09565529490B1000D7D0F8 /* FileManager.swift in Sources */,
 				5B095660294A71FA00D7D0F8 /* Date.swift in Sources */,
 				5B09565E294A6B6700D7D0F8 /* DailyForecastView.swift in Sources */,
 				5B095666294B49C700D7D0F8 /* TempInDayView.swift in Sources */,
