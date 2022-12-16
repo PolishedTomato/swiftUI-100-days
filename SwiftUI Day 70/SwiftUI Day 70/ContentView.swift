@@ -31,7 +31,7 @@ struct ContentView: View {
                         }
                         .onTapGesture {
                             viewModel.chosedLocation = location
-                            userDefaults.main.(<#T##Any?#>, forKey: <#T##String#>)
+                            
                         }
                     }
                 }

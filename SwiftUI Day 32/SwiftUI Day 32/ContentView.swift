@@ -25,6 +25,7 @@ struct ContentView: View {
             .animation(.easeInOut.repeatCount(3, autoreverses: false), value: animationSize)
             
             //interesting pulsing animation
+            //this animation will be keep alive for the repeatForever modifier on animationType
             Button("Tap me", role: .cancel){
                 
             }

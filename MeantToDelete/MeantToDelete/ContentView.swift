@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     static var content = ["some string", "some sadasd"]
     @State var myselect = content[0]
+    @State var x = true
     var body: some View {
         VStack{
             Picker("picker something", selection: $myselect){
@@ -18,6 +19,7 @@ struct ContentView: View {
                 }
             }
             Text(myselect)
+            Text("\(Double(2)) \(x ? "good" : "bad")")
         }
     }
 }

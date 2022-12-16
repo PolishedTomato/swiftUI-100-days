@@ -68,6 +68,7 @@ struct ContentView: View {
                         currentNumber += 1
                         tapCount += 1
                         UserDefaults.standard.set(tapCount, forKey: "Tap")
+                        
                     }
                     
                     Text("\(tapCount) Tap")

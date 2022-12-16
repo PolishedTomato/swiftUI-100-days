@@ -292,7 +292,7 @@ Challenge Completed.
 Notice, only Shape need AnimatableData for animation. View don't.
 
 ////////
-SwiftUI Day 45
+SwiftUI Day 45(animatableData)
 
 .blendMode() modifier control how SwiftUI render pixels when on top of other views. For example, .blendMode(.Multiple) multiple the target view's pixels with source pixels(The pixels under the modifying view).
 
@@ -357,7 +357,7 @@ JSONDecoder().dateDecodingStrategy = .formatted(DateFormatter) allow it to decod
 
 NavigationViewTitle can be change its color through .preferredColorScheme()
 //////////
-SwiftUI Day 39
+SwiftUI Day 39(MoonShot)
 
 Until what I have learned, Image have two mode changable by .scaledToFit() or scaledToFill(), the first will scale the img into view's content space, while the latter allow it to go out of the view's space. 
 
@@ -418,7 +418,7 @@ Some note: when using if to insert view into view hierarchy animation won't show
 we can use this nest ternary expression to control animation in different stages. The nest one can be seem as the second stage.  
 
 ////////
-SwiftUI Day 33
+SwiftUI Day 33(animation)
 
 we can apply multiple animation modifier and .animation modifier order matter, every animation modifier control animating modifier before it. Therefore, we can have different animation at one property.
 
@@ -426,7 +426,7 @@ we can apply multiple animation modifier and .animation modifier order matter, e
 
 .transition() modifier need to use with animation. transition modifier specify how a view insertion and removal in the view hierachy will behave. One of such case is to use if conditionally show a view. With only animation, swiftUI use default tranition. .tranition(.scale) will scale from nothing to this view  when inserting, and scale to nothing when removing.   
 ////////////////
-SwiftUI Day 32
+SwiftUI Day 32(animation)
 
 implicit animation is fairly simple. By placing .animation(animation: value:) modifier, view will transform original view to animting view smoothly without we to care when value argument change. Any animating modifier before it which use value will take effect. Some animating modifier include .scaleEffect(), .blur() 
 
