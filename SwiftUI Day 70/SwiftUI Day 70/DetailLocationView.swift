@@ -9,57 +9,24 @@ import Foundation
 import SwiftUI
 
 struct DetailLocationView: View {
-    
-    enum LoadingState {
-        case loading, loaded, failed
-    }
+    @StateObject var viewModel = ViewModel(newLocation: Location(name: "default", description: "none", longitude: 0.1, latitude: 0.1))
     
     @Environment(\.dismiss) var dismiss
-    var location: Location
-    
-    @State private var name = ""
-    @State private var descrition = ""
     
     var onSave: (Location)->Void
-    
-    @State private var loadingState = LoadingState.loading
-    @State private var pages = [Page]()
-    
-    func fetchWikiData()async{
-        let urlString = "https://en.wikipedia.org/w/api.php?ggscoord=\(location.coordinator.latitude)%7C\(location.coordinator.longitude)&action=query&prop=coordinates%7Cpageimages%7Cpageterms&colimit=50&piprop=thumbnail&pithumbsize=500&pilimit=50&wbptterms=description&generator=geosearch&ggsradius=10000&ggslimit=50&format=json"
-
-            
-        guard let url = URL(string: urlString) else{
-            print("InValid URL \(urlString)")
-            return
-        }
-        
-        do{
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let result = try JSONDecoder().decode(Result.self, from: data)
-            
-            //dictionary.values return a array of the value without the key
-            pages = result.query.pages.values.sorted()
-            loadingState = .loaded
-        }
-        catch{
-            loadingState = .failed
-        }
-    }
-    
     
     var body: some View {
         NavigationView {
             Form{
                 Section("Descrition"){
-                    TextField("Enter the name", text: $name)
-                    TextField("Enter the description", text:$descrition)
+                    TextField("Enter the name", text: $viewModel.name)
+                    TextField("Enter the description", text:$viewModel.descrition)
                 }
                 
                 Section("Nearby…") {
-                    switch loadingState {
+                    switch viewModel.loadingState {
                     case .loaded:
-                        ForEach(pages, id: \.pageid) { page in
+                        ForEach(viewModel.pages, id: \.pageid) { page in
                             Text(page.title)
                                 .font(.headline)
                             + Text(": ") +
@@ -73,16 +40,16 @@ struct DetailLocationView: View {
                     }
                 }
             }
-            .navigationTitle(location.name)
+            .navigationTitle(viewModel.location.name)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction){
                     Button("Save"){
                         //struct is immutable, therefore we can't change location, but create a newLocation for this task
                         //every time we change a struct we created, swiftUI create a copy of it
-                        var newLocation = location
+                        var newLocation = viewModel.location
                         newLocation.id = UUID()
-                        newLocation.name = name
-                        newLocation.description = descrition
+                        newLocation.name = viewModel.name
+                        newLocation.description = viewModel.descrition
                         onSave(newLocation)
                         dismiss()
                     }
@@ -96,17 +63,18 @@ struct DetailLocationView: View {
                 
             }
             .task{
-                await fetchWikiData()
+                await viewModel.fetchWikiData()
             }
         }
     }
     
     init(location:Location, onSave: @escaping (Location)->Void){
-        _name = State(initialValue: location.name)
-        _descrition = State(initialValue: location.description)
-        
         self.onSave = onSave
-        self.location = location
+        
+        _viewModel = StateObject(wrappedValue: ViewModel(newLocation: location))
+        viewModel.name = location.name
+        viewModel.descrition = location.description
+        
     }
 }
 

@@ -1,3 +1,10 @@
+SwiftUI Day 73
+
+data.write(to:options:[.atomic, .completeFileProtection])
+atomic meanting to write into a auxiliary file then copy the content into original file.
+completeFileProtection allow access to this file only when device is unlocked.
+Bucket List challenge complete? 
+//////
 SwiftUI Day 72
 
 Adding @MainActor attribute to a class is to ask swift to execute the code in this class with main actor, the thing that update our UI.

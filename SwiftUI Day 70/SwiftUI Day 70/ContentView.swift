@@ -51,13 +51,13 @@ struct ContentView: View {
                             viewModel.addLocation()
                         } label: {
                             Image(systemName: "plus")
+                                .padding()
+                                .background(.black.opacity(0.75))
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .clipShape(Circle())
+                                .padding(.trailing)
                         }
-                        .padding()
-                        .background(.black.opacity(0.75))
-                        .foregroundColor(.white)
-                        .font(.title)
-                        .clipShape(Circle())
-                        .padding(.trailing)
                     }
                 }
             }
@@ -66,6 +66,14 @@ struct ContentView: View {
                     viewModel.update(newLocation: $0)
                 }
             }
+            .alert("Bio authentication failed", isPresented: $viewModel.bioAuthenticationFail) {
+                Button("Ok"){
+                    
+                }
+            } message: {
+                Text("please try again")
+            }
+
         }
         else{
             Button("unlock"){

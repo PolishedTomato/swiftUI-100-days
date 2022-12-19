@@ -23,8 +23,8 @@ extension ContentView{
         
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
 
-        @Published var isUnlocked = false
-
+        @Published var isUnlocked = true
+        @Published var bioAuthenticationFail = false
         func addLocation(){
             let newLocation = Location(name: "New Location", description: "Description", longitude: mapRegion.center.longitude, latitude: mapRegion.center.latitude)
             //modification
@@ -53,7 +53,7 @@ extension ContentView{
                     if success{
                         self.isUnlocked = true
                     }else{
-                        
+                        self.bioAuthenticationFail = true
                     }
                 }
             }
