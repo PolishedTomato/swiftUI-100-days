@@ -1,3 +1,25 @@
+SwiftUI Day 74(accessbility)
+
+Voiceover read Image filename automatically.
+
+two modifier: .accessibilityLabel() and .accessibilityHint() to provide for infomation of voice over. The fronter one will be read out immediately, used to provide a general idea, while the later should supply a more detailed describtion.
+
+.accessibilityAddTrait() add a trait to this view. View can have multiple trait at once.
+
+Voiceover read them in the order of: label-> trait-> hint
+
+Hide UI from VoiceOver:
+
+Image(decorative: "fileName") will not read the filename by default
+
+.accessibilityHidden(true) make the view completely invisible
+
+Group children view into one(thus, read it as one):
+use .accessibilityElement(.ignore) which ignore all the chilren, then we add a accessibilty label for that children's info.
+
+.accessibilityAdjustableAction() is a interesting modifier that pass a closure to perform action user's finger movement(up and down for now) 
+
+////
 SwiftUI Day 73
 
 data.write(to:options:[.atomic, .completeFileProtection])
