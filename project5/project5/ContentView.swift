@@ -143,6 +143,7 @@ struct ContentView: View {
                 Section("Previous words"){
                     ForEach(usedWords, id: \.self) {
                         Label("\($0)", systemImage: "\($0.count).circle")
+                            .accessibilityLabel("\($0), \($0.count) letters")
                     }
                 }
             }
