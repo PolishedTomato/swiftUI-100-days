@@ -18,6 +18,8 @@
 		5B095666294B49C700D7D0F8 /* TempInDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B095665294B49C700D7D0F8 /* TempInDayView.swift */; };
 		5B095668294BBE5800D7D0F8 /* LocationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B095667294BBE5600D7D0F8 /* LocationFormView.swift */; };
 		5B6D198F294BC9A2009D8371 /* GeoCoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6D198E294BC9A2009D8371 /* GeoCoding.swift */; };
+		5B9797E62953B5EA003D0359 /* ContentView_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9797E52953B5EA003D0359 /* ContentView_ViewModel.swift */; };
+		5B9797E82953B81A003D0359 /* LocationFormView_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9797E72953B81A003D0359 /* LocationFormView_ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		5B095665294B49C700D7D0F8 /* TempInDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempInDayView.swift; sourceTree = "<group>"; };
 		5B095667294BBE5600D7D0F8 /* LocationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFormView.swift; sourceTree = "<group>"; };
 		5B6D198E294BC9A2009D8371 /* GeoCoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoCoding.swift; sourceTree = "<group>"; };
+		5B9797E52953B5EA003D0359 /* ContentView_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView_ViewModel.swift; sourceTree = "<group>"; };
+		5B9797E72953B81A003D0359 /* LocationFormView_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFormView_ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,10 +72,12 @@
 			children = (
 				5B09565A29495B1700D7D0F8 /* Info.plist */,
 				5B09564629490ADD00D7D0F8 /* WeatherForecastApp.swift */,
+				5B9797E52953B5EA003D0359 /* ContentView_ViewModel.swift */,
 				5B09564829490ADE00D7D0F8 /* ContentView.swift */,
 				5B6D198E294BC9A2009D8371 /* GeoCoding.swift */,
 				5B095663294B47CF00D7D0F8 /* TempAtTimeView.swift */,
 				5B095667294BBE5600D7D0F8 /* LocationFormView.swift */,
+				5B9797E72953B81A003D0359 /* LocationFormView_ViewModel.swift */,
 				5B09565D294A6B6700D7D0F8 /* DailyForecastView.swift */,
 				5B095665294B49C700D7D0F8 /* TempInDayView.swift */,
 				5B09565829491DB100D7D0F8 /* OpenWeather.swift */,
@@ -160,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B9797E82953B81A003D0359 /* LocationFormView_ViewModel.swift in Sources */,
 				5B095664294B47CF00D7D0F8 /* TempAtTimeView.swift in Sources */,
 				5B095660294A71FA00D7D0F8 /* Date.swift in Sources */,
 				5B09565E294A6B6700D7D0F8 /* DailyForecastView.swift in Sources */,
@@ -167,6 +174,7 @@
 				5B09564929490ADE00D7D0F8 /* ContentView.swift in Sources */,
 				5B09565929491DB200D7D0F8 /* OpenWeather.swift in Sources */,
 				5B6D198F294BC9A2009D8371 /* GeoCoding.swift in Sources */,
+				5B9797E62953B5EA003D0359 /* ContentView_ViewModel.swift in Sources */,
 				5B095668294BBE5800D7D0F8 /* LocationFormView.swift in Sources */,
 				5B09564729490ADD00D7D0F8 /* WeatherForecastApp.swift in Sources */,
 			);

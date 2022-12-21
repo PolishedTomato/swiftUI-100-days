@@ -22,6 +22,7 @@ struct TempInDayView: View {
                         .onTapGesture {
                             onTapAction(weatherForcast.dt_txt)
                         }
+                        
                 }
             }
         }

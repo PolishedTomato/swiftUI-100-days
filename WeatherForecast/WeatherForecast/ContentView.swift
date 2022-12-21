@@ -9,63 +9,71 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var openWeather:OpenWeather? = nil
-    @State var metricUnit = true;
+    @StateObject var viewModel = ViewModel()
     
     var body: some View {
         ZStack{
             Color.secondary
                 .ignoresSafeArea()
-            if(openWeather == nil){
-                LocationFormView(metricUnit: $metricUnit, openWeather: $openWeather)
+            if(viewModel.openWeather == nil){
+                LocationFormView(metricUnit: $viewModel.metricUnit, openWeather: $viewModel.openWeather)
             }
             else{
                 TabView {
-                    DailyForecastView(weatherForecasts: openWeather!.nextNDayForcast(offset: 0), city: openWeather!.city, metricUnit: metricUnit){
-                        openWeather = nil
+                    DailyForecastView(weatherForecasts: viewModel.openWeather!.nextNDayForcast(offset: 0), city: viewModel.openWeather!.city, metricUnit: viewModel.metricUnit){
+                        viewModel.openWeather = nil
                     }
                         .tabItem{
                             Label(Date.now.nextNDay(offset: 0).dayOfWeek, systemImage: "" )
+                                .accessibilityLabel("\(Date.now.nextNDay(offset: 0).dayOfWeek) tap to change weather detail to specified day")
                         }
                     
-                    DailyForecastView(weatherForecasts: openWeather!.nextNDayForcast(offset: 1), city: openWeather!.city, metricUnit: metricUnit){
-                        openWeather = nil
+                    DailyForecastView(weatherForecasts: viewModel.openWeather!.nextNDayForcast(offset: 1), city: viewModel.openWeather!.city, metricUnit: viewModel.metricUnit){
+                        viewModel.openWeather = nil
                     }
                         .tabItem{
                             Label(Date.now.nextNDay(offset: 1).dayOfWeek, systemImage: "" )
+                                .accessibilityLabel("\(Date.now.nextNDay(offset: 1).dayOfWeek) tap to change weather detail to specified day")
                             
                         }
                     
-                    DailyForecastView(weatherForecasts: openWeather!.nextNDayForcast(offset: 2), city: openWeather!.city, metricUnit: metricUnit){
-                        openWeather = nil
+                    DailyForecastView(weatherForecasts: viewModel.openWeather!.nextNDayForcast(offset: 2), city: viewModel.openWeather!.city, metricUnit: viewModel.metricUnit){
+                        viewModel.openWeather = nil
                     }
                         .tabItem{
                             Label(Date.now.nextNDay(offset: 2).dayOfWeek, systemImage: "" )
+                                .accessibilityLabel("\(Date.now.nextNDay(offset: 2).dayOfWeek) tap to change weather detail to specified day")
                         }
                     
-                    DailyForecastView(weatherForecasts: openWeather!.nextNDayForcast(offset: 3), city: openWeather!.city, metricUnit: metricUnit){
-                        openWeather = nil
+                    DailyForecastView(weatherForecasts: viewModel.openWeather!.nextNDayForcast(offset: 3), city: viewModel.openWeather!.city, metricUnit: viewModel.metricUnit){
+                        viewModel.openWeather = nil
                     }
                         .tabItem{
                             Label(Date.now.nextNDay(offset: 3).dayOfWeek, systemImage: "" )
+                                .accessibilityLabel("\(Date.now.nextNDay(offset: 3).dayOfWeek) tap to change weather detail to specified day")
                             
                         }
+                        
                     
-                    DailyForecastView(weatherForecasts: openWeather!.nextNDayForcast(offset: 4), city: openWeather!.city, metricUnit: metricUnit){
-                        openWeather = nil
+                    DailyForecastView(weatherForecasts: viewModel.openWeather!.nextNDayForcast(offset: 4), city: viewModel.openWeather!.city, metricUnit: viewModel.metricUnit){
+                        viewModel.openWeather = nil
                     }
                         .tabItem{
                             Label(Date.now.nextNDay(offset: 4).dayOfWeek, systemImage: "" )
+                                .accessibilityLabel("\(Date.now.nextNDay(offset: 4).dayOfWeek) tap to change weather detail to specified day")
                             
                         }
+                        
                     
-                    DailyForecastView(weatherForecasts: openWeather!.nextNDayForcast(offset: 5), city: openWeather!.city, metricUnit: metricUnit){
-                        openWeather = nil
+                    DailyForecastView(weatherForecasts: viewModel.openWeather!.nextNDayForcast(offset: 5), city: viewModel.openWeather!.city, metricUnit: viewModel.metricUnit){
+                        viewModel.openWeather = nil
                     }
                         .tabItem{
                             Label(Date.now.nextNDay(offset: 5).dayOfWeek, systemImage: "" )
+                                .accessibilityLabel("\(Date.now.nextNDay(offset: 5).dayOfWeek) tap to change weather detail to specified day")
                             
                         }
+                        
                      
                 }
                 

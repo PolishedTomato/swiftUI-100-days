@@ -48,15 +48,20 @@ struct DailyForecastView: View {
                         .font(.largeTitle.weight(.bold))
                         .shadow(radius: 5)
                         .padding()
+                        .accessibilityElement()
+                        .accessibilityLabel("Location: \(city.name), \(city.country)")
                         
-                        Text("\(weatherForecasts[selectedWeatherForcast].main.temp.formatted()) \(metricUnit ? "℃" : "℉")")
-                            .font(.largeTitle)
-                        
-                        HStack{
-                            Text(weatherForecasts[selectedWeatherForcast].weather[0].main.description)
-                                .font(.title3)
-                            Text(selectedTime.formatted(date: .omitted, time: .shortened))
+                        VStack{
+                            Text("\(weatherForecasts[selectedWeatherForcast].main.temp.formatted()) \(metricUnit ? "℃" : "℉")")
+                                .font(.largeTitle)
+                            
+                            HStack{
+                                Text(weatherForecasts[selectedWeatherForcast].weather[0].main.description)
+                                    .font(.title3)
+                                Text(selectedTime.formatted(date: .omitted, time: .shortened))
+                            }
                         }
+                        .accessibilityElement(children: .combine)
                     }
                     
                     Divider()
@@ -78,6 +83,7 @@ struct DailyForecastView: View {
                             }
                             .frame(width:150,height:100)
                             .padding(.bottom)
+                            .accessibilityElement(children: .combine)
                             
                             VStack(spacing: 5.0){
                                 Text("Sun Rise/Set")
@@ -87,16 +93,18 @@ struct DailyForecastView: View {
                             }
                             .frame(width:150,height:100)
                             .padding(.bottom)
-                            
+                            .accessibilityElement(children: .combine)
                             
                             VStack(spacing: 5){
                                 Text("Pressure")
                                     .font(.headline)
                                 Text("Sea level: \(weatherForecasts[selectedWeatherForcast].main.sea_level) hPa")
-                                Text("Gound level: \(weatherForecasts[selectedWeatherForcast].main.grnd_level) hPa")
+                                Text("Ground level: \(weatherForecasts[selectedWeatherForcast].main.grnd_level) hPa")
                             }
                             .frame(width:150,height:100)
                             .padding(.bottom)
+                            .accessibilityElement(children: .combine)
+                            
                             
                             VStack(spacing: 5){
                                 Text("Humidity")
@@ -106,6 +114,8 @@ struct DailyForecastView: View {
                             }
                             .frame(width:150,height:100)
                             .padding(.bottom)
+                            .accessibilityElement(children: .combine)
+                            
                             
                             VStack(spacing: 5){
                                 Text("Cloud")
@@ -114,19 +124,22 @@ struct DailyForecastView: View {
                                     .font(.largeTitle)
                             }
                             .frame(width:150,height:100)
+                            .accessibilityElement(children: .combine)
+                            
                             
                             VStack(spacing: 5){
                                 Text("Wind")
                                     .font(.headline)
+                                Text("\(weatherForecasts[selectedWeatherForcast].wind.deg) degree")
                                 Text(" \(weatherForecasts[selectedWeatherForcast].wind.speed.formatted()) \(metricUnit ? "meter/second" : "mile/hour")")
                                     .font(.caption)
-                                Text("\(weatherForecasts[selectedWeatherForcast].wind.deg) degree")
                                 Text("Wind gust:\( weatherForecasts[selectedWeatherForcast].wind.gust.formatted()) \(metricUnit ? "meter/second" : "mile/hour")")
                                     .font(.caption)
                                 
                             }
                             .frame(width:150,height:100)
                             .padding(.bottom)
+                            .accessibilityElement(children: .combine)
                         }
                         
                         VStack(spacing: 5){
@@ -136,6 +149,8 @@ struct DailyForecastView: View {
                         }
                         .frame(width:150,height:100)
                         .padding(.bottom)
+                        .accessibilityElement(children: .combine)
+                        
                         
                         VStack(spacing: 5){
                             Text("Rain")
@@ -150,6 +165,8 @@ struct DailyForecastView: View {
                         }
                         .frame(width:150,height:100)
                         .padding(.bottom)
+                        .accessibilityElement(children: .combine)
+                        
                         
                         VStack(spacing:5){
                             Text("Snow")
@@ -164,6 +181,8 @@ struct DailyForecastView: View {
                         }
                         .frame(width:150,height:100)
                         .padding(.bottom)
+                        .accessibilityElement(children: .combine)
+                        
                     }
                     
                 }

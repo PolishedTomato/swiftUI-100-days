@@ -20,6 +20,7 @@ struct TempAtTimeView: View {
             Text(time.formatted(date: .omitted, time: .shortened))
         }
         .frame(width: 100, height: 100)
+        .accessibilityElement(children: .combine)
     }
 }
 
