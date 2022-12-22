@@ -1,3 +1,11 @@
+SwiftUI Day 76
+
+SF symbol will have their string name read out by default
+
+we can control how SwiftUI read out UI controll by using .accessibilityValue()
+
+CupCake Corner, Project 7, MoonShot accessibility feature updated
+///////
 SwiftUI Day 75
 
 Accessibility on GuessTheFlag, Project5, BookWorm

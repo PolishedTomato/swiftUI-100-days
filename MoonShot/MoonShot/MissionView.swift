@@ -38,29 +38,36 @@ struct MissionView: View {
             GeometryReader{
                 geo in ScrollView{
                     VStack{
-                        Image(mission.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: geo.size.width * 0.6)
-                        Text("Launch Date: \(launchDate)")
-                            .font(.subheadline)
-                            
+                        VStack{
+                            Image(decorative: mission.image)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: geo.size.width * 0.6)
+                            Text("Launch Date: \(launchDate)")
+                                .font(.subheadline)
+                        }
+                        .accessibilityElement(children: .combine)
+                        
                         VStack(alignment: .leading){
-                            Text("Mission highlights")
-                                .font(.title.bold())
-                                .padding(.bottom, 5)
-                            
-                            MyDivier()
-                            
-                            Text("\(mission.description)")
-                            
-                            MyDivier()
+                            VStack{
+                                Text("Mission highlights")
+                                    .font(.title.bold())
+                                    .padding(.bottom, 5)
+                                
+                                MyDivier()
+                                
+                                Text("\(mission.description)")
+                                
+                                MyDivier()
+                            }
+                            .accessibilityElement(children: .combine)
                             
                             Text("Crew")
                                 .font(.title.bold())
                                 .padding(.bottom, 5)
                         }
                         .padding(.horizontal)
+                        
                         
                         CrewMemberView(crew: crew)
                         

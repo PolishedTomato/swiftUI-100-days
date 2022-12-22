@@ -31,16 +31,19 @@ class Expense : ObservableObject{
             if let data = try? JSONDecoder().decode([ExpenseItem].self, from: savePersonalItems){
                 personalItems = data
             }
+            else{
+                personalItems = []
+            }
         }
         
         if let saveBusinessItems = UserDefaults.standard.data(forKey: "ExpenseItem.businessItem"){
             if let data = try? JSONDecoder().decode([ExpenseItem].self, from: saveBusinessItems){
                 businessItems = data
             }
+            else{
+                businessItems = []
+            }
         }
-        
-        personalItems = []
-        businessItems = []
     }
     @Published var personalItems : [ExpenseItem] = [] {
         didSet{

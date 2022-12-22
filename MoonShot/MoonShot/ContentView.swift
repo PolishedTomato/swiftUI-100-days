@@ -55,7 +55,7 @@ struct ContentView: View {
                 }
                 .listStyle(.sidebar)
                 .navigationTitle("MoonShot")
-                .preferredColorScheme(.light)
+                .preferredColorScheme(.dark)
                 .toolbar{
                     ToolbarItem {
                         Button("Tap to switch"){

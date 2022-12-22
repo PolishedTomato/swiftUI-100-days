@@ -13,7 +13,7 @@ struct MissionLabelView: View {
     let turn: Bool
     var body: some View {
         VStack{
-            Image(mission.image)
+            Image(decorative: mission.image)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100, height: 100)
@@ -29,6 +29,7 @@ struct MissionLabelView: View {
             .padding(.vertical)
             .frame(maxWidth: .infinity)
             .background(turn ? .pink :.lightBackground)
+            
         }
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .overlay(

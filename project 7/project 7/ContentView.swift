@@ -33,6 +33,9 @@ struct ContentView: View {
                                     .scaleEffect(item.amount > 100.0 ? 1.25 : 1)
                                     .foregroundStyle((10.0 < item.amount && item.amount < 100.0) ? .ultraThinMaterial : .regularMaterial)
                             }
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityLabel("\(item.name) \(item.amount)")
+                            .accessibilityHint("\(item.type)")
                         }
                         .onDelete { IndexSet in
                             withAnimation{
@@ -58,6 +61,9 @@ struct ContentView: View {
                                     .scaleEffect(item.amount > 100.0 ? 1.25 : 1)
                                     .foregroundStyle((10.0 < item.amount && item.amount < 100.0) ? .ultraThinMaterial : .regularMaterial)
                             }
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityLabel("\(item.name) \(item.amount.formatted())")
+                            .accessibilityHint("\(item.type)")
                         }
                         .onDelete { IndexSet in
                             withAnimation{
