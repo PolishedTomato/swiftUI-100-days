@@ -1,3 +1,18 @@
+SwiftUI Day 77(consolidation)
+
+property wrapper is just a syntatic sugar that hold other value when created. 
+@propertyWrapper var someVariable = 10 is same as propertyWrapper(wrappedValue: 10).
+
+property wrapper is a struct that define a common behavior of wrapped value and act on behave of them. 
+
+we can save UIImage to file system by using UIImage.jepgData(compressibility:), then jepgData.write(to:)
+
+To retrive this data, use Data(contensof:url), UIImage(data:) methods.
+
+To write images to document directory, and retrive them later, we can have an array of struct that contain url's info. Different url for different image, and different url can be get by using url.appending(component: "\(some variation)") method to get different unique url.
+
+Challenge Complete.
+/////////
 SwiftUI Day 76
 
 SF symbol will have their string name read out by default
