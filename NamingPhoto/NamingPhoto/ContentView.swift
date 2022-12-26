@@ -22,6 +22,18 @@ struct ContentView: View {
     
     @State var count = 0
     
+    func fetchData()->[ListItem]{
+        let url = FileManager.savePath.appending(component: "Collection")
+        
+        guard let data = try? Data(contentsOf: url) else{ return []}
+        
+        let decoder = JSONDecoder()
+        
+        guard let items = try? decoder.decode([ListItem].self, from: data) else{ return []}
+        print("data retrive success")
+        return items
+    }
+    
     func showImage(item: ListItem)->Image?{
         guard let data = try? Data(contentsOf: item.savePath) else{return nil}
         guard let uiImage = UIImage(data: data) else {return nil}
@@ -34,6 +46,20 @@ struct ContentView: View {
         //write img to file using jpegData
         if let jpegData = selectedPicker.jpegData(compressionQuality: 0.8) {
             try? jpegData.write(to: url, options: [.atomic, .completeFileProtection])
+        }
+        
+        let URL = FileManager.savePath.appending(component: "Collection")
+        
+        let encoder = JSONEncoder()
+        
+        guard let data = try? encoder.encode(collection) else{ return }
+        
+        do{
+            try data.write(to: URL, options: [.atomic])
+            print("save success")
+        }
+        catch{
+            print(error)
         }
     }
     
@@ -74,15 +100,21 @@ struct ContentView: View {
                                 showImage(item: listItem)?
                                     .resizable()
                                     .scaledToFit()
+                                    .frame(width: 150, height: 150)
                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                             }
                         }
 
                     }
+                    
                 }
+                .listStyle(.insetGrouped)
             }
             .sheet(isPresented: $showSheet) {
                 PhotoPicker(image: $selectedPicker)
+            }
+            .onAppear{//place it in here so it will get call again and again when view show, initializer only call once
+                collection = fetchData()
             }
         }
     }

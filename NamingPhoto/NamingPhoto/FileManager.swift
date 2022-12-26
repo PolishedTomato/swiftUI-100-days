@@ -9,7 +9,7 @@ import Foundation
 
 extension FileManager{
     static var savePath:URL{
-        var paths = self.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let paths = self.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
     
