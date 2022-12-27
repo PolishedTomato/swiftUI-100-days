@@ -12,7 +12,6 @@ import PhotosUI
 struct PhotoPicker: UIViewControllerRepresentable{
     @Binding var image: UIImage?
     
-    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
@@ -46,6 +45,7 @@ struct PhotoPicker: UIViewControllerRepresentable{
         
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = context.coordinator
+        
         return picker
     }
     

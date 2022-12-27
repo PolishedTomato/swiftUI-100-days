@@ -15,6 +15,8 @@
 		5B979806295663F0003D0359 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B979805295663F0003D0359 /* FileManager.swift */; };
 		5B979808295666C8003D0359 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B979807295666C8003D0359 /* PhotoPicker.swift */; };
 		5B97980C295689C7003D0359 /* DetailPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B97980B295689C7003D0359 /* DetailPhotoView.swift */; };
+		5B97980E295A4D94003D0359 /* ContentView_DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B97980D295A4D94003D0359 /* ContentView_DataModel.swift */; };
+		5B979810295A5247003D0359 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B97980F295A5247003D0359 /* LocationFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		5B979805295663F0003D0359 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		5B979807295666C8003D0359 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		5B97980B295689C7003D0359 /* DetailPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPhotoView.swift; sourceTree = "<group>"; };
+		5B97980D295A4D94003D0359 /* ContentView_DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView_DataModel.swift; sourceTree = "<group>"; };
+		5B97980F295A5247003D0359 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 			children = (
 				5B97980B295689C7003D0359 /* DetailPhotoView.swift */,
 				5B9797F529565E85003D0359 /* NamingPhotoApp.swift */,
+				5B97980F295A5247003D0359 /* LocationFetcher.swift */,
+				5B97980D295A4D94003D0359 /* ContentView_DataModel.swift */,
 				5B9797F729565E85003D0359 /* ContentView.swift */,
 				5B979807295666C8003D0359 /* PhotoPicker.swift */,
 				5B97980329566040003D0359 /* ListItem.swift */,
@@ -151,7 +157,9 @@
 			files = (
 				5B97980429566040003D0359 /* ListItem.swift in Sources */,
 				5B9797F829565E85003D0359 /* ContentView.swift in Sources */,
+				5B979810295A5247003D0359 /* LocationFetcher.swift in Sources */,
 				5B9797F629565E85003D0359 /* NamingPhotoApp.swift in Sources */,
+				5B97980E295A4D94003D0359 /* ContentView_DataModel.swift in Sources */,
 				5B979808295666C8003D0359 /* PhotoPicker.swift in Sources */,
 				5B97980C295689C7003D0359 /* DetailPhotoView.swift in Sources */,
 				5B979806295663F0003D0359 /* FileManager.swift in Sources */,
@@ -286,6 +294,8 @@
 				DEVELOPMENT_TEAM = KBSC8RA6AY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationUsageDescription = "Allow us to read your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Aloow read location?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -315,6 +325,8 @@
 				DEVELOPMENT_TEAM = KBSC8RA6AY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationUsageDescription = "Allow us to read your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Aloow read location?";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

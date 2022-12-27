@@ -1,3 +1,9 @@
+SwiftUI Day 78(contniue NamingPhoto project) use CoreLaction to read location
+
+To read location, we need to add privacy-Location when in usage key to it.
+
+Challenge complete, NamingPhoto now can name photo on location and save on file and retrive later.
+
 SwiftUI Day 77(consolidation)
 
 property wrapper is just a syntatic sugar that hold other value when created. 

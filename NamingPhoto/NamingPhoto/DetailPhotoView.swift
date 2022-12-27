@@ -7,9 +7,14 @@
 
 import Foundation
 import SwiftUI
+import MapKit
 
 struct DetailPhotoView: View {
     let item: ListItem
+    
+    var container: [ListItem]{
+        return [item]
+    }
     
     var displayImage:Image?{
         guard let data = try? Data(contentsOf: item.savePath) else{return nil}
@@ -17,12 +22,28 @@ struct DetailPhotoView: View {
         return Image(uiImage: uiImage)
     }
     
+    @State var center = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 0, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
+    
+    init(item: ListItem){
+        self.item = item
+        _center = State(initialValue: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude), span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10)))
+    }
+    
     var body: some View {
         NavigationView {
             VStack{
-                displayImage?
-                    .resizable()
-                    .scaledToFit()
+                Map(coordinateRegion: $center, annotationItems: container) { item in
+                    MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)) {
+                        VStack{
+                            displayImage?
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(15)
+                                .frame(width: 100, height:100)
+                            Text("\(item.name)")
+                        }
+                    }
+                }
             }
             
             .navigationTitle(item.name)
@@ -30,8 +51,4 @@ struct DetailPhotoView: View {
     }
 }
 
-struct DetailPhotoView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailPhotoView(item: ListItem(name: "abc", savePath: URL(filePath: "some path")))
-    }
-}
+

@@ -7,8 +7,12 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
-struct ListItem: Hashable, Codable{
+struct ListItem: Hashable, Codable, Identifiable{
+    var id = UUID()
     var name: String
     var savePath : URL
+    var latitude: Double
+    var longitude: Double
 }
