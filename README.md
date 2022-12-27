@@ -1,9 +1,20 @@
+SwiftUI Day 79
+
+@EnvironmentObject wrapper is another wrapper that help moving data from view hierarchy, it different from @ObservebaleObject in that it can retrive from the environment directly rather than passing by parent view. Notice, children view are in the same environment as the parent.
+
+The child can then declare as @EnvironmentalObject var variable_name: Object_type. Then, swfitui will automatically assign instanc of that type to the variable. HackingWithSwift explain it as the type as the key of a dictionary and it map to that instance. Wonder what happen when two same type of instance pass to environment...
+
+The children of TabView can be uniquely identify by .tag(), we can make which tabItem to show by using TabView(selection: ) to select a children base on tag's value.
+
+Tip, when using navigationView and TapView, TapView should be the parent.
+
+/////////////
 SwiftUI Day 78(contniue NamingPhoto project) use CoreLaction to read location
 
 To read location, we need to add privacy-Location when in usage key to it.
 
 Challenge complete, NamingPhoto now can name photo on location and save on file and retrive later.
-
+//////
 SwiftUI Day 77(consolidation)
 
 property wrapper is just a syntatic sugar that hold other value when created. 
