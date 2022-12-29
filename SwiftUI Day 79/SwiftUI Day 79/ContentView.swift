@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selectedTab = "One"
-
+    @StateObject private var delayUpdate = DelayedUpdater()
+    
         var body: some View {
+            /*
             TabView(selection: $selectedTab) {
                 Text("Tab 1")
                     .onTapGesture {
@@ -29,7 +31,18 @@ struct ContentView: View {
                         Label("Two", systemImage: "circle")
                     }
                     .tag("Two")
+            }*/
+            VStack{
+                Text("\(delayUpdate.value)")
+                Image("example")
+                    .interpolation(.none)
+                    .resizable()
+                    .scaledToFit()
+                    .background(.black)
+                    .frame(height: .infinity)
+                    .ignoresSafeArea()
             }
+            
         }
 
 }

@@ -1,3 +1,21 @@
+SwiftUI Day 80
+
+objectWillChange is a publisher property that class that conform to ObservableObject have. This property was used to sigal changes have made. We can use objectWillChange.send() method in willSet property observer to copy this behavior but with extra freedom of execute certain code before it sign the change to UI update.
+
+we can use Task{} to do async function call, but we also assign this Task{} output to a variable, this way we can use the result of the async function whenever we want.
+Task.result is of type Result<ReturnType/(),Error/Never>, that the first parameter cooresponse to the return type of the passing closure to Task{} and second parameter cooresponse to error Task will throw, Never when no error can be throw. By using Task.result we can store the output of our async calls and deal with it later. Notice, we don't need to write catch block for Task because it will automatically catch it, and put it in result.
+
+Then, we can use it like this in switch statement:
+
+switch result {
+    case .success(let str):
+        output = str
+    case .failure(let error):
+        output = "Error: \(error.localizedDescription)"
+} 
+
+when streching a image over its original size, siwftUI will blend the image so that it look smooth, that is interpolation. If we don't want it, use modifier .interpolation(.none) to pervent that.
+/////
 SwiftUI Day 79
 
 @EnvironmentObject wrapper is another wrapper that help moving data from view hierarchy, it different from @ObservebaleObject in that it can retrive from the environment directly rather than passing by parent view. Notice, children view are in the same environment as the parent.
