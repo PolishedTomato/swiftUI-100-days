@@ -1,3 +1,25 @@
+SwiftUI Day 81
+
+Like TapView{}, contextMenu{} is a modifier that show list of available UI options in the closure when pressing. Image UI won't show color here.
+
+.swipeAction(edge:){UI} is a modifier for list item that show extra option when swipe left or right. Multiple swipeAction are allow, and in the same edge too.
+
+UserNotification frameWork:
+import UserNotifications first
+
+asking permission:
+UNUserNotificationCenter.current().requestAuthorization(options:[]){ success, error in ...}
+unlike most API request, it doesn't need to add key in the plist. 
+
+publish a notification:
+1, create a UNMutableNotificationContent()
+2, create a  TimeIntervalNotificationTrigger()
+3, create a UNNotificationRequest(identificer: UUID().uuidString, content:(1),trigger: (2))
+4, UNUserNotificationCenter.current().add(3)
+
+Xcode dependencies are code that written by other that supposely save your time to reinvent the tool. The up to next major option in add package will not update code to next major update which may break the api. Semantic system is a way of labeling code version. x.y.z change in z means small change like fixed a bug, y for good amount of change like new feature, x is for major change which may break the api.
+
+////////
 SwiftUI Day 80
 
 objectWillChange is a publisher property that class that conform to ObservableObject have. This property was used to sigal changes have made. We can use objectWillChange.send() method in willSet property observer to copy this behavior but with extra freedom of execute certain code before it sign the change to UI update.
