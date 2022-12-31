@@ -1,3 +1,15 @@
+SwiftUI Day 83
+
+.textContentType() tell iOS what data to expect and auto complete for that string, like url, emailAddress, name.
+
+use CoreImage.CIFilterBuiltins, CIFilter.qrCodeGenerator() to generate a UIImage fof qrcode which contain the data. Like a filter, we need to input some data into filter, then we get the outputImage of this filter and convert it back from CIImage to CGImage then UIImage by using CIContext.
+
+when an array is mark with @published, only adding item or delete items will notify SwiftUI, therefore, we need to use objectWillChange property of observable class to send this signal, when chaning a item in an array. However, this will casue error if people forget to call objectWillChange, a better solution to this is to add fileprivate(set) constraint to that boolean, and have a function in that file to call a function that call objectiveWillChange.send() and change the object at the same time. This prevent random set, and always get expected behavior.
+
+/////////
+SwiftUI Day 82(HotProspects)
+
+/////
 SwiftUI Day 81
 
 Like TapView{}, contextMenu{} is a modifier that show list of available UI options in the closure when pressing. Image UI won't show color here.
