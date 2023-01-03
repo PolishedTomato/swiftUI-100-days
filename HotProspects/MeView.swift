@@ -13,6 +13,7 @@ struct MeView: View {
     @State var name = "your name"
     @State var email = "your@email.com"
     @State var showScanner = false
+    @State var qrCode = UIImage()
     //declare context, and a filter
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
@@ -29,6 +30,19 @@ struct MeView: View {
         return UIImage(systemName: "xmark.circle") ?? UIImage()
     }
     
+    func save(savingImage: UIImage){
+        
+        let photoSaver = PhotoSaver()
+        photoSaver.errorHandler = {
+            error in print(error.localizedDescription)
+        }
+        
+        photoSaver.successHandler = {
+            print("photo save success")
+        }
+        photoSaver.savePhoto(Image: savingImage)
+    }
+    
     var body: some View {
         NavigationView {
             Form {
@@ -42,17 +56,31 @@ struct MeView: View {
                     .font(.title)
                 HStack{
                     Spacer()
-                    Image(uiImage: generateQrCode(from: "\(name) \n \(email)"))
+                    Image(uiImage: qrCode)
                         .interpolation(.none)
                         .resizable()
                         .scaledToFit()
                     .frame(width: 200, height: 200)
+                    .contextMenu{
+                        Button{
+                            save(savingImage: qrCode)
+                        } label:{
+                           Label("Save to photo", systemImage: "square.and.arrow.down")
+                        }
+                    }
                     Spacer()
                 }
-                
-                    
             }
             .navigationTitle("Your code")
+            .onAppear{
+                qrCode = generateQrCode(from: "\(name) \n \(email)")
+            }
+            .onChange(of: name) { newValue in
+                qrCode = generateQrCode(from: "\(newValue) \n \(email)")
+            }
+            .onChange(of: email) { newValue in
+                qrCode = generateQrCode(from: "\(name) \n \(newValue)")
+            }
         }
     }
 }

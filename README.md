@@ -1,3 +1,9 @@
+SwiftUI Day 84
+
+setting triggers depend on need to use UNCalendarTrigger() or UNTimeIntervalTrigger(), the former set it on dateComponent, while the latter set it on how many time apart from now.
+
+remember to lock sreen when testing local notifications.
+/////
 SwiftUI Day 83
 
 .textContentType() tell iOS what data to expect and auto complete for that string, like url, emailAddress, name.
@@ -8,6 +14,8 @@ when an array is mark with @published, only adding item or delete items will not
 
 /////////
 SwiftUI Day 82(HotProspects)
+
+UserNotification on swipe action
 
 /////
 SwiftUI Day 81
