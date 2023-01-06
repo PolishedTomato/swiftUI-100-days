@@ -20,7 +20,7 @@ struct MeView: View {
     
     func generateQrCode(from string: String) -> UIImage{
         let data = Data(string.utf8)
-        
+        //let fil = CIFilter.areaAverage()
         filter.message = data
         if let outputImage = filter.outputImage{
             if let cgImage = context.createCGImage(outputImage, from: outputImage.extent){
@@ -46,7 +46,6 @@ struct MeView: View {
     var body: some View {
         NavigationView {
             Form {
-                
                 TextField("Name", text: $name)
                     .textContentType(.name)
                     .font(.title)

@@ -1,3 +1,10 @@
+SwiftUI Day 85
+
+when try to fill a SF symbol with color, we can use .foregroundColor().
+
+challenged Complete.
+May add map in the future like zenly app.
+///////
 SwiftUI Day 84
 
 setting triggers depend on need to use UNCalendarTrigger() or UNTimeIntervalTrigger(), the former set it on dateComponent, while the latter set it on how many time apart from now.

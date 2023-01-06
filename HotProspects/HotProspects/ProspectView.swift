@@ -15,7 +15,12 @@ struct ProspectView: View {
         case none, uncontacted, contacted
     }
     
+    enum SortType{
+        case name, connectedTime
+    }
+    
     let filterType: FilterType
+    @State var sortType:SortType = .name
     
     @EnvironmentObject var prospects: Prospects
     
@@ -37,7 +42,16 @@ struct ProspectView: View {
         }
     }
     
+    var sortedProspects: [Prospect]{
+        switch(sortType){
+        case .name: return filterProspects.sorted{$0.name < $1.name}
+        case .connectedTime:
+            return filterProspects.sorted{$0.connectedTime < $1.connectedTime}
+        }
+    }
+    
     @State var showScanner = false
+    @State var showSort = false
     
     func handleScan(result : Result<ScanResult, ScanError>){
         showScanner = false
@@ -99,13 +113,18 @@ struct ProspectView: View {
     var body: some View {
         NavigationView{
             List{
-                ForEach(filterProspects) {
+                ForEach(sortedProspects) {
                     prospect in
                     HStack{
                         Text(prospect.name)
                             .font(.headline)
                         Text(prospect.email)
                             .foregroundColor(.secondary)
+                        if(filterType == .none){
+                            Spacer()
+                            Image(systemName: prospect.isContacted ? "heart.fill" : "heart")
+                                .foregroundColor(.red)
+                        }
                     }
                     .swipeActions {
                         if prospect.isContacted{
@@ -143,10 +162,27 @@ struct ProspectView: View {
                 } label: {
                     Label("Scan", systemImage: "qrcode.viewfinder")
                 }
+                
+                Button {
+                    showSort = true
+                } label: {
+                    Label("Scan", systemImage: "cursorarrow.rays")
+                }
             }
             .sheet(isPresented: $showScanner) {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: handleScan)
                 
+            }
+            .confirmationDialog("Select sorting crieria", isPresented: $showSort) {
+                Button("By name"){
+                    sortType = .name
+                }
+                .foregroundColor(sortType == .name ? .green : .black)
+                
+                Button("By connected time"){
+                    sortType = .connectedTime
+                }
+                .foregroundColor(sortType == .name ? .green : .black)
             }
         }
     }
@@ -155,6 +191,6 @@ struct ProspectView: View {
 struct ProspectView_Previews: PreviewProvider {
     static var previews: some View {
         ProspectView(filterType: .none)
-            .environmentObject(Prospects())
+            .environmentObject(Prospects.sampleData)
     }
 }
