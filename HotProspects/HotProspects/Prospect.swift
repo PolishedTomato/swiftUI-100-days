@@ -12,6 +12,8 @@ class Prospect: Identifiable, Codable{
     var name = ""
     var email = ""
     var connectedTime = Date.now
+    var lat = 0.1
+    var lon = 0.1
     
     fileprivate(set) var isContacted = false
     
@@ -19,10 +21,12 @@ class Prospect: Identifiable, Codable{
         
     }
     
-    init(name: String, email:String, connectedTime: Date){
+    init(name: String, email:String, connectedTime: Date, lat:Double, lon: Double){
         self.name = name
         self.email = email
         self.connectedTime = connectedTime
+        self.lat = lat
+        self.lon = lon
     }
 }
 
@@ -75,9 +79,9 @@ class Prospect: Identifiable, Codable{
 
 extension Prospects{
     static var sampleProspects: [Prospect]{
-        return [Prospect(name: "People1", email: "person1@gmail.com", connectedTime: Date(timeInterval: 10, since: Date.now)),
-                Prospect(name: "People2", email: "person2@gmail.com",connectedTime: Date(timeInterval: 5, since: Date.now)),
-                Prospect(name: "people3", email: "person3@gamil.com", connectedTime: Date(timeInterval: 1, since: Date.now))]
+        return [Prospect(name: "People1", email: "person1@gmail.com", connectedTime: Date(timeInterval: 10, since: Date.now), lat: 40.7520, lon: -73.9946),
+                Prospect(name: "People2", email: "person2@gmail.com",connectedTime: Date(timeInterval: 5, since: Date.now),lat: 40.594923,lon:-73.956108),
+                Prospect(name: "people3", email: "person3@gamil.com", connectedTime: Date(timeInterval: 1, since: Date.now), lat: 40.8, lon: -74)]
     }
     static var sampleData:Prospects{
         let data = Prospects()

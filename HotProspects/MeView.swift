@@ -8,6 +8,14 @@
 import Foundation
 import SwiftUI
 import CoreImage.CIFilterBuiltins
+import CoreLocation
+
+struct person: Codable{
+    var name:String
+    var email:String
+    var lat: Double?
+    var lon: Double?
+}
 
 struct MeView: View {
     @State var name = "your name"
@@ -18,8 +26,32 @@ struct MeView: View {
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
     
+    var locationReader = LocationReader()
+    //var location: CLLocationCoordinate2D?
+    
     func generateQrCode(from string: String) -> UIImage{
-        let data = Data(string.utf8)
+        
+        var data = Data()
+        //this code won't work with CodeScanner of hackingwithswift, unless we use a new scanner that handle data instead of string
+        if let location = locationReader.location{
+            do{
+                data = try JSONEncoder().encode(person(name: name, email: email, lat: location.latitude.binade, lon: location.latitude.binade))
+                print("used location for encode")
+            }
+            catch{
+                print(error)
+            }
+        }
+        else{
+            do{
+                data = try JSONEncoder().encode(person(name:name,email:email))
+                print("didn't use location for encode")
+            }
+            catch{
+                print(error)
+            }
+        }
+        //let data = Data(inputString.utf8)
         //let fil = CIFilter.areaAverage()
         filter.message = data
         if let outputImage = filter.outputImage{
@@ -72,6 +104,7 @@ struct MeView: View {
             }
             .navigationTitle("Your code")
             .onAppear{
+                locationReader.requestLocation()
                 qrCode = generateQrCode(from: "\(name) \n \(email)")
             }
             .onChange(of: name) { newValue in

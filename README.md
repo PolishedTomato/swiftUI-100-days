@@ -1,3 +1,8 @@
+SwiftUI Day 86
+
+
+
+/////////
 SwiftUI Day 85
 
 when try to fill a SF symbol with color, we can use .foregroundColor().

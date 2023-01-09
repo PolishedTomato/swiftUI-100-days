@@ -60,11 +60,14 @@ struct ProspectView: View {
         case .success(let resultStr):
             let details = resultStr.string.components(separatedBy: "\n")
             
-            guard details.count == 2 else {return}
+            //guard details.count == 2 else {return}
             
             let newProspect = Prospect()
             newProspect.name = details[0]
             newProspect.email = details[1]
+            /*if(details.count >=3){
+                newProspect.lat = details
+            }*/
             prospects.add(newProspect: newProspect)
             print("Add success")
         case .failure(let error):
@@ -76,7 +79,7 @@ struct ProspectView: View {
         let center = UNUserNotificationCenter.current()
         print("func called")
         let addRequest = {
-            var content = UNMutableNotificationContent()
+            let content = UNMutableNotificationContent()
             content.title = "test message of \(prospect.name)"
             content.subtitle = "for testing purpose to \(prospect.email)"
             content.sound = UNNotificationSound.default
@@ -167,6 +170,12 @@ struct ProspectView: View {
                     showSort = true
                 } label: {
                     Label("Scan", systemImage: "cursorarrow.rays")
+                }
+                //for testing purpose
+                Button("add sample"){
+                    for x in Prospects.sampleProspects{
+                        prospects.add(newProspect: x)
+                    }
                 }
             }
             .sheet(isPresented: $showScanner) {

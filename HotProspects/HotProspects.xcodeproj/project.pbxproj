@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5B1274632968CAF700E21E4B /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1274622968CAF700E21E4B /* FileManager.swift */; };
+		5B127467296CA5A900E21E4B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B127466296CA5A900E21E4B /* MapView.swift */; };
+		5B127469296CB3F200E21E4B /* LocationReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B127468296CB3F200E21E4B /* LocationReader.swift */; };
 		5B36E4B8295B83A000311721 /* HotProspectsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B36E4B7295B83A000311721 /* HotProspectsApp.swift */; };
 		5B36E4BA295B83A000311721 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B36E4B9295B83A000311721 /* ContentView.swift */; };
 		5B36E4BC295B83A200311721 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B36E4BB295B83A200311721 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		5B1274622968CAF700E21E4B /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = SOURCE_ROOT; };
+		5B127466296CA5A900E21E4B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		5B127468296CB3F200E21E4B /* LocationReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationReader.swift; sourceTree = SOURCE_ROOT; };
 		5B36E4B4295B83A000311721 /* HotProspects.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotProspects.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B36E4B7295B83A000311721 /* HotProspectsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotProspectsApp.swift; sourceTree = "<group>"; };
 		5B36E4B9295B83A000311721 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 		5B36E4B6295B83A000311721 /* HotProspects */ = {
 			isa = PBXGroup;
 			children = (
+				5B127468296CB3F200E21E4B /* LocationReader.swift */,
+				5B127466296CA5A900E21E4B /* MapView.swift */,
 				5B1274622968CAF700E21E4B /* FileManager.swift */,
 				5B935FCC2964C88B00672EC2 /* Info.plist */,
 				5B935FC3295F5A3800672EC2 /* MeView.swift */,
@@ -165,9 +171,11 @@
 				5B935FC4295F5A3800672EC2 /* MeView.swift in Sources */,
 				5B935FCB2964C46400672EC2 /* ImageSaver.swift in Sources */,
 				5B935FC6295F5E0E00672EC2 /* Prospect.swift in Sources */,
+				5B127469296CB3F200E21E4B /* LocationReader.swift in Sources */,
 				5B1274632968CAF700E21E4B /* FileManager.swift in Sources */,
 				5B935FC2295F5A2300672EC2 /* ProspectView.swift in Sources */,
 				5B36E4BA295B83A000311721 /* ContentView.swift in Sources */,
+				5B127467296CA5A900E21E4B /* MapView.swift in Sources */,
 				5B36E4B8295B83A000311721 /* HotProspectsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +310,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HotProspects/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Use camera to scan code";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "can we use your location";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Access to photo to save QRCode";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -334,6 +344,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HotProspects/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Use camera to scan code";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "use your location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "can we use your location";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Access to photo to save QRCode";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

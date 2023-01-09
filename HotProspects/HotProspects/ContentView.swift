@@ -27,6 +27,10 @@ struct ContentView: View {
                 .tabItem{
                     Label("Me", systemImage: "person")
                 }
+            MapView()
+                .tabItem{
+                    Label("prospect in map", systemImage: "map")
+                }
         }
         .environmentObject(prospects)
     }
