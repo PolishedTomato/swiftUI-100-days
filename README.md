@@ -1,6 +1,18 @@
-SwiftUI Day 86
+SwiftUI Day 86(FlashZilla)
 
+onTapGesture(count:) the count parameter specific how many tap to activate the content of it. Thus, we can use if for double tap, triple tap and more.
 
+.onLongPressGesture(minimumDuration:) handle pressing gestrue.
+
+For multiple gesture, use .gestrue() modifier, and use gestrue struct in it like DragGesture, RotationGesture... each will often have .change(on the fligh) or onEnd(completion) modifier to handle different scenario.
+
+when two view's gesture may trigger at the same time, the child gesture will be execute while the parent won't. 
+To change that behavior we can use .highPriorityGesture()modifier.
+Or simultaneousGesture() modifier for both to happen.
+
+a simple hapic and be create by using UINotificationGenrator.notificationOccur(). More complex hapic, can be customize in CoreHapic, where you greate hapic pattern by using events and play it.
+
+SwiftUI automtically ignore the space bewteen view's content, and therefore, it can't be tapped. To fix this, we can use .contentShape(Rectangle()) which mean the whole view is tappable.(often in vstack or hstack) We can also ignore a tapGuress of some view by using .allowTapTesting(false) modifier.
 
 /////////
 SwiftUI Day 85
