@@ -1,3 +1,19 @@
+SwiftUI Day 87(continue)
+
+Timer class was part of Foundation library
+
+let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+this create a time publisher that announce its change for every 1 second, on main thread, common loop, and connected. We can use onReceive to watch/monitor this publisher, like onRecieve(time){ complesion hadnler}
+
+timer.upstream.connect().cancel()
+
+timer won't publishe to exact time, but it will do its best. We can also add tolerence to timer initalizer so it can delay a bit.
+
+@Environment(.\scencePhrase) to access envinornment variable of scence(window), we can use .onChange() to response to this action. .inactive means user can't do interact but can see, .active when using it, .background when not using it and can't see it.
+
+@Environment(\.accessibilityReduceTransparency)
+we can retrive accessibility info in users setting like this, and display UI accordingly.
+/////
 SwiftUI Day 86(FlashZilla)
 
 onTapGesture(count:) the count parameter specific how many tap to activate the content of it. Thus, we can use if for double tap, triple tap and more.
