@@ -1,3 +1,7 @@
+SwiftUI Day 88
+
+Tip: smallest iphone has landscape of 480 width.
+
 SwiftUI Day 87(continue)
 
 Timer class was part of Foundation library
