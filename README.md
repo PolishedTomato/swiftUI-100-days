@@ -1,3 +1,10 @@
+SwiftUI Day 89
+
+we can access the accessbility environment attribute in xcode left hand side to toggle it for simulator.
+
+today finished...
+
+//////
 SwiftUI Day 88
 
 Tip: smallest iphone has landscape of 480 width.

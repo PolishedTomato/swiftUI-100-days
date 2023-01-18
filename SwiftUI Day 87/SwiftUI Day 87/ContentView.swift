@@ -10,7 +10,7 @@ import Foundation
 
 struct ContentView: View {
     let time = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    let date = DateFormatter().st
+    
     var body: some View {
         NavigationView {
             VStack {
