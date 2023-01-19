@@ -12,7 +12,11 @@ struct CardView: View {
     let card: Card
     @State var isShowingAnswer = false
     @State var offset = CGSize.zero
+    @State var generator = UINotificationFeedbackGenerator()
+    
     @Environment(\.accessibilityDifferentiateWithoutColor) var colorBlindness
+    @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnable
+    
     //take completion handle from parent
     var removal: (() -> Void)? = nil
     
@@ -32,21 +36,20 @@ struct CardView: View {
                 .shadow(radius: 10)
 
             VStack {
-                if !isShowingAnswer{
+                if voiceOverEnable {
+                    Text(isShowingAnswer ? card.answer : card.prompt)
+                        .font(.largeTitle)
+                        .foregroundColor(.black)
+                } else {
                     Text(card.prompt)
                         .font(.largeTitle)
                         .foregroundColor(.black)
-                    Text(card.answer)
-                        .font(.title)
-                        .foregroundColor(.gray)
-                }
-                else if isShowingAnswer {
-                    Text(card.prompt)
-                        .font(.largeTitle)
-                        .foregroundColor(.black)
-                    Text(card.answer)
-                        .font(.title)
-                        .foregroundColor(.gray)
+
+                    if isShowingAnswer {
+                        Text(card.answer)
+                            .font(.title)
+                            .foregroundColor(.gray)
+                    }
                 }
             }
             .padding(20)
@@ -61,12 +64,15 @@ struct CardView: View {
             DragGesture()
                     .onChanged { gesture in
                         offset = gesture.translation
+                        generator.prepare()
                     }
                     .onEnded { _ in
                         if abs(offset.width) > 100 {
                             removal?()
+                            //generator.notificationOccurred(.success)
                         } else {
                             offset = .zero
+                            generator.notificationOccurred(.error)
                         }
                     }
             
@@ -76,7 +82,9 @@ struct CardView: View {
         }
         .rotation3DEffect(isShowingAnswer ? Angle(degrees: 360) : Angle(degrees: 0), axis:(x: 0, y:1, z:0))
         .animation(.easeInOut, value: isShowingAnswer)
+        .animation(.spring(), value: offset)
         //animation only work when the animation modifier using the value that was watched, then it examine the changes and apply animation
+        .accessibilityAddTraits(.isButton)
     }
 }
 

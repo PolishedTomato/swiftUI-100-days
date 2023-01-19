@@ -8,116 +8,111 @@ import Foundation
 import SwiftUI
 
 struct ContentView: View {
-    //use array type initalizer array(repeating:, count:)
-    //[Card] is the type
-    @State var cards = [Card](repeating: Card.example, count: 10)
     @Environment(\.accessibilityDifferentiateWithoutColor) var colorBlindness
     @Environment(\.scenePhase) var scene
-    //isActive will determine whether timer's fire should be count or not
-    @State var isActive = true
-    
-    func remove(at index: Int){
-        cards.remove(at: index)
-        if(cards.isEmpty){
-            isActive = false
-        }
-    }
-    
-    func resetCard(){
-        cards = [Card](repeating: Card.example, count: 10)
-        isActive = true
-        timeRemain = 100
-        score = 0
-    }
-    
-    @State var timeRemain = 5
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    @State var score = 0
-    
-    var gameEnd: Bool{
-        cards.isEmpty || timeRemain == 0
-    }
+    @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnable
+    @StateObject var viewModel = ViewModel()
     
     var body: some View {
-        ZStack {
-            Image("background")
-                .resizable()
-                .ignoresSafeArea()
+        NavigationView{
+            ZStack {
+                Image(decorative: "background")
+                    .resizable()
+                    .ignoresSafeArea()
                 VStack {
-                    if colorBlindness {
+                    if colorBlindness || voiceOverEnable{
                         HStack{
-                            Image(systemName: "xmark.seal")
-                                .padding()
-                                .frame(width: 50, height: 50)
+                            Button{
+                                withAnimation{
+                                    guard viewModel.cards.count > 0 else {return}
+                                    viewModel.cards.removeLast()
+                                }
+                            } label: {
+                                Image(systemName: "xmark.seal")
+                                    .padding()
+                                    .frame(width: 50, height: 50)
+                            }
+                            .accessibilityLabel("Wrong")
+                            .accessibilityHint("Mark this answer as wrong")
+                            
                             Spacer()
-                            Image(systemName: "checkmark.seal")
-                                .frame(width: 50, height: 50)
-                                .padding()
-                                
+                            
+                            Button{
+                                withAnimation{
+                                    guard viewModel.cards.count > 0 else {return}
+                                    viewModel.cards.removeLast()
+                                }
+                            } label: {
+                                Image(systemName: "checkmark.seal")
+                                    .frame(width: 50, height: 50)
+                                    .padding()
+                            }
+                            .accessibilityLabel("Correct")
+                            .accessibilityHint("Mark this answer as correct")
                         }
                         .padding(.horizontal)
                         .foregroundColor(.white)
                         .font(.title)
                     }
                     
-                    Text("Time remain: \(timeRemain)")
+                    Text("Time remain: \(viewModel.timeRemain)")
                         .foregroundColor(.white)
                         .font(.largeTitle)
                     
                     ZStack {
-                        ForEach(0..<cards.count, id: \.self) { index in
-                            CardView(card: cards[index]){
+                        ForEach(0..<viewModel.cards.count, id: \.self) { index in
+                            CardView(card: viewModel.cards[index]){
                                 withAnimation{
-                                    remove(at: index)
+                                    viewModel.remove(at: index)
                                 }
                             }
-                            .stacked(at: index, in: cards.count)
+                            .stacked(at: index, in: viewModel.cards.count)
+                            .allowsHitTesting(index == viewModel.cards.count - 1)
+                            .accessibilityHidden(index < viewModel.cards.count - 1)
                         }
-                    
+                        
                     }
-                    .allowsHitTesting(timeRemain > 0)
-                }
-            
-            if gameEnd {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 25, style: .circular)
-                        .fill(.white)
-                    VStack{
-                        Text("Your Score is \(score)")
-                            .padding()
-                        Spacer()
-                        Button("Retry"){
-                            resetCard()
-                        }
-                    }
-                    .font(.title)
-                    .foregroundColor(.black)
+                    .allowsHitTesting(viewModel.timeRemain > 0)
                     
                 }
-                .frame(width: 350, height: 150)
-                .background(.secondary)
-                .shadow(radius: 15)
-            }
-            }
-            .onReceive(timer) { time in
-                guard isActive == true else {return}
                 
-                if(timeRemain > 0){
-                    timeRemain -= 1
+                
+            }
+            .onReceive(viewModel.timer) { time in
+                guard viewModel.isActive == true else {return}
+                
+                if(viewModel.timeRemain > 0){
+                    viewModel.timeRemain -= 1
+                    if(viewModel.timeRemain == 0){
+                        viewModel.showAlert = true
+                    }
                 }
             }
             .onChange(of: scene) { newValue in
                 if newValue == .active {
-                    if cards.isEmpty == false{
-                        isActive = true
+                    if viewModel.cards.isEmpty == false{
+                        viewModel.isActive = true
                     }
                 }
                 else{
-                    isActive = false
+                    viewModel.isActive = false
                 }
             }
-            
+            .alert("Times up", isPresented: $viewModel.showAlert) {
+                Button("press to retry"){
+                    viewModel.resetCard()
+                }
+            } message: {
+                Text("you finish the game")
+            }
+            .toolbar {
+                NavigationLink{
+                    EditView()
+                } label: {
+                    Image(systemName: "plus.app")
+                }
+            }
+        }
     }
 }
 

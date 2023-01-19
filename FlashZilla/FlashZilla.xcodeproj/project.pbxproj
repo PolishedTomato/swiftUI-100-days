@@ -13,6 +13,8 @@
 		5B15E1EA2971E342000A8396 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B15E1E92971E342000A8396 /* Preview Assets.xcassets */; };
 		5B15E1F12971E3E9000A8396 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B15E1F02971E3E9000A8396 /* Card.swift */; };
 		5B15E1F32971E576000A8396 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B15E1F22971E576000A8396 /* CardView.swift */; };
+		5B15E1F52979F27B000A8396 /* ContentView_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B15E1F42979F27B000A8396 /* ContentView_ViewModel.swift */; };
+		5B15E1F72979FF6B000A8396 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B15E1F62979FF6B000A8396 /* EditView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		5B15E1E92971E342000A8396 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5B15E1F02971E3E9000A8396 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		5B15E1F22971E576000A8396 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		5B15E1F42979F27B000A8396 /* ContentView_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView_ViewModel.swift; sourceTree = "<group>"; };
+		5B15E1F62979FF6B000A8396 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +59,10 @@
 		5B15E1E12971E339000A8396 /* FlashZilla */ = {
 			isa = PBXGroup;
 			children = (
+				5B15E1F62979FF6B000A8396 /* EditView.swift */,
 				5B15E1E22971E339000A8396 /* FlashZillaApp.swift */,
 				5B15E1E42971E339000A8396 /* ContentView.swift */,
+				5B15E1F42979F27B000A8396 /* ContentView_ViewModel.swift */,
 				5B15E1F22971E576000A8396 /* CardView.swift */,
 				5B15E1F02971E3E9000A8396 /* Card.swift */,
 				5B15E1E62971E342000A8396 /* Assets.xcassets */,
@@ -145,6 +151,8 @@
 			files = (
 				5B15E1E52971E339000A8396 /* ContentView.swift in Sources */,
 				5B15E1F12971E3E9000A8396 /* Card.swift in Sources */,
+				5B15E1F72979FF6B000A8396 /* EditView.swift in Sources */,
+				5B15E1F52979F27B000A8396 /* ContentView_ViewModel.swift in Sources */,
 				5B15E1F32971E576000A8396 /* CardView.swift in Sources */,
 				5B15E1E32971E339000A8396 /* FlashZillaApp.swift in Sources */,
 			);

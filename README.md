@@ -1,3 +1,8 @@
+SwiftUI Day 90
+
+before using haptic, it is always a good idea to warm the engine up. The method to do so is UINotificationFeedBackGenerator().prepare(). This reduce hapic latency, and show be call seconds before hapic happen. calling prepare multiple time is allow.
+
+///////
 SwiftUI Day 89
 
 we can access the accessbility environment attribute in xcode left hand side to toggle it for simulator.
