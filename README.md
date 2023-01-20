@@ -1,3 +1,11 @@
+SwiftUI Day 91
+
+when using ForEach(0..<array.count){} changing array even its a publisher, swiftuI won't update it.
+We need to supply the array as argument instead.
+
+challenges completed.
+
+////////
 SwiftUI Day 90
 
 before using haptic, it is always a good idea to warm the engine up. The method to do so is UINotificationFeedBackGenerator().prepare(). This reduce hapic latency, and show be call seconds before hapic happen. calling prepare multiple time is allow.

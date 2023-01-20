@@ -19,6 +19,7 @@ struct ContentView: View {
                 Image(decorative: "background")
                     .resizable()
                     .ignoresSafeArea()
+                
                 VStack {
                     if colorBlindness || voiceOverEnable{
                         HStack{
@@ -60,15 +61,18 @@ struct ContentView: View {
                         .font(.largeTitle)
                     
                     ZStack {
-                        ForEach(0..<viewModel.cards.count, id: \.self) { index in
-                            CardView(card: viewModel.cards[index]){
+                        ForEach(viewModel.cards) { card in
+                            CardView(card: card, score: $viewModel.score){
                                 withAnimation{
-                                    viewModel.remove(at: index)
+                                    viewModel.remove()
                                 }
+                            } guessWrong: {
+                                viewModel.guessWrong()
                             }
-                            .stacked(at: index, in: viewModel.cards.count)
-                            .allowsHitTesting(index == viewModel.cards.count - 1)
-                            .accessibilityHidden(index < viewModel.cards.count - 1)
+                            //.stacked(at: viewModel.index, in: viewModel.cards.count)
+                            //.allowsHitTesting(viewModel.index == viewModel.cards.count - 1)
+                            //.accessibilityHidden(viewModel.index < viewModel.cards.count - 1)
+                            //to make card which go back to the array, I have to not use index but loop through the collection.
                         }
                         
                     }
@@ -103,13 +107,25 @@ struct ContentView: View {
                     viewModel.resetCard()
                 }
             } message: {
-                Text("you finish the game")
+                Text("you finish the game with \(viewModel.score) correct answer in 100 seconds!")
             }
             .toolbar {
-                NavigationLink{
-                    EditView()
+                Button{
+                    viewModel.resetCard()
+                } label: {
+                    Image(systemName: "restart")
+                }
+                
+                Button{
+                    viewModel.showEditView = true
                 } label: {
                     Image(systemName: "plus.app")
+                        
+                }
+            }
+            .sheet(isPresented: $viewModel.showEditView) {
+                EditView{
+                    viewModel.cards = $0
                 }
             }
         }

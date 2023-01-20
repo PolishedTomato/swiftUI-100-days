@@ -12,12 +12,18 @@ struct EditView: View {
     @State var cards:[Card] = []
     @State var newPrompt = ""
     @State var newAnswer = ""
+    @State var answerIsTrue = true
+    @State var answerIsFalse = false
     @Environment(\.dismiss) var dismiss
+    
+    let saveAction: (([Card]) -> Void)?
     
     func saveData(){
         if let encoded = try? JSONEncoder().encode(cards){
             UserDefaults.standard.set(encoded, forKey: "Cards")
         }
+        saveAction?(cards)
+        dismiss()
     }
     
     func loadData(){
@@ -30,7 +36,6 @@ struct EditView: View {
     
     func deleteCard(at index: IndexSet){
         cards.remove(atOffsets: index)
-        saveData()
     }
     
     func addCard(){
@@ -40,10 +45,11 @@ struct EditView: View {
         guard prompt.isEmpty == false && answer.isEmpty == false
         else{return}
         
-        let newCard = Card(prompt: prompt, answer: answer)
+        let newCard = Card(prompt: prompt, answer: answer, isTrue: answerIsTrue)
         
         cards.append(newCard)
-        saveData()
+        newPrompt = ""
+        newAnswer = ""
     }
     
     var body: some View {
@@ -53,22 +59,36 @@ struct EditView: View {
                     VStack{
                         TextField("Enter new prompt", text: $newPrompt)
                         TextField("Enter answer of the prompt", text: $newAnswer)
-                        Button("Add Card"){
-                            addCard()
+                    }
+                
+                    Toggle("True", isOn: $answerIsTrue)
+                        .onChange(of: answerIsTrue) { value in
+                            answerIsFalse = !value
                         }
+                
+                    
+                    Toggle("False", isOn: $answerIsFalse)
+                        .onChange(of: answerIsFalse) { value in
+                            answerIsTrue = !value
+                        }
+                    
+                    
+                    Button("Add Card"){
+                        addCard()
                     }
                 }
                 
                 Section("Current cards"){
                     ForEach(0..<cards.count, id: \.self) { index in
-                        VStack{
+                        VStack(alignment:.leading){
                             Text(cards[index].prompt)
-                                .font(.largeTitle)
+                                .font(.headline)
                             Text(cards[index].answer)
-                                .font(.title)
+                                .font(.caption)
                                 .foregroundColor(.secondary)
                         }
-                        .multilineTextAlignment(.center)
+                        .padding()
+                        //.multilineTextAlignment(.center)
                     }
                     .onDelete(perform: deleteCard)
                 }
@@ -82,7 +102,7 @@ struct EditView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save"){
-                        
+                        saveData()
                     }
                 }
             }
@@ -93,6 +113,6 @@ struct EditView: View {
 
 struct EditView_Previews: PreviewProvider {
     static var previews: some View {
-        EditView()
+        EditView(saveAction: nil)
     }
 }

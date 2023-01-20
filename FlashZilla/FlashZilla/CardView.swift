@@ -17,8 +17,10 @@ struct CardView: View {
     @Environment(\.accessibilityDifferentiateWithoutColor) var colorBlindness
     @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnable
     
+    @Binding var score: Int
     //take completion handle from parent
     var removal: (() -> Void)? = nil
+    var guessWrong: (()->Void)? = nil
     
     var body: some View {
         ZStack {
@@ -31,7 +33,7 @@ struct CardView: View {
                 .background(
                     colorBlindness ? nil :
                     RoundedRectangle(cornerRadius: 25, style: .continuous)
-                        .fill(offset.width > 0 ? .green : .red)
+                        .fillRedGreen(width: offset.width)
                 )
                 .shadow(radius: 10)
 
@@ -67,10 +69,30 @@ struct CardView: View {
                         generator.prepare()
                     }
                     .onEnded { _ in
-                        if abs(offset.width) > 100 {
-                            removal?()
+                        if offset.width > 100 {
+                            if(card.isTrue == true){
+                                print("guess it right")
+                                score += 1
+                                removal?()
+                            }
+                            else{
+                                print("Guess it wrong")
+                                guessWrong?()
+                            }
                             //generator.notificationOccurred(.success)
-                        } else {
+                        }
+                        else if offset.width < -100{
+                            if(card.isTrue == false){
+                                print("guess it right")
+                                score += 1
+                                removal?()
+                            }
+                            else{
+                                print("Guess it wrong")
+                                guessWrong?()
+                            }
+                        }
+                        else {
                             offset = .zero
                             generator.notificationOccurred(.error)
                         }
@@ -88,8 +110,23 @@ struct CardView: View {
     }
 }
 
+//custom modifier on roundedRectagnle that change its color base on offset it goes
+extension RoundedRectangle{
+    func fillRedGreen(width: Double)->some View{
+        if width == 0{
+            return self.fill(.white)
+        }
+        else if width < 0 {
+            return self.fill(.red)
+        }
+        else{
+            return self.fill(.green)
+        }
+    }
+}
+
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card.example)
+        CardView(card: Card.example, score: .constant(0))
     }
 }
