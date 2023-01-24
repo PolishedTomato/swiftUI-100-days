@@ -1,3 +1,20 @@
+SwiftUI Day 92
+
+Concept of size neutral: ex: .background() it return a modified view, view that is size neutral doesn't have exact size but adherent to or adjust to its body view's size. Therefore, Text("some text").bacground(.red).padding(20) and Text("some text").padding(20).background(.red), where first one's background take the size of text, while the later one take the size of text + padding 20.
+
+When there are all size neutral view in body view, the view will take up all the avaviable space.
+
+Space and Color are size neutral.
+
+To understand SwiftUI's layout, its better to think modifier return as views.
+
+We can modifiy the alignmentGuide to define what leading, trailing edge mean for a view, like .aligmentGuide(.leading){ d in d[trailing]} which change leading edge to its trailing edge, the closure pass in a ViewDimension object which contain the size of view and able to read various edges.
+
+Notice, alignment used by Vstack is call Horizontal alignment, while HStack use Vertical alignment.
+
+HackingWithSwift show a way to align two Vstack inside a Hstack by having them to have same self defining alignment, then we use alignment guide on individual view inside child view to redefine what that custom alignment mean to these special case. (see swiftUi day 92) 
+
+///////
 SwiftUI Day 91
 
 when using ForEach(0..<array.count){} changing array even its a publisher, swiftuI won't update it.
