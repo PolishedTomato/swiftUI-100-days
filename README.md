@@ -1,3 +1,13 @@
+SwiftUI Day 93(GeometryReader)
+
+.position() modifier will take up all available space, and return the view in specified location. However, offset only changing the rendering position of previous view before it applied. Any modifier after offset will still be at the same location.
+
+SwiftUI used three layout system: parent proposes a size for the child, the child uses that to determine its own size, and parent uses that to position the child appropriately. (if parent is size neutral, like background, then it take size of the child)
+
+Geometric reader take the size of the parent and position its child view on it.
+
+The GeometryProxy pass in are able to read device frame(global), parent frame(local), other frame(custom) in the same hierarchy by using Geo.frame(in: ) method.
+//////////
 SwiftUI Day 92
 
 Concept of size neutral: ex: .background() it return a modified view, view that is size neutral doesn't have exact size but adherent to or adjust to its body view's size. Therefore, Text("some text").bacground(.red).padding(20) and Text("some text").padding(20).background(.red), where first one's background take the size of text, while the later one take the size of text + padding 20.
