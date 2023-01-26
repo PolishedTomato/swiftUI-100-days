@@ -26,19 +26,23 @@ struct InnerView: View {
             HStack {
                 Text("Left")
                 GeometryReader { geo in
-                    Text("Center")
-                        .background(.blue)
-                        .onTapGesture {
-                            print("Global center: \(geo.frame(in: .global).midX) x \(geo.frame(in: .global).midY)")
-                            print("Custom center: \(geo.frame(in: .named("Custom")).midX) x \(geo.frame(in: .named("Custom")).midY)")
-                            print("Local center: \(geo.frame(in: .local).midX) x \(geo.frame(in: .local).midY)")
+                    VStack{
+                        GeometryReader{ textGeo in
+                        Text("Center")
+                            .background(.blue)
+                            .onTapGesture {
+                                print("Global center: \(geo.frame(in: .global).midX) x \(geo.frame(in: .global).midY)")
+                                print("Custom center: \(geo.frame(in: .named("Custom")).midX) x \(geo.frame(in: .named("Custom")).midY)")
+                                print("Local center: \(geo.frame(in: .local).midX) x \(geo.frame(in: .local).midY)")
+                                print("Text geo is \(textGeo.frame(in: .global).midX) x \(textGeo.frame(in: .global).midY)")
+                            }
+                            }
+                        NavigationLink {
+                            DoubleGeo()
+                        } label: {
+                            Text("Tap to go to second double geometry read in action")
                         }
-                    NavigationLink {
-                        DoubleGeo()
-                    } label: {
-                        Text("Tap to go to second double geometry read in action")
                     }
-                    
                 }
                 .background(.orange)
                 Text("Right")

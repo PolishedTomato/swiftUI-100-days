@@ -1,8 +1,44 @@
+SwiftUI Day 95(Consolidation)
+
+while Swift can be imperitive, it can also be funtional programming with map() or filter() method on array. 
+
+CompactMap() like map() which transform the array element one by one. However, CompactMap() will unwrap optional, and discard nil on returing. 
+
+Optional type and Result type are very similar that they are both implemented as enum, and with two cases. For optional, its .none case with associate value of nil, .some with value of whatever type of optional it is. While Result have .success, and .failure with associated value.
+
+If you want to use do/catch block for Result, we can write someting like
+do{
+let successValue = result.get()
+}
+catch{
+print(error)
+}
+
+result.get() will throw if it is failure case.
+
+Or to go other way around which is to capture the output of throwing call into Result, we can do:
+Result{try throwingFunction()}
+above used the initalizer of Result type.   
+
+Notice, that clipshape didn't change the size of the view, but rather changing the rendering of the view.
+
+Confuse point when debugging: If I want to hold my dices in class, and change its val through for loop, Int.random(in) will always generate the same number.
+
+If I use struct for the dice class, then I will have to assign new dice to old dice. However, doing so would not trigger the 3drotation effect.
+
+My solution to that is use struct for dice, and rotate the dice view in onAppear method.
+
+Notice, that onRecieve(timer) passing a date object, we can use dateA.distance(to: dateB) to calculate the timeinterval between them, Timeinterval is in second.
+
+Challenges complete
+  
+
+/////
 SwiftUI Day 94
 
 Challenge completes.
 
-Notice that geometryProxy.frame(in: .global).midY, return the midY coordinate of this view in respect to the device frame. If it is .local, it will be in respect to the parent frame.
+Notice that geometryProxy.frame(in: .global).midY, return the midY coordinate of this view in respect to the device frame(That is how many pixel away from midY of this geoProxy taken to the top edge of the device). If it is .local, it will be in respect to the parent frame.
 
 //////
 SwiftUI Day 93(GeometryReader)
