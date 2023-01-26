@@ -1,3 +1,10 @@
+SwiftUI Day 94
+
+Challenge completes.
+
+Notice that geometryProxy.frame(in: .global).midY, return the midY coordinate of this view in respect to the device frame. If it is .local, it will be in respect to the parent frame.
+
+//////
 SwiftUI Day 93(GeometryReader)
 
 .position() modifier will take up all available space, and return the view in specified location. However, offset only changing the rendering position of previous view before it applied. Any modifier after offset will still be at the same location.

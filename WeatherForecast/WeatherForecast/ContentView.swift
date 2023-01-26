@@ -24,7 +24,7 @@ struct ContentView: View {
                         viewModel.openWeather = nil
                     }
                         .tabItem{
-                            Label(Date.now.nextNDay(offset: 0).dayOfWeek, systemImage: "" )
+                            Label(Date.now.nextNDay(offset: 0).dayOfWeek, systemImage: "sparkles" )
                                 .accessibilityLabel("\(Date.now.nextNDay(offset: 0).dayOfWeek) tap to change weather detail to specified day")
                         }
                     
@@ -32,7 +32,7 @@ struct ContentView: View {
                         viewModel.openWeather = nil
                     }
                         .tabItem{
-                            Label(Date.now.nextNDay(offset: 1).dayOfWeek, systemImage: "" )
+                            Label(Date.now.nextNDay(offset: 1).dayOfWeek, systemImage: "sparkles" )
                                 .accessibilityLabel("\(Date.now.nextNDay(offset: 1).dayOfWeek) tap to change weather detail to specified day")
                             
                         }
@@ -41,7 +41,7 @@ struct ContentView: View {
                         viewModel.openWeather = nil
                     }
                         .tabItem{
-                            Label(Date.now.nextNDay(offset: 2).dayOfWeek, systemImage: "" )
+                            Label(Date.now.nextNDay(offset: 2).dayOfWeek, systemImage: "sparkles" )
                                 .accessibilityLabel("\(Date.now.nextNDay(offset: 2).dayOfWeek) tap to change weather detail to specified day")
                         }
                     
@@ -49,7 +49,7 @@ struct ContentView: View {
                         viewModel.openWeather = nil
                     }
                         .tabItem{
-                            Label(Date.now.nextNDay(offset: 3).dayOfWeek, systemImage: "" )
+                            Label(Date.now.nextNDay(offset: 3).dayOfWeek, systemImage: "sparkles" )
                                 .accessibilityLabel("\(Date.now.nextNDay(offset: 3).dayOfWeek) tap to change weather detail to specified day")
                             
                         }
@@ -59,7 +59,7 @@ struct ContentView: View {
                         viewModel.openWeather = nil
                     }
                         .tabItem{
-                            Label(Date.now.nextNDay(offset: 4).dayOfWeek, systemImage: "" )
+                            Label(Date.now.nextNDay(offset: 4).dayOfWeek, systemImage: "sparkles" )
                                 .accessibilityLabel("\(Date.now.nextNDay(offset: 4).dayOfWeek) tap to change weather detail to specified day")
                             
                         }
@@ -69,7 +69,7 @@ struct ContentView: View {
                         viewModel.openWeather = nil
                     }
                         .tabItem{
-                            Label(Date.now.nextNDay(offset: 5).dayOfWeek, systemImage: "" )
+                            Label(Date.now.nextNDay(offset: 5).dayOfWeek, systemImage: "sparkles" )
                                 .accessibilityLabel("\(Date.now.nextNDay(offset: 5).dayOfWeek) tap to change weather detail to specified day")
                             
                         }
