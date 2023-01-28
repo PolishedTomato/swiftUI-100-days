@@ -9,41 +9,25 @@ import Foundation
 import SwiftUI
 
 struct DiceRollView: View {
-    @State var result = [Dice]()
-    @State var history:[Int] = []
-    @State var rotate = true
+    @StateObject var viewModel = DiceRollView_ViewModel()
+    
     let numberSide: Int
+    let numberDice: Int
     
-    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    
-    var rollTime = 2.0
-    @State var isRolling = false
-    @State var RollingTime = Date.now
-    
-    let generator = UINotificationFeedbackGenerator()
-    
-    var arraySum: Int{
-        var sum = 0;
-        for dice in result{
-            sum += dice.val
-        }
-        return sum
+    //ordrer execution: initalizer->onApear()
+    init(numberDice: Int, numberSide: Int){
+        self.numberSide = numberSide
+        self.numberDice = numberDice
+        _viewModel = StateObject(wrappedValue: DiceRollView_ViewModel(numberDice: numberDice, numberSide: numberSide))
     }
     
-    func rollDice(){
-        generator.notificationOccurred(.success)
-        
-        for index in 0...result.count-1 {
-            result[index] = Dice(val: Int.random(in: 1...numberSide), color: .green)
-        }
-    }
-    
+    //placing this method in the view model, and use it in onAppear will lose global main actor. We can't do that because viewModel should run on main thread, so I leave this method outside of viewModel
     func loadData(){
         let url = FileManager.SavePath
         if let data = try? Data(contentsOf: url){
             do{
                 let decoded = try JSONDecoder().decode([Int].self, from: data)
-                history = decoded
+                viewModel.history = decoded
                 print("load success")
                 
             }
@@ -54,55 +38,32 @@ struct DiceRollView: View {
         }
     }
     
-    init(numberDice: Int, numberSide: Int){
-        self.numberSide = numberSide
-        _result = State(initialValue: [Dice].init(repeating: Dice(val: Int.random(in: 1...numberSide), color: .green), count: numberDice))
-        
-        loadData()
-    }
-    
-    func save(){
-        let url = FileManager.SavePath
-        
-        if let encoded = try? JSONEncoder().encode(history){
-            do{
-                try encoded.write(to: url)
-                print("save success")
-            }
-            catch{
-                print(error)
-                print("save failed")
-            }
-        }
-    }
-    
     var body: some View {
         NavigationView{
             VStack(alignment: .center, spacing: 30){
                 HStack{
-                    ForEach(result){ dice in
-                        DiceView(value: dice.val, color: dice.color, flip: rotate)
+                    ForEach(viewModel.result){ dice in
+                        DiceView(value: dice.val, color: dice.color, flip: true)
                     }
-                    .rotation3DEffect(rotate ? .degrees(360) : .degrees(0), axis: (x: 0, y: 1, z: 0))
-                    .animation(.default, value: rotate)
                 }
                 
                 Button{
-                    if( isRolling == false){
-                        generator.prepare()
-                        RollingTime = Date.now
-                        isRolling = true
+                    if( viewModel.isRolling == false){
+                        viewModel.generator.prepare()
+                        viewModel.RollingTime = Date.now
+                        viewModel.isRolling = true
                     }
                     
                 } label:{
                     Label("Reroll", systemImage: "dice")
                         .font(.title)
                         .foregroundColor(.pink)
+                        .accessibilityLabel("Tap to re-roll your dice")
                 }
                 
                 List{
                     Section("Roll history"){
-                        ForEach(history, id: \.self){ th in
+                        ForEach(viewModel.history, id: \.self){ th in
                             Text("\(th)")
                         }
                     }
@@ -111,15 +72,15 @@ struct DiceRollView: View {
             .navigationTitle("Dices Rolling Time!")
         }
         //notice time is a Date object
-        .onReceive(timer) { time in
-            if isRolling{
-                if RollingTime.distance(to: time) > 2{
-                    isRolling = false
-                    history.append(arraySum)
-                    save()
+        .onReceive(viewModel.timer) { time in
+            if viewModel.isRolling{
+                if viewModel.RollingTime.distance(to: time) > 2{
+                    viewModel.isRolling = false
+                    viewModel.history.append(viewModel.arraySum)
+                    viewModel.save()
                 }
                 else{
-                    rollDice()
+                    viewModel.rollDice(numberSide: numberSide)
                 }
             }
         }

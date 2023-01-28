@@ -25,6 +25,8 @@ struct DiceView: View {
             .frame(width: 50, height: 50)
             .rotation3DEffect(flip ? .degrees(360) : .degrees(0), axis: (x: 0, y: 1, z: 0))
             .animation(.default, value: flip)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("Dice value of \(value)")
             /*Button("rotate"){
                 flip.toggle()
             }*/

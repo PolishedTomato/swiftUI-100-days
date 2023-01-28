@@ -7,32 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5BE9021E298311B8009A4CDB /* SwiftUI_Day_95App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9021D298311B8009A4CDB /* SwiftUI_Day_95App.swift */; };
-		5BE90220298311B8009A4CDB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9021F298311B8009A4CDB /* ContentView.swift */; };
-		5BE90222298311BB009A4CDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE90221298311BB009A4CDB /* Assets.xcassets */; };
-		5BE90225298311BB009A4CDB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE90224298311BB009A4CDB /* Preview Assets.xcassets */; };
-		5BE9022C29831504009A4CDB /* DiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9022B29831503009A4CDB /* DiceView.swift */; };
-		5BE9022E29831FBD009A4CDB /* DiceRollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9022D29831FBD009A4CDB /* DiceRollView.swift */; };
-		5BE902302983251E009A4CDB /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9022F2983251E009A4CDB /* Dice.swift */; };
-		5BE9023229833564009A4CDB /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9023129833564009A4CDB /* FileManager.swift */; };
-		5BE9023429848829009A4CDB /* DiceRollView_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9023329848829009A4CDB /* DiceRollView_ViewModel.swift */; };
+		5BE9024229849448009A4CDB /* SwiftUI_Day_96App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9024129849448009A4CDB /* SwiftUI_Day_96App.swift */; };
+		5BE9024429849448009A4CDB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE9024329849448009A4CDB /* ContentView.swift */; };
+		5BE9024629849451009A4CDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE9024529849451009A4CDB /* Assets.xcassets */; };
+		5BE9024929849451009A4CDB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BE9024829849451009A4CDB /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5BE9021A298311B8009A4CDB /* SwiftUI Day 95.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI Day 95.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5BE9021D298311B8009A4CDB /* SwiftUI_Day_95App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_Day_95App.swift; sourceTree = "<group>"; };
-		5BE9021F298311B8009A4CDB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		5BE90221298311BB009A4CDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5BE90224298311BB009A4CDB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		5BE9022B29831503009A4CDB /* DiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceView.swift; sourceTree = "<group>"; };
-		5BE9022D29831FBD009A4CDB /* DiceRollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollView.swift; sourceTree = "<group>"; };
-		5BE9022F2983251E009A4CDB /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = SOURCE_ROOT; };
-		5BE9023129833564009A4CDB /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = SOURCE_ROOT; };
-		5BE9023329848829009A4CDB /* DiceRollView_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceRollView_ViewModel.swift; sourceTree = SOURCE_ROOT; };
+		5BE9023E29849448009A4CDB /* SwiftUI Day 96.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI Day 96.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BE9024129849448009A4CDB /* SwiftUI_Day_96App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_Day_96App.swift; sourceTree = "<group>"; };
+		5BE9024329849448009A4CDB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		5BE9024529849451009A4CDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5BE9024829849451009A4CDB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5BE90217298311B8009A4CDB /* Frameworks */ = {
+		5BE9023B29849448009A4CDB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,42 +32,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5BE90211298311B8009A4CDB = {
+		5BE9023529849448009A4CDB = {
 			isa = PBXGroup;
 			children = (
-				5BE9021C298311B8009A4CDB /* SwiftUI Day 95 */,
-				5BE9021B298311B8009A4CDB /* Products */,
+				5BE9024029849448009A4CDB /* SwiftUI Day 96 */,
+				5BE9023F29849448009A4CDB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		5BE9021B298311B8009A4CDB /* Products */ = {
+		5BE9023F29849448009A4CDB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5BE9021A298311B8009A4CDB /* SwiftUI Day 95.app */,
+				5BE9023E29849448009A4CDB /* SwiftUI Day 96.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5BE9021C298311B8009A4CDB /* SwiftUI Day 95 */ = {
+		5BE9024029849448009A4CDB /* SwiftUI Day 96 */ = {
 			isa = PBXGroup;
 			children = (
-				5BE9023329848829009A4CDB /* DiceRollView_ViewModel.swift */,
-				5BE9023129833564009A4CDB /* FileManager.swift */,
-				5BE9022F2983251E009A4CDB /* Dice.swift */,
-				5BE9021D298311B8009A4CDB /* SwiftUI_Day_95App.swift */,
-				5BE9021F298311B8009A4CDB /* ContentView.swift */,
-				5BE9022B29831503009A4CDB /* DiceView.swift */,
-				5BE9022D29831FBD009A4CDB /* DiceRollView.swift */,
-				5BE90221298311BB009A4CDB /* Assets.xcassets */,
-				5BE90223298311BB009A4CDB /* Preview Content */,
+				5BE9024129849448009A4CDB /* SwiftUI_Day_96App.swift */,
+				5BE9024329849448009A4CDB /* ContentView.swift */,
+				5BE9024529849451009A4CDB /* Assets.xcassets */,
+				5BE9024729849451009A4CDB /* Preview Content */,
 			);
-			path = "SwiftUI Day 95";
+			path = "SwiftUI Day 96";
 			sourceTree = "<group>";
 		};
-		5BE90223298311BB009A4CDB /* Preview Content */ = {
+		5BE9024729849451009A4CDB /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				5BE90224298311BB009A4CDB /* Preview Assets.xcassets */,
+				5BE9024829849451009A4CDB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -85,39 +70,39 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5BE90219298311B8009A4CDB /* SwiftUI Day 95 */ = {
+		5BE9023D29849448009A4CDB /* SwiftUI Day 96 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5BE90228298311BB009A4CDB /* Build configuration list for PBXNativeTarget "SwiftUI Day 95" */;
+			buildConfigurationList = 5BE9024C29849451009A4CDB /* Build configuration list for PBXNativeTarget "SwiftUI Day 96" */;
 			buildPhases = (
-				5BE90216298311B8009A4CDB /* Sources */,
-				5BE90217298311B8009A4CDB /* Frameworks */,
-				5BE90218298311B8009A4CDB /* Resources */,
+				5BE9023A29849448009A4CDB /* Sources */,
+				5BE9023B29849448009A4CDB /* Frameworks */,
+				5BE9023C29849448009A4CDB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "SwiftUI Day 95";
-			productName = "SwiftUI Day 95";
-			productReference = 5BE9021A298311B8009A4CDB /* SwiftUI Day 95.app */;
+			name = "SwiftUI Day 96";
+			productName = "SwiftUI Day 96";
+			productReference = 5BE9023E29849448009A4CDB /* SwiftUI Day 96.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		5BE90212298311B8009A4CDB /* Project object */ = {
+		5BE9023629849448009A4CDB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
-					5BE90219298311B8009A4CDB = {
+					5BE9023D29849448009A4CDB = {
 						CreatedOnToolsVersion = 14.2;
 					};
 				};
 			};
-			buildConfigurationList = 5BE90215298311B8009A4CDB /* Build configuration list for PBXProject "SwiftUI Day 95" */;
+			buildConfigurationList = 5BE9023929849448009A4CDB /* Build configuration list for PBXProject "SwiftUI Day 96" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -125,47 +110,42 @@
 				en,
 				Base,
 			);
-			mainGroup = 5BE90211298311B8009A4CDB;
-			productRefGroup = 5BE9021B298311B8009A4CDB /* Products */;
+			mainGroup = 5BE9023529849448009A4CDB;
+			productRefGroup = 5BE9023F29849448009A4CDB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5BE90219298311B8009A4CDB /* SwiftUI Day 95 */,
+				5BE9023D29849448009A4CDB /* SwiftUI Day 96 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5BE90218298311B8009A4CDB /* Resources */ = {
+		5BE9023C29849448009A4CDB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BE90225298311BB009A4CDB /* Preview Assets.xcassets in Resources */,
-				5BE90222298311BB009A4CDB /* Assets.xcassets in Resources */,
+				5BE9024929849451009A4CDB /* Preview Assets.xcassets in Resources */,
+				5BE9024629849451009A4CDB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5BE90216298311B8009A4CDB /* Sources */ = {
+		5BE9023A29849448009A4CDB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BE90220298311B8009A4CDB /* ContentView.swift in Sources */,
-				5BE9023429848829009A4CDB /* DiceRollView_ViewModel.swift in Sources */,
-				5BE9022C29831504009A4CDB /* DiceView.swift in Sources */,
-				5BE902302983251E009A4CDB /* Dice.swift in Sources */,
-				5BE9023229833564009A4CDB /* FileManager.swift in Sources */,
-				5BE9022E29831FBD009A4CDB /* DiceRollView.swift in Sources */,
-				5BE9021E298311B8009A4CDB /* SwiftUI_Day_95App.swift in Sources */,
+				5BE9024429849448009A4CDB /* ContentView.swift in Sources */,
+				5BE9024229849448009A4CDB /* SwiftUI_Day_96App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		5BE90226298311BB009A4CDB /* Debug */ = {
+		5BE9024A29849451009A4CDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -225,7 +205,7 @@
 			};
 			name = Debug;
 		};
-		5BE90227298311BB009A4CDB /* Release */ = {
+		5BE9024B29849451009A4CDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -279,14 +259,14 @@
 			};
 			name = Release;
 		};
-		5BE90229298311BB009A4CDB /* Debug */ = {
+		5BE9024D29849451009A4CDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI Day 95/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI Day 96/Preview Content\"";
 				DEVELOPMENT_TEAM = KBSC8RA6AY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -300,7 +280,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "None.SwiftUI-Day-95";
+				PRODUCT_BUNDLE_IDENTIFIER = "None.SwiftUI-Day-96";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -308,14 +288,14 @@
 			};
 			name = Debug;
 		};
-		5BE9022A298311BB009A4CDB /* Release */ = {
+		5BE9024E29849451009A4CDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI Day 95/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"SwiftUI Day 96/Preview Content\"";
 				DEVELOPMENT_TEAM = KBSC8RA6AY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -329,7 +309,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "None.SwiftUI-Day-95";
+				PRODUCT_BUNDLE_IDENTIFIER = "None.SwiftUI-Day-96";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -340,25 +320,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5BE90215298311B8009A4CDB /* Build configuration list for PBXProject "SwiftUI Day 95" */ = {
+		5BE9023929849448009A4CDB /* Build configuration list for PBXProject "SwiftUI Day 96" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5BE90226298311BB009A4CDB /* Debug */,
-				5BE90227298311BB009A4CDB /* Release */,
+				5BE9024A29849451009A4CDB /* Debug */,
+				5BE9024B29849451009A4CDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5BE90228298311BB009A4CDB /* Build configuration list for PBXNativeTarget "SwiftUI Day 95" */ = {
+		5BE9024C29849451009A4CDB /* Build configuration list for PBXNativeTarget "SwiftUI Day 96" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5BE90229298311BB009A4CDB /* Debug */,
-				5BE9022A298311BB009A4CDB /* Release */,
+				5BE9024D29849451009A4CDB /* Debug */,
+				5BE9024E29849451009A4CDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 5BE90212298311B8009A4CDB /* Project object */;
+	rootObject = 5BE9023629849448009A4CDB /* Project object */;
 }

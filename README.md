@@ -1,3 +1,22 @@
+SwiftUI Day 96
+
+NaivgationView() work great with landscape mode which provide something called primary/secondary layout. normally, we would only place one view inside navigationView, however, if you do have more than one view, and you are in landscale mode, then the bottom view will be shown first. Tapping the button on the top left button will show the view physically above previous view in code. This is like a stack effect. Notice, this behavior is not visisble to protrait mode.
+
+sheet() and alert have two way of using it:
+1) bind a boolean and activate when boolean become true
+2) bind a optional object and activate when object hold a value and unwrap it for you. Notice, for alert, you will have to provide the boolean and the object at the same time.
+
+To greate a simple alert that only does the work of telling something, we can use .aler("tell you something", isPresented: $showAlert) {} , which contain a empty closure. SwiftUI spot that and will supply a ok button for us automatically.
+
+Group is the transparent layout container that we use it to group view together without affecting the layout info, and we can apply modifier to it that run effectly to every child view of it. Group view also let use return multiple view if you dont have the @ViewBuilder attribute.
+
+@Environment(\.horizontalSizeClass) var sizeClass, size class how only two value: .compact, .regularwhere the first one tell use that our space is limited, in this case horizontal space, and the second one tell use we have infinite space in term of horizontal space.
+
+we can add a searchbar on top of our view by using modifier .searchable(text: $searchText, promp:...) 
+
+This work great to filter a collection by using array.filter{$0.localizeCaseInsensitiveContaines(searchText)} that filter array which contain the search string on both cases.
+
+//////
 SwiftUI Day 95(Consolidation)
 
 while Swift can be imperitive, it can also be funtional programming with map() or filter() method on array. 
