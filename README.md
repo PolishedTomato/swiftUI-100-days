@@ -1,3 +1,11 @@
+SwiftUI Day 97(Snow Seeker)
+
+static let in struct are automatically lazy in swift which doesn't load in memory until needed.
+
+Instead of returning a vstack, we can build a view that return a group(since its has no layout info), and use that view inside HStack or VStack, then we are flexible in showing them in different layout.
+
+we can use Text([string], format: .list(.and)) to display a string array with , , and pattern.
+//////
 SwiftUI Day 96
 
 NaivgationView() work great with landscape mode which provide something called primary/secondary layout. normally, we would only place one view inside navigationView, however, if you do have more than one view, and you are in landscale mode, then the bottom view will be shown first. Tapping the button on the top left button will show the view physically above previous view in code. This is like a stack effect. Notice, this behavior is not visisble to protrait mode.
