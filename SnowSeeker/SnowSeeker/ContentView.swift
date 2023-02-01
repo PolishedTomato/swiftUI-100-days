@@ -11,6 +11,7 @@ struct ContentView: View {
     let resorts: [Resort] = Bundle.main.decode("resorts.json")
     
     @State var searchString = ""
+    @StateObject var favoriteResorts = Favorites()
     
     var filterResorts: [Resort]{
         if searchString.isEmpty{
@@ -29,23 +30,32 @@ struct ContentView: View {
                 NavigationLink {
                     ResortView(resort: resort)
                 } label: {
-                    Image(resort.country)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 40, height: 25)
-                        .clipShape(
-                            RoundedRectangle(cornerRadius: 5)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(.black, lineWidth: 1)
-                        )
-                    
-                    VStack(alignment: .leading) {
-                        Text(resort.name)
-                            .font(.headline)
-                        Text("\(resort.runs) runs")
-                            .foregroundColor(.secondary)
+                    HStack{
+                        Image(resort.country)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 40, height: 25)
+                            .clipShape(
+                                RoundedRectangle(cornerRadius: 5)
+                            )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(.black, lineWidth: 1)
+                            )
+                        
+                        VStack(alignment: .leading) {
+                            Text(resort.name)
+                                .font(.headline)
+                            Text("\(resort.runs) runs")
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        if favoriteResorts.contains(resort){
+                            Spacer()
+                            Image(systemName: "heart.fill")
+                                .font(.title)
+                                .foregroundColor(.red)
+                        }
                     }
                 }
             }
@@ -54,6 +64,7 @@ struct ContentView: View {
             //secondary view, will should by default when switch to landscape mode
             WelcomeView()
         }
+        .environmentObject(favoriteResorts)
     }
 }
 
