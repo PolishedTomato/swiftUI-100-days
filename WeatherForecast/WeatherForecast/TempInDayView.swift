@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TempInDayView: View {
     let weatherForcasts: [OpenWeather.WeatherForcast]
-    let metricUnit:Bool
+    let unit:Units
     let onTapAction: (Date)->Void
     
     
@@ -18,7 +18,7 @@ struct TempInDayView: View {
         ScrollView(.horizontal, showsIndicators: false){
             HStack{
                 ForEach(weatherForcasts, id: \.dt_txt) { weatherForcast in
-                    TempAtTimeView(time: weatherForcast.dt_txt, temp: weatherForcast.main.temp, metricUnit: metricUnit)
+                    TempAtTimeView(time: weatherForcast.dt_txt, temp: weatherForcast.main.temp, unit: unit)
                         .onTapGesture {
                             onTapAction(weatherForcast.dt_txt)
                         }
@@ -28,15 +28,15 @@ struct TempInDayView: View {
         }
     }
     
-    init(weatherForcasts: [OpenWeather.WeatherForcast],metricUnit: Bool,onTapAction: @escaping (Date)->Void){
+    init(weatherForcasts: [OpenWeather.WeatherForcast],unit: Units,onTapAction: @escaping (Date)->Void){
         self.weatherForcasts = weatherForcasts
-        self.metricUnit = metricUnit
+        self.unit = unit
         self.onTapAction = onTapAction
     }
 }
 
 struct TempInDayView_Previews: PreviewProvider {
     static var previews: some View {
-        TempInDayView(weatherForcasts: OpenWeather.WeatherForcast.sampleData, metricUnit: true, onTapAction: {$0})
+        TempInDayView(weatherForcasts: OpenWeather.WeatherForcast.sampleData, unit: .imperial, onTapAction: {$0})
     }
 }

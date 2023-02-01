@@ -13,7 +13,7 @@ struct DailyForecastView: View {
     private let weatherForecasts: [OpenWeather.WeatherForcast]
     @State private var selectedTime: Date = Date.now
     private let city: OpenWeather.City
-    var metricUnit:Bool
+    var unit:Units
     
     //find index of selected weatherForcast in the container
     var selectedWeatherForcast: Int{
@@ -24,7 +24,7 @@ struct DailyForecastView: View {
     
     let backToSearch: ()->Void
     
-    init?(weatherForecasts: [OpenWeather.WeatherForcast], city: OpenWeather.City, metricUnit: Bool, backToSearch: @escaping ()->Void){
+    init?(weatherForecasts: [OpenWeather.WeatherForcast], city: OpenWeather.City, unit: Units, backToSearch: @escaping ()->Void){
         self.weatherForecasts = weatherForecasts
         
         if(weatherForecasts.count == 0){
@@ -32,7 +32,7 @@ struct DailyForecastView: View {
         }
         _selectedTime = State(initialValue: weatherForecasts[0].dt_txt)
         self.city = city
-        self.metricUnit = metricUnit
+        self.unit = unit
         self.backToSearch = backToSearch
     }
     
@@ -42,8 +42,7 @@ struct DailyForecastView: View {
                 VStack{
                     Group{
                         HStack{
-                            Text(city.name) + Text(", ")
-                            Text(city.country)
+                            Text("\(city.name), \(city.country)")
                         }
                         .font(.largeTitle.weight(.bold))
                         .shadow(radius: 5)
@@ -52,7 +51,7 @@ struct DailyForecastView: View {
                         .accessibilityLabel("Location: \(city.name), \(city.country)")
                         
                         VStack{
-                            Text("\(weatherForecasts[selectedWeatherForcast].main.temp.formatted()) \(metricUnit ? "℃" : "℉")")
+                            Text("\(weatherForecasts[selectedWeatherForcast].main.temp.formatted()) \(unit == .metric ? "℃" : "℉")")
                                 .font(.largeTitle)
                             
                             HStack{
@@ -66,7 +65,7 @@ struct DailyForecastView: View {
                     
                     Divider()
                     
-                    TempInDayView(weatherForcasts: weatherForecasts, metricUnit: metricUnit){
+                    TempInDayView(weatherForcasts: weatherForecasts, unit: unit){
                         selectedTime = $0
                     }
                     
@@ -78,8 +77,8 @@ struct DailyForecastView: View {
                             VStack(spacing: 5.0){
                                 Text("Max/Min Temp")
                                     .font(.headline)
-                                Text("Max: \(weatherForecasts[selectedWeatherForcast].main.temp_max.formatted()) \(metricUnit ? "℃" : "℉")")
-                                Text("Min: \(weatherForecasts[selectedWeatherForcast].main.temp_min.formatted()) \(metricUnit ? "℃" : "℉")")
+                                Text("Max: \(weatherForecasts[selectedWeatherForcast].main.temp_max.formatted()) \(unit == .metric ? "℃" : "℉")")
+                                Text("Min: \(weatherForecasts[selectedWeatherForcast].main.temp_min.formatted()) \(unit == .metric ? "℃" : "℉")")
                             }
                             .frame(width:150,height:100)
                             .padding(.bottom)
@@ -131,9 +130,9 @@ struct DailyForecastView: View {
                                 Text("Wind")
                                     .font(.headline)
                                 Text("\(weatherForecasts[selectedWeatherForcast].wind.deg) degree")
-                                Text(" \(weatherForecasts[selectedWeatherForcast].wind.speed.formatted()) \(metricUnit ? "meter/second" : "mile/hour")")
+                                Text(" \(weatherForecasts[selectedWeatherForcast].wind.speed.formatted()) \(unit == .metric ? "meter/second" : "mile/hour")")
                                     .font(.caption)
-                                Text("Wind gust:\( weatherForecasts[selectedWeatherForcast].wind.gust.formatted()) \(metricUnit ? "meter/second" : "mile/hour")")
+                                Text("Wind gust:\( weatherForecasts[selectedWeatherForcast].wind.gust.formatted()) \(unit == .metric ? "meter/second" : "mile/hour")")
                                     .font(.caption)
                                 
                             }
@@ -203,7 +202,7 @@ struct DailyForecastView: View {
 
 struct MyPreviewProvider_Previews: PreviewProvider {
     static var previews: some View {
-        DailyForecastView(weatherForecasts: OpenWeather.WeatherForcast.sampleData, city: OpenWeather.City.sampleDate,metricUnit: true, backToSearch: {})
+        DailyForecastView(weatherForecasts: OpenWeather.WeatherForcast.sampleData, city: OpenWeather.City.sampleDate,unit: .imperial, backToSearch: {})
     }
 }
 

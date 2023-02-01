@@ -9,7 +9,7 @@ import Foundation
 
 struct GeoCoding{
     struct CoordinateByCityName{
-        struct GeoLocation:Codable{
+        struct GeoLocation:Codable, Hashable{
             var name: String
             var lat: Double
             var lon: Double
@@ -18,7 +18,7 @@ struct GeoCoding{
         var geoLocations: [GeoLocation]
     }
     
-    struct CoordinateByZipCode:Codable{
+    struct CoordinateByZipCode:Codable, Hashable{
         var zip: String
         var name: String
         var lat: Double

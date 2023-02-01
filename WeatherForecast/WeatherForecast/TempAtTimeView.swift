@@ -11,11 +11,11 @@ import SwiftUI
 struct TempAtTimeView: View {
     let time : Date
     let temp : Double
-    let metricUnit:Bool
+    let unit:Units
     
     var body: some View {
         VStack(spacing:5){
-            Text("\(temp.formatted()) \(metricUnit ? "℃" :"℉")")
+            Text("\(temp.formatted()) \(unit == .metric ? "℃" :"℉")")
                 .font(.title3.bold())
             Text(time.formatted(date: .omitted, time: .shortened))
         }
@@ -26,6 +26,6 @@ struct TempAtTimeView: View {
 
 struct TempAtTimeView_Previews: PreviewProvider {
     static var previews: some View {
-        TempAtTimeView(time: Date.now, temp: 12, metricUnit: true)
+        TempAtTimeView(time: Date.now, temp: 12, unit: .imperial)
     }
 }

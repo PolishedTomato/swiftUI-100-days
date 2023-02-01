@@ -14,8 +14,7 @@ extension LocationFormView{
         @Published var zipCode = ""
         @Published var cityName = ""
         
-        @Published var choseCelsius = true;
-        @Published var choseFahrenheit = false;
+        @Published var unit: Units = .imperial
         
         @Published var lat:Double = 40.7128
         @Published var lon:Double = -74.0060
@@ -24,6 +23,16 @@ extension LocationFormView{
         
         @Published var showAlert = false
         @Published var alertMessage = ""
+        
+        @Published var showDialog = false
+        @Published var locations : [GeoCoding.CoordinateByCityName.GeoLocation] = []
+        
+        //input country code
+        //return name of the country
+        func countryName(countryCode: String) ->String{
+            let current = Locale(identifier: "en_US")
+            return current.localizedString(forRegionCode: countryCode) ?? "unknown country code"
+        }
         
         var cityNamePercentEncoding: String{
             cityName.trimmingCharacters(in: .whitespacesAndNewlines).capitalized.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ??  "failed"
@@ -38,7 +47,7 @@ extension LocationFormView{
         }
         
         var openWeatherApi:String{
-            "http://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=4e7641da2c40729611d1770ccec6aed3&units=\(choseCelsius == true ? "metric" : "imperial")"
+            "http://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&appid=4e7641da2c40729611d1770ccec6aed3&units=\(unit == .metric ? "metric" : "imperial")"
         }
         
         func coordinateApiRequest()async{
@@ -63,8 +72,8 @@ extension LocationFormView{
                     alertMessage = "failed to decode"
                     return
                 }
-                lat = data[0].lat
-                lon = data[0].lon
+                
+                locations = data
                 
             }
             else{
