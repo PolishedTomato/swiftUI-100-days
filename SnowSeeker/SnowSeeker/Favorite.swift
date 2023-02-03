@@ -16,7 +16,12 @@ class Favorites: ObservableObject {
 
     init() {
         // load our saved data
-
+        if let data = try? Data(contentsOf: FileManager.savePath){
+            if let decoded = try? JSONDecoder().decode(Set<String>.self, from: data){
+                resorts = decoded
+                return
+            }
+        }
         // still here? Use an empty array
         resorts = []
     }
@@ -45,5 +50,13 @@ class Favorites: ObservableObject {
 
     func save() {
         // write out our data
+        if let data = try? JSONEncoder().encode(resorts){
+            do{
+                try data.write(to: FileManager.savePath)
+            }
+            catch{
+                print(error)
+            }
+        }
     }
 }

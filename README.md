@@ -1,3 +1,8 @@
+SwiftUI Day 99
+
+Challenge completed.
+
+/////
 SwiftUI Day 98
 
 @Environment\.dynamicTypeSize) to read device's type size.

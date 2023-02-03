@@ -7,11 +7,20 @@
 
 import SwiftUI
 
+enum Sort: String, CaseIterable, Identifiable{
+    case def, alphabetical
+    
+    var id:Self {
+        self
+    }
+}
+
 struct ContentView: View {
     let resorts: [Resort] = Bundle.main.decode("resorts.json")
     
     @State var searchString = ""
     @StateObject var favoriteResorts = Favorites()
+    @State var sortOrder:Sort = .def
     
     var filterResorts: [Resort]{
         if searchString.isEmpty{
@@ -24,9 +33,20 @@ struct ContentView: View {
         }
     }
     
+    //challenge 3
+    var sortedResort:[Resort]{
+        if sortOrder == .alphabetical{
+            return filterResorts.sorted { lhs, rhs in
+                lhs.name < rhs.name
+            }
+        }
+        
+        return filterResorts
+    }
+    
     var body: some View {
         NavigationView {
-            List(filterResorts) { resort in
+            List(sortedResort) { resort in
                 NavigationLink {
                     ResortView(resort: resort)
                 } label: {
@@ -55,6 +75,15 @@ struct ContentView: View {
                             Image(systemName: "heart.fill")
                                 .font(.title)
                                 .foregroundColor(.red)
+                        }
+                    }
+                }
+            }
+            .toolbar{
+                ToolbarItem{
+                    Picker("Sort", selection: $sortOrder) {
+                        ForEach(Sort.allCases){ c in
+                            Text("\(c.rawValue)")
                         }
                     }
                 }

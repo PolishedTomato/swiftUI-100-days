@@ -33,7 +33,7 @@ struct ResortView: View {
     
     var body: some View {
         ScrollView {
-            ZStack(alignment: .topLeading){
+            ZStack(alignment: .topTrailing){
                 VStack(alignment: .leading, spacing: 0) {
                     Image(decorative: resort.id)
                         .resizable()
@@ -78,20 +78,24 @@ struct ResortView: View {
                     }
                     .padding(.horizontal)
                 }
-                
-                Label("Like", systemImage: favoriteResorts.contains(resort) ? "heart.fill" : "heart")
-                    .font(.title)
-                    .foregroundColor(.red)
-                    .onTapGesture {
-                        if favoriteResorts.contains(resort){
-                            favoriteResorts.remove(resort)
+                HStack{
+                    Label("Like", systemImage: favoriteResorts.contains(resort) ? "heart.fill" : "heart")
+                        .font(.title)
+                        .foregroundColor(.red)
+                        .onTapGesture {
+                            if favoriteResorts.contains(resort){
+                                favoriteResorts.remove(resort)
+                            }
+                            else{
+                                favoriteResorts.add(resort)
+                            }
                         }
-                        else{
-                            favoriteResorts.add(resort)
-                        }
-                    }
-                    .accessibilityAddTraits(.isButton)
-                    .accessibilityLabel("Tap to like or unlike, currently \(favoriteResorts.contains(resort) ? "liked" : "not liked")")
+                        .accessibilityAddTraits(.isButton)
+                        .accessibilityLabel("Tap to like or unlike, currently \(favoriteResorts.contains(resort) ? "liked" : "not liked")")
+                    Spacer()
+                    Text("Credit by \(resort.imageCredit)")
+                        .foregroundColor(.secondary)
+                }
                     
             }
         }
