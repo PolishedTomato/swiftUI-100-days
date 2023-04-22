@@ -1,9 +1,17 @@
-ReadMe
+# WeatherForecast
 
-This is a app that display live weather information within 5 days depend on the geographic location such as longitude, latitude/ city name, zip code
+## Goal 
+This application aim to display the general weather infomation such as temp, humidity, wind pressue, etc on a specified location within 5 days for every 3 hours.
 
-Challenges:
+## Features
+* Weather query base on geographical location such as city name, zipe or lantitude, longitude.
 
-In iOS, parsing a json object which return from API is tricky. Therefore, I have to create many classes to accommodate this challenge.
+## Technology
+* Swift
+* SwiftUI
+* OpenWeather API, GeoCoding API
+* JSON Decoding
 
-When using APIs with Data(contensof:url) or URLsession.share.data(), and the url is insecure, we need to add a option in plist of Xcode, plist->add transportation security setting -> add row -> add allow arbitrary load -> set it true. In addition to that, when using city name within api, we need to replace all white space with %20. Done by using addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed).
+## Credits
+* Deye Lei
+* Open Weather
